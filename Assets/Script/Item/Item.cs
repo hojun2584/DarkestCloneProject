@@ -21,17 +21,13 @@ public struct ItemInfoSt
 
 public class Item : IItem
 {
-
-
     protected Item(string name = "none", int cost = 0, int amount = 0, int maxAmount = 0)
     {
-
         this.iteminfo = new ItemInfoSt(name,cost,amount,maxAmount);
     }
 
     protected Item(ItemInfoSt iteminfo)
     {
-
         this.iteminfo = iteminfo;
     }
 
@@ -54,12 +50,12 @@ public class Item : IItem
     ItemInfoSt iteminfo;
 
 
-     public string ItemName {
-        get 
-        {
-            return iteminfo.name;
-        }
-     }
+    public string ItemName {
+       get 
+       {
+           return iteminfo.name;
+       }
+    }
     
     public int Cost
     {

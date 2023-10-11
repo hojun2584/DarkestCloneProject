@@ -20,8 +20,6 @@ public class Inventory : MonoBehaviour
             return false;
         }
     }
-    
-
 
     // Start is called before the first frame update
     void Start()
@@ -29,12 +27,6 @@ public class Inventory : MonoBehaviour
         itemList.Capacity = planeList.Count;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-
-    }
 
     public Item FindItem(Item item)
     {
@@ -49,14 +41,9 @@ public class Inventory : MonoBehaviour
         Item iter = (Item)itemList.Find(x => x.Iteminfo.name == item.ItemName && x.Iteminfo.amount < x.Iteminfo.maxAmount);
         
         if(iter != null)
-        {
             iter.Amount += 1;
-        }
         else if ( IsCapacity )
-        {
             itemList.Insert(itemList.Count, item);
-            Debug.Log(itemList.Count);
-        }
 
 
         InitViewItem();
@@ -68,18 +55,14 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < planeList.Count; i++)
         {
-            if (i > itemList.Count)
+
+            if (i >= itemList.Count)
                 break;
 
-            if (planeList[i].TryGetComponent<ViewItem>(out ViewItem temp))
-                temp.ItemInfo = itemList[i].Iteminfo;
+            if (planeList[i].TryGetComponent<ItemAdapter>(out ItemAdapter temp))
+                temp.Item = (Item)itemList[i];
+
         }
     }
-
-
-
-
-    
-
 
 }

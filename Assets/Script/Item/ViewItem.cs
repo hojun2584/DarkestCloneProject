@@ -3,35 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ViewItem : MonoBehaviour
+public class ViewItem : MonoBehaviour, InitAble
 {
 
-
     TextMeshProUGUI itemInfoText;
-    public ItemInfoSt ItemInfo 
+    ItemAdapter adapter;
+
+    public Item ItemView
     {
-        get => iteminfo;
-        set
+        get
         {
-            iteminfo = value;
-            ViewInfo(iteminfo);
+            return adapter.Item;
         }
     }
-    ItemInfoSt iteminfo;
-
 
     private void Awake()
     {
-        itemInfoText = GetComponentInChildren<TextMeshProUGUI>();   
+        itemInfoText = GetComponentInChildren<TextMeshProUGUI>();
+        adapter = GetComponent<ItemAdapter>();
     }
 
-    public void ViewInfo(ItemInfoSt iteminfo)
+    private void Start()
     {
-        //흠... 이걸 어떻게 처리한다...
-        itemInfoText.text = iteminfo.name +"\n"+ iteminfo.amount;
+        adapter.Initcomponent.Insert(0, this);
+
     }
 
+    public void Init()
+    {
+        itemInfoText.text = ItemView.ItemName + "\n" + ItemView.Amount;
 
-
+    }
 
 }
