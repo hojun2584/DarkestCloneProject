@@ -21,3 +21,11 @@ public interface IConsumeAbleItem : IItem
 
     public void Cunsume();
 }
+
+
+public interface InitAble
+{
+    public void Init();
+
+
+}

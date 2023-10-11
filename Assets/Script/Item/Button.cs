@@ -20,6 +20,7 @@ public class Button : MonoBehaviour
         }
     }
     IButtonStartegy buttonStartegy;
+
     [SerializeField]
     Inventory inven;
 
@@ -31,17 +32,9 @@ public class Button : MonoBehaviour
         buttonStartegy = new InsertButton(new Torch() , inven);
     }
 
-
-
     public void OnClick()
     {
         ButtonStartegy.OnClick();
     }
-
-    
-
-
-
-
 
 }
