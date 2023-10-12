@@ -6,21 +6,32 @@ public class ItemAdapter : MonoBehaviour
 {
 
     
-    public List<InitAble> Initcomponent = new List<InitAble>();
+    public List<InitViewAble> Initcomponent = new List<InitViewAble>();
 
     public Item Item 
     {
-        get{ return item;}
+        get
+        {
+            return item;
+        }
         set
         {
             item = value;
-            foreach (var temp in Initcomponent)
-                temp.Init();
-
-           
+            foreach (var initItem in Initcomponent)
+                initItem.Init();
         }
     }
     Item item;
+
+
+    public void InitView()
+    { 
+            
+
+        foreach (var initItem in Initcomponent)
+            initItem.Init();
+
+    }
 
 
 }

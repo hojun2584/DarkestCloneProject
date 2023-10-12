@@ -60,7 +60,18 @@ public class Inventory : MonoBehaviour
                 break;
 
             if (planeList[i].TryGetComponent<ItemAdapter>(out ItemAdapter temp))
-                temp.Item = (Item)itemList[i];
+            {
+                if( itemList[i].Iteminfo.amount <= 0)
+                {
+                    itemList[i] = null;
+                }
+                else
+                {
+                    temp.Item = (Item)itemList[i];
+                }
+
+
+            }
 
         }
     }

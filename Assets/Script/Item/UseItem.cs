@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UseItem : MonoBehaviour, IButtonStartegy
+public class UseItem : Button
 {
 
     ItemAdapter adapter;
@@ -12,8 +12,18 @@ public class UseItem : MonoBehaviour, IButtonStartegy
         adapter = GetComponent<ItemAdapter>();
     }
 
-    public void OnClick()
+    public override void OnClick()
     {
+        if (adapter.Item == null)
+            return;
+     
+        
+
         adapter.Item.Use();
+
+        if (adapter.Item.Amount <= 0)
+            adapter.Item = null;
+
+        adapter.InitView();
     }
 }
