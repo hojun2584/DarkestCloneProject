@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ViewItem : MonoBehaviour, InitAble
+public class ViewItem : MonoBehaviour, InitViewAble
 {
 
     TextMeshProUGUI itemInfoText;
     ItemAdapter adapter;
+
+    [SerializeField]
+    Component textModel;
 
     public Item ItemView
     {
@@ -21,6 +24,9 @@ public class ViewItem : MonoBehaviour, InitAble
     {
         itemInfoText = GetComponentInChildren<TextMeshProUGUI>();
         adapter = GetComponent<ItemAdapter>();
+        
+
+
     }
 
     private void Start()
@@ -31,6 +37,12 @@ public class ViewItem : MonoBehaviour, InitAble
 
     public void Init()
     {
+        if (ItemView == null)
+        {
+            itemInfoText.text = "null";
+            return;
+        }
+
         itemInfoText.text = ItemView.ItemName + "\n" + ItemView.Amount;
 
     }

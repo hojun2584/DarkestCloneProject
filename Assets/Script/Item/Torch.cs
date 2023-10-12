@@ -22,7 +22,7 @@ public class Torch : Item, IConsumeAbleItem
 
     public void Cunsume()
     {
-        Debug.Log("consume");
+        Amount -= 1;
     }
 
 }

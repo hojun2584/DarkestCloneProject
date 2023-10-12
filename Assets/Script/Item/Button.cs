@@ -32,7 +32,7 @@ public class Button : MonoBehaviour
         buttonStartegy = new InsertButton(new Torch() , inven);
     }
 
-    public void OnClick()
+    public virtual void OnClick()
     {
         ButtonStartegy.OnClick();
     }
