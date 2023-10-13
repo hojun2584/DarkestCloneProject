@@ -26,6 +26,4 @@ public interface IConsumeAbleItem : IItem
 public interface InitViewAble
 {
     public void Init();
-
-
 }

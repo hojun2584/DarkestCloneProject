@@ -2,12 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum SpriteNumber{
+
+    TORCH = 0,
+
+}
+
+
+
 public class Inventory : MonoBehaviour
 {
 
     List<IItem> itemList = new List<IItem>();
     [SerializeField]
     List<GameObject> planeList = new List<GameObject>();
+
+    Dictionary<int, Sprite> spriteDict = new Dictionary<int, Sprite>();
+
+    SpriteNumber spNumber;
+
+    [SerializeField]
+    Sprite temp;
+
 
     [SerializeField]
     public bool IsCapacity
@@ -20,6 +37,12 @@ public class Inventory : MonoBehaviour
             return false;
         }
     }
+
+    public void Awake()
+    {
+        spriteDict.Add( (int)SpriteNumber.TORCH , temp);
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,21 +82,16 @@ public class Inventory : MonoBehaviour
             if (i >= itemList.Count)
                 break;
 
-            if (planeList[i].TryGetComponent<ItemAdapter>(out ItemAdapter temp))
+            if (planeList[i].TryGetComponent<ItemAdapter>(out ItemAdapter item))
             {
-                if( itemList[i].Iteminfo.amount <= 0)
-                {
+                if (itemList[i].Iteminfo.amount <= 0)
                     itemList[i] = null;
-                }
                 else
-                {
-                    temp.Item = (Item)itemList[i];
-                }
-
-
+                    item.Item = (Item)itemList[i];
             }
 
         }
+
     }
 
 }

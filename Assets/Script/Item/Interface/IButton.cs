@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IButtonStartegy
+public interface IButtonAble
 {
+
+
     public abstract void OnClick();
+
+    public abstract void SetStartegy();
 }
 
 
-public interface IInsertAble : IButtonStartegy
+public interface IInsertAble : IButtonAble
 {
     public abstract void InsertItem();
 
@@ -21,7 +25,7 @@ public interface IBuyAble : IInsertAble
     public abstract void BuyItem();
 }
 
-public interface IPopAble : IButtonStartegy
+public interface IPopAble : IButtonAble
 {
     public abstract void PopItem();
 }
@@ -29,4 +33,11 @@ public interface IPopAble : IButtonStartegy
 public interface ISellAble : IPopAble
 {
     public abstract void ISell_Item();
+}
+
+public interface IButtonStartegy
+{
+    public abstract void OnClick();
+
+
 }

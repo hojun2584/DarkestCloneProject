@@ -7,6 +7,7 @@ public class InsertButton : IInsertAble
 
     
     Inventory inven;
+
     public InsertButton(Item item , Inventory inven)
     {
         this.value = item;
@@ -14,6 +15,7 @@ public class InsertButton : IInsertAble
     }
     Item value;
 
+    public UIModel Model { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     public void InsertItem()
     {
@@ -29,4 +31,10 @@ public class InsertButton : IInsertAble
     {
         this.inven = inven;
     }
+
+    public void SetStartegy()
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

@@ -7,30 +7,38 @@ using TMPro;
 public class UIText : MonoBehaviour , InitViewAble
 {
     [SerializeField]
-    UIModel model;
-    TextMeshProUGUI textView;
+    protected UIModel model;
+    protected TextMeshProUGUI textView;
 
-
-    private void Awake()
+    public TextName ModelName 
     {
-        textView = gameObject.GetComponent<TextMeshProUGUI>();
+        get => modelName;
+        set
+        {
+            modelName = value;
+        }
+    }
+    TextName modelName;
+    
+
+    protected void Awake()
+    {
+        if (model == null)
+            model = GameObject.Find("UiModel").gameObject.GetComponent<UIModel>();
+
     }
 
-    private void Start()
+    protected void Start()
     {
+        TryGetComponent<TextMeshProUGUI>(out textView);
         model.AddViewer(this);
     }
 
-    public void Init()
+    public virtual void Init() 
     {
-
-        
-
-    }
-
-    public void Update()
-    {
-        Init();
+        modelName = model.Toggle;
+        textView.text = model.textDict[(int)ModelName];
+        return;
     }
 
 }
