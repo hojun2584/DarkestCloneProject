@@ -8,7 +8,7 @@ public class Button : MonoBehaviour
     
 
 
-    public IButtonStartegy ButtonStartegy 
+    public IButtonAble ButtonStartegy 
     {
         get
         {
@@ -19,7 +19,7 @@ public class Button : MonoBehaviour
             buttonStartegy = value;
         }
     }
-    IButtonStartegy buttonStartegy;
+    IButtonAble buttonStartegy;
 
     [SerializeField]
     Inventory inven;

@@ -5,12 +5,12 @@ using TMPro;
 
 
 
-public enum ToggleButton
+public enum TextName
 {
 
     INVENTORY = 0,
-    MAP = 1
-
+    MAP = 1,
+    STATUS = 2
 }
 
 
@@ -18,9 +18,24 @@ public class UIModel : MonoBehaviour
 {
 
 
-    public ToggleButton toggle = new ToggleButton();
+    public TextName Toggle 
+    {
+        get
+        {
+            return toggle;
+        }
+        set
+        {
+            toggle = value;
+            InitAll();
+        }
+    }
+    TextName toggle = 0;
+
+
+
     public Dictionary<int, string> textDict = new Dictionary<int, string>();
-    List<InitViewAble> initAbleList = new List<InitViewAble>();
+    public List<InitViewAble> initAbleList = new List<InitViewAble>();
 
 
     
@@ -28,6 +43,7 @@ public class UIModel : MonoBehaviour
     {
         textDict.Add(0 , "Inventory");
         textDict.Add(1 , "Map");
+        textDict.Add(2, "Status");
     }
 
 

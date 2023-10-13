@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public struct ItemInfoSt
 {
@@ -9,21 +9,23 @@ public struct ItemInfoSt
     public int cost;
     public int amount;
     public int maxAmount;
+    public Sprite image;
 
-    public ItemInfoSt(string name , int cost, int amount , int maxAmount)
+    public ItemInfoSt(string name , int cost, int amount , int maxAmount, Sprite image)
     {
         this.name = name;
         this.cost = cost;
         this.amount = amount;
         this.maxAmount = maxAmount;
+        this.image = image;
     }
 }
 
 public class Item : IItem
 {
-    protected Item(string name = "none", int cost = 0, int amount = 0, int maxAmount = 0)
+    protected Item(Sprite image = null,string name = "none", int cost = 0, int amount = 0, int maxAmount = 0)
     {
-        this.iteminfo = new ItemInfoSt(name,cost,amount,maxAmount);
+        this.iteminfo = new ItemInfoSt(name,cost,amount,maxAmount , image);
     }
 
     protected Item(ItemInfoSt iteminfo)
