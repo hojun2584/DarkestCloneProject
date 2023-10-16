@@ -26,6 +26,17 @@ public class Enviromental : SingleTon<Enviromental>
         base.Awake();
     }
 
+    IEnumerator LightTimer() 
+    {
+
+        while (true)
+        {
+            yield return new WaitForSeconds(1.0f);
+            enviro.light -= 1;
+        }
+
+    }
+
 
     
     static EnviroMentalSt enviro = new EnviroMentalSt();
@@ -33,6 +44,16 @@ public class Enviromental : SingleTon<Enviromental>
     public static int enviroMental
     {
         get => enviro.light;
+        set
+        {
+            if (value <= 100 && value >= 0)
+                enviro.light = value;
+            else
+                enviro.light = 100;
+
+
+            Debug.Log("enviro.light = "  + enviro.light);
+        }
     }
 
 }

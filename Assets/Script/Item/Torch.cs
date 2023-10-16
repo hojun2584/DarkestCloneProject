@@ -5,14 +5,11 @@ using UnityEngine;
 public class Torch : Item, IConsumeAbleItem
 {
 
-    public Torch(string name = "Torch" , int cost = 30, int amount = 1, int maxAmount = 20) 
-    {
-        Iteminfo = new ItemInfoSt(name,cost,amount,maxAmount);
-    }
+    int lightValue = 30;
 
-    public Torch(ItemInfoSt iteminfo) : base(iteminfo)
+    public Torch(ItemData data)
     {
-
+        itemData = data;
     }
 
     public override void Use()
@@ -22,7 +19,8 @@ public class Torch : Item, IConsumeAbleItem
 
     public void Cunsume()
     {
-        Amount -= 1;
+        ItemData.Amount -= 1;
+        Enviromental.enviroMental += lightValue;
     }
 
 }
