@@ -7,10 +7,14 @@ public class InvenCheck : MonoBehaviour
     [SerializeField]
     Inventory inven;
 
+    
+    public ItemData item;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log(item.ItemName == null);
     }
 
     // Update is called once per frame
@@ -20,7 +24,7 @@ public class InvenCheck : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             Debug.Log("insert");
-            inven.InsertItem(new Torch());
+            inven.InsertItem(new Torch(item) );
 
         }
         if (Input.GetKey(KeyCode.B))
@@ -30,4 +34,20 @@ public class InvenCheck : MonoBehaviour
 
         }
     }
+
+
+
+    public void Temp()
+    {
+        
+        if (inven == null)
+            Debug.Log("check");
+
+
+        inven.InsertItem(new Torch(item));
+
+
+    }
+
+
 }

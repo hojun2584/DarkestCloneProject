@@ -29,8 +29,6 @@ public class ItemRay : MonoBehaviour
             // Ray가 Collider와 충돌했는지 확인합니다.
             if (Physics.Raycast(ray, out hit))
             {
-                if(hit.collider.gameObject.TryGetComponent<Button>(out Button temp))
-                    temp.OnClick();
                 
 
             }

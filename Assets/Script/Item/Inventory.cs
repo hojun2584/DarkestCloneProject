@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum SpriteNumber{
-
-    TORCH = 0,
-
-}
 
 
 
@@ -15,15 +10,9 @@ public class Inventory : MonoBehaviour
 {
 
     List<IItem> itemList = new List<IItem>();
-    [SerializeField]
-    List<GameObject> planeList = new List<GameObject>();
+    
+    public List<ItemSlot> itemSlotList = new List<ItemSlot>();
 
-    Dictionary<int, Sprite> spriteDict = new Dictionary<int, Sprite>();
-
-    SpriteNumber spNumber;
-
-    [SerializeField]
-    Sprite temp;
 
 
     [SerializeField]
@@ -31,7 +20,7 @@ public class Inventory : MonoBehaviour
     {
         get
         {
-            if (itemList.Count < planeList.Count)
+            if (itemList.Count < itemSlotList.Count)
                 return true;
 
             return false;
@@ -40,34 +29,51 @@ public class Inventory : MonoBehaviour
 
     public void Awake()
     {
-        spriteDict.Add( (int)SpriteNumber.TORCH , temp);
+        
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        itemList.Capacity = planeList.Count;
+        itemList.Capacity = itemSlotList.Count;
     }
 
 
     public Item FindItem(Item item)
     {
-        return (Item)itemList.Find(x => x.Iteminfo.name == item.ItemName && x.Iteminfo.amount < x.Iteminfo.maxAmount);
+
+        return (Item)itemList.Find(data => data.ItemData == item.ItemData && data.ItemData.Amount < data.ItemData.MaxAmount);
     }
 
     public bool InsertItem(Item item)
     {
 
         //var temp = itemList.Find(x => x.InfoItem.ItemName == setItem.InfoItem.ItemName && x.InfoItem.Amount < x.InfoItem.Capacity);
-        
-        Item iter = (Item)itemList.Find(x => x.Iteminfo.name == item.ItemName && x.Iteminfo.amount < x.Iteminfo.maxAmount);
-        
-        if(iter != null)
-            iter.Amount += 1;
-        else if ( IsCapacity )
-            itemList.Insert(itemList.Count, item);
+        // 오늘 코딩 왜 이럼? 그냥 감탄만 나오네
 
+
+        Item checkItem = FindItem(item);
+
+        if(checkItem != null)
+            checkItem.ItemData.Amount += 1;
+        else if ( IsCapacity )
+        {
+            int index = itemList.IndexOf(null);
+
+            if (index != -1)
+            {
+                itemList[index] = item;
+            }
+            else
+            {
+                itemList.Insert(itemList.Count, item);
+            }
+
+        }
+        else
+            Debug.Log("insert impossible " + gameObject.name + " 플로팅 바 띄어서 더 이상 집어 넣을 수 없음 알리기");
+        
 
         InitViewItem();
         return false; ;
@@ -76,19 +82,14 @@ public class Inventory : MonoBehaviour
     public void InitViewItem()
     {
 
-        for (int i = 0; i < planeList.Count; i++)
+        for (int i = 0; i < itemSlotList.Count; i++)
         {
 
             if (i >= itemList.Count)
                 break;
 
-            if (planeList[i].TryGetComponent<ItemAdapter>(out ItemAdapter item))
-            {
-                if (itemList[i].Iteminfo.amount <= 0)
-                    itemList[i] = null;
-                else
-                    item.Item = (Item)itemList[i];
-            }
+             itemSlotList[i].ItemData = itemList[i];
+ 
 
         }
 
