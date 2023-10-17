@@ -5,22 +5,21 @@ using UnityEngine;
 public class Item : IItem
 {
 
-    public Item() { }
 
-    public Item(ItemData itemData)
-    {
-        this.itemData = itemData;
-    }
-
-    public ItemData ItemData 
+    public ItemData Data
     {
         get
         {
             return itemData;
-        } 
+        }
+        set
+        {
+            itemData = value;
+        }
+        
     }
     [SerializeField]
-    protected ItemData itemData;
+    ItemData itemData;
 
 
 

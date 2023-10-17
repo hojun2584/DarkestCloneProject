@@ -12,7 +12,7 @@ public interface IUseAble
 public interface IItem : IUseAble
 {
 
-    public ItemData ItemData { get; }
+    public ItemData Data { get; }
 
 }
 

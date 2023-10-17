@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48c1f9a304538834b895a8bf33f6c7fb, type: 3}
   m_Name: TorchItemData
   m_EditorClassIdentifier: 
-  amount: 49
+  amount: 1
   maxAmount: 20
   cost: 3
   itemName: Torch
