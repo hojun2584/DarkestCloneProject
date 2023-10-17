@@ -43,20 +43,21 @@ public class Inventory : MonoBehaviour
     public Item FindItem(Item item)
     {
 
-        return (Item)itemList.Find(data => data.ItemData == item.ItemData && data.ItemData.Amount < data.ItemData.MaxAmount);
+        return (Item)itemList.Find(data => data.Data.ItemName == item.Data.ItemName && data.Data.Amount <= data.Data.MaxAmount);
     }
 
     public bool InsertItem(Item item)
     {
 
         //var temp = itemList.Find(x => x.InfoItem.ItemName == setItem.InfoItem.ItemName && x.InfoItem.Amount < x.InfoItem.Capacity);
-        // 오늘 코딩 왜 이럼? 그냥 감탄만 나오네
-
+        
 
         Item checkItem = FindItem(item);
 
         if(checkItem != null)
-            checkItem.ItemData.Amount += 1;
+            checkItem.Data.Amount += 1;
+
+
         else if ( IsCapacity )
         {
             int index = itemList.IndexOf(null);
@@ -88,9 +89,7 @@ public class Inventory : MonoBehaviour
             if (i >= itemList.Count)
                 break;
 
-             itemSlotList[i].ItemData = itemList[i];
- 
-
+             itemSlotList[i].ItemData = itemList[i].Data;
         }
 
     }

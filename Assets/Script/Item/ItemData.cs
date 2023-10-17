@@ -45,7 +45,17 @@ public class ItemData : ScriptableObject
     [SerializeField]
     int cost;
 
-    public string ItemName { get { return name; } }
+    public string ItemName 
+    {
+        get 
+        { 
+            return itemName;
+        } 
+        set 
+        { 
+            itemName = value;
+        }
+    }
     [SerializeField]
     string itemName;
 
@@ -61,5 +71,13 @@ public class ItemData : ScriptableObject
     [SerializeField]
     Sprite spriteImage;
 
+
+    public ItemData CloneObj 
+    {
+        get
+        {
+            return Instantiate(this);
+        }
+    }
 
 }

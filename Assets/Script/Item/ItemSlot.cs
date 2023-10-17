@@ -10,7 +10,7 @@ public class ItemSlot : MonoBehaviour
     
     public Inventory inven = null;
 
-    public IItem? ItemData 
+    public ItemData ItemData 
     {
         get
         {
@@ -18,12 +18,12 @@ public class ItemSlot : MonoBehaviour
         }
         set
         {
-            itemData = value;
+            itemData = Instantiate((ItemData)value);
             InitView();
         }
     }
     [SerializeField]
-    IItem? itemData = null;
+    ItemData itemData = null;
     
     
     
@@ -36,16 +36,16 @@ public class ItemSlot : MonoBehaviour
             Debug.Log("이미지 컴포넌트 없음" + gameObject.name);
 
 
-
         inven.itemSlotList.Insert(inven.itemSlotList.Count,this);
-
+        
     }
 
     private void InitView()
     {
-        Debug.Log(transform.position);
-        spriteCompo.sprite = itemData.ItemData.SpriteImage;
-        Debug.Log("대충 뷰 초기화 해주는 코드~");
+        spriteCompo.sprite = ItemData.SpriteImage;
+
+        Debug.Log(ItemData.Amount + " " + ItemData.MaxAmount);
+
     }
 
 }

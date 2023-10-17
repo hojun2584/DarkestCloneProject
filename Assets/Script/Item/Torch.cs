@@ -9,7 +9,8 @@ public class Torch : Item, IConsumeAbleItem
 
     public Torch(ItemData data)
     {
-        itemData = data;
+        Data = data.CloneObj;        
+        
     }
 
     public override void Use()
@@ -19,7 +20,7 @@ public class Torch : Item, IConsumeAbleItem
 
     public void Cunsume()
     {
-        ItemData.Amount -= 1;
+        Data.Amount -= 1;
         Enviromental.enviroMental += lightValue;
     }
 
