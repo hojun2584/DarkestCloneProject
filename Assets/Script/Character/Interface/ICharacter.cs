@@ -5,7 +5,6 @@ using UnityEngine;
 public interface ICharacter
 {
 
-    public CharacterData CharStatus { get; set; }
     
 }
 
