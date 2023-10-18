@@ -19,31 +19,11 @@ public class Character : MonoBehaviour, ICharacter
 {
 
 
-    public CharacterData CharStatus
-    {
-        get;
-        set;
-    }
-    CharacterData charStatus;
-
     public STATE state;
 
 
-    protected Dictionary<STATE, ChracterState> stateDict = new Dictionary<STATE, ChracterState>();
-
     private void Awake()
     {
-
-
-    }
-
-    public void SetState()
-    {
-        if (0 != Input.GetAxis("horizontal") || 0 != Input.GetAxis("vertical") )
-            state = STATE.RUN;
-
-        if (Input.GetKey(KeyCode.Mouse0))
-            state = STATE.ATTACK; 
 
 
     }
