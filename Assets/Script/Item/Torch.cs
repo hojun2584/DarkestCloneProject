@@ -10,7 +10,6 @@ public class Torch : Item, IConsumeAbleItem
     public Torch(ItemData data)
     {
         Data = data.CloneObj;        
-        
     }
 
     public override void Use()
