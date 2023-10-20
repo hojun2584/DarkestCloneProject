@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class ItemSlot : MonoBehaviour
+public class ItemSlot : MonoBehaviour ,IClickUseAble
 {
 
     
@@ -24,9 +24,20 @@ public class ItemSlot : MonoBehaviour
     }
     [SerializeField]
     ItemData itemData = null;
-    
-    
-    
+
+    public Item HaveItem
+    {
+        get
+        {
+            return haveItem;
+        }
+        set
+        {
+            ItemData = value.Data;
+            haveItem = value;
+        }
+    }
+    Item haveItem;
 
     Image spriteCompo = null;
 
@@ -35,9 +46,7 @@ public class ItemSlot : MonoBehaviour
         if (!gameObject.TryGetComponent<Image>(out spriteCompo))
             Debug.Log("이미지 컴포넌트 없음" + gameObject.name);
 
-
         inven.itemSlotList.Insert(inven.itemSlotList.Count,this);
-        
     }
 
     private void InitView()
@@ -46,6 +55,12 @@ public class ItemSlot : MonoBehaviour
 
         Debug.Log(ItemData.Amount + " " + ItemData.MaxAmount);
 
+    }
+
+    public void OnClickUse()
+    {
+        haveItem.Use();
+        Debug.Log("clickUse");
     }
 
 }

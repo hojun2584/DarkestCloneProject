@@ -41,23 +41,29 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
 
     public CharacterData Data 
     {
-        get { return data; }
+        get 
+        {
+            if (data == null)
+                return null;
+
+            return data;
+        }
+        set { data = value; }
     }
     [SerializeField]
-    CharacterData data;
+    CharacterData data = null;
 
-    private void Awake()
+    protected void Awake()
     {
         curState = STATE.IDLE;
         behaviourFsm = new CharFsm();
 
         stateDict.Add(STATE.ATTACK , new AttackState(this, behaviourFsm));
         stateDict.Add(STATE.IDLE , new IdleState(this, behaviourFsm));
-
+        stateDict.Add(STATE.MOVE, new MoveState(this, behaviourFsm));
         behaviourFsm.ChangeState(stateDict[curState]);
 
         BattleManager.AddCharacter(this);
-
     }
 
     public virtual void StateRun()
