@@ -6,6 +6,8 @@ using UnityEngine;
 public class BattleManager : SingleTon<BattleManager>
 {
 
+    public GameObject[] playerArray;
+
 
     public static List<ICharacter> SortedList 
     {
@@ -31,13 +33,14 @@ public class BattleManager : SingleTon<BattleManager>
         base.Awake();
 
         chars.Sort( ( x , y ) => x.Data.Speed.CompareTo(y.Data.Speed) );
+
     }
 
+    public void InitPlayerArr(GameObject[] playerArr)
+    {
+        this.playerArray = playerArr;
 
-
-
-
-
+    }
 
 
 }

@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour
     public Item FindItem(Item item)
     {
 
-        return (Item)itemList.Find(data => data.Data.ItemName == item.Data.ItemName && data.Data.Amount <= data.Data.MaxAmount);
+        return (Item)itemList.Find(data => data.Data.ItemName == item.Data.ItemName && data.Data.Amount < data.Data.MaxAmount);
     }
 
     public bool InsertItem(Item item)
@@ -89,7 +89,7 @@ public class Inventory : MonoBehaviour
             if (i >= itemList.Count)
                 break;
 
-             itemSlotList[i].ItemData = itemList[i].Data;
+             itemSlotList[i].HaveItem = (Item)itemList[i];
         }
 
     }

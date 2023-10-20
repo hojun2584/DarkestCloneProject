@@ -52,7 +52,7 @@ public class UIModel : MonoBehaviour
     {
 
         foreach (var initObject in initAbleList)
-            initObject.Init();
+            initObject.InitView();
     }
 
     public bool InitObj(InitViewAble initobject)
@@ -62,7 +62,7 @@ public class UIModel : MonoBehaviour
         if (obj == null)
             return false;
 
-        obj.Init();
+        obj.InitView();
         return true;
 
     }

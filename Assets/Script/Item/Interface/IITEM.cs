@@ -9,6 +9,12 @@ public interface IUseAble
 }
 
 
+public interface IClickUseAble
+{
+    public abstract void OnClickUse();
+
+}
+
 public interface IItem : IUseAble
 {
 
@@ -25,5 +31,5 @@ public interface IConsumeAbleItem : IItem
 
 public interface InitViewAble
 {
-    public void Init();
+    public void InitView();
 }
