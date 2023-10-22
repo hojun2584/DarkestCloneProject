@@ -5,10 +5,6 @@ using UnityEngine;
 public class Warrior : Player
 {
 
-    protected new void Awake()
-    {
-        base.Awake();
-    }
 
 
 

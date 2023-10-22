@@ -5,10 +5,7 @@ using UnityEngine;
 public class Player : Character
 {
 
-    protected new void Awake()
-    {
-        base.Awake();
-    }
+    
 
 
 }

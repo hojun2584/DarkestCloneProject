@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 [Flags]
 public enum STATE
@@ -27,25 +27,26 @@ public enum EQUIPWEAPON
 public class Character : MonoBehaviour, ICharacter, IFightAble
 {
 
-       
+    
     protected ISkillUseStrategy skillStartegy;
     protected IDieStrategy dieStartegy;
     protected IHitStrategy hitStartegy;
-
     protected EQUIPWEAPON weaponType;
+
+    [SerializeField]
+    protected Slider hpBar;
+
+
 
     public CharacterData CharData 
     {
         get 
         {
-            
-
             if (charterData == null)
                 return null;
 
             if (WeaponData == null)
                 return charterData;
-            
             
             return charterData;
         }
@@ -53,11 +54,11 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
     }
     [SerializeField]
     CharacterData charterData = null;
+
     public WeaponData WeaponData 
     {
         get 
         {
-
             return weapon;
         }
         set
@@ -68,15 +69,6 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
     public WeaponData weapon;
 
 
-    protected void Awake()
-    {
-        
-    }
-
-    private void Update()
-    {
-        
-    }
 
     public virtual void Hit(float damage)
     {
@@ -90,7 +82,6 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
 
     public virtual void SkillStategy(ICharacter target)
     {
-
         skillStartegy.SkillStategy(target);
     }
 }

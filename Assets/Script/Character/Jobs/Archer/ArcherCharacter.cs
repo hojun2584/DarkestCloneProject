@@ -5,10 +5,10 @@ using UnityEngine;
 public class ArcherCharacter : Player
 {
 
-    protected new void Awake()
+    protected void Awake()
     {
 
-        base.Awake();
+        hpBar.value = 0.5f;
         
     }
 
