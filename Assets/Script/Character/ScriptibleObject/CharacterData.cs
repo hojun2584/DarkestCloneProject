@@ -38,6 +38,7 @@ public class CharacterData : ScriptableObject
         {
             List<string> list = new List<string>();
 
+            list.Add(charName);
             list.Add(power.ToString() );
             list.Add(spAttack.ToString());
             list.Add(speed.ToString());

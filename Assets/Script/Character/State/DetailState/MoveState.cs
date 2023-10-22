@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MoveState : CharacterState
@@ -23,8 +24,8 @@ public override void EnterState()
 
     public override void UpdateState()
     {
-        owner.curState = Input.GetKey(KeyCode.D) ? STATE.MOVE : STATE.IDLE;
-        owner.curState = Input.GetKey(KeyCode.A) ? STATE.ATTACK: owner.curState;
+
+
 
 
     }

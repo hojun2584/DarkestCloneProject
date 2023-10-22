@@ -1,18 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
+[Flags]
 public enum STATE
 {
-
     IDLE = 0,
     MOVE,
     ATTACK,
     CRITICAL,
     HIT,
     DIE,
-
 }
 
 public enum EQUIPWEAPON
@@ -27,59 +27,55 @@ public enum EQUIPWEAPON
 public class Character : MonoBehaviour, ICharacter, IFightAble
 {
 
+       
+    protected ISkillUseStrategy skillStartegy;
+    protected IDieStrategy dieStartegy;
+    protected IHitStrategy hitStartegy;
 
-    public STATE curState;
-    protected BaseState myState;
-    public CharFsm behaviourFsm;
-    protected IAttackStartegy attackStartegy;
-    protected IDieStartegy dieStartegy;
-    protected IHitStartegy hitStartegy;
     protected EQUIPWEAPON weaponType;
-    public WeaponData weapon;
 
-    protected Dictionary<STATE, BaseState> stateDict = new Dictionary<STATE, BaseState>();
-
-    public CharacterData Data 
+    public CharacterData CharData 
     {
         get 
         {
-            if (data == null)
+            
+
+            if (charterData == null)
                 return null;
 
-            return data;
+            if (WeaponData == null)
+                return charterData;
+            
+            
+            return charterData;
         }
-        set { data = value; }
+        set { charterData = value; }
     }
     [SerializeField]
-    CharacterData data = null;
+    CharacterData charterData = null;
+    public WeaponData WeaponData 
+    {
+        get 
+        {
+
+            return weapon;
+        }
+        set
+        {
+            weapon = value;
+        }
+    }
+    public WeaponData weapon;
+
 
     protected void Awake()
     {
-        curState = STATE.IDLE;
-        behaviourFsm = new CharFsm();
-
-        stateDict.Add(STATE.ATTACK , new AttackState(this, behaviourFsm));
-        stateDict.Add(STATE.IDLE , new IdleState(this, behaviourFsm));
-        stateDict.Add(STATE.MOVE, new MoveState(this, behaviourFsm));
-        behaviourFsm.ChangeState(stateDict[curState]);
-
-        BattleManager.AddCharacter(this);
+        
     }
-
-    public virtual void StateRun()
-    {
-
-        behaviourFsm.ChangeState(stateDict[curState]);
-        behaviourFsm.UpdateState();
-
-    }
-
-
 
     private void Update()
     {
-
-        StateRun(); 
+        
     }
 
     public virtual void Hit(float damage)
@@ -87,13 +83,14 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
         hitStartegy.HitStartegy(damage);
     }
 
-    public virtual void Attack(iDieAble target)
-    {
-        attackStartegy.AttackStartegy(target);
-    }
-
     public virtual void Die()
     {
         dieStartegy.DieStartegy();
+    }
+
+    public virtual void SkillStategy(ICharacter target)
+    {
+
+        skillStartegy.SkillStategy(target);
     }
 }
