@@ -1,9 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Flags]
+public enum RayFlags
+{
+    CHARACETER = 1,
+    BUY,
+
+
+}
+
 public class ItemRay : MonoBehaviour
 {
+
+    public static RayFlags flags;
+    
+
 
 
     RaycastHit hitItem;
@@ -20,20 +34,8 @@ public class ItemRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetMouseButton(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                
-            }
-        }
-
-
         CharacterRay();
+
 
     }
 
@@ -43,15 +45,16 @@ public class ItemRay : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        
-        if(Physics.Raycast(ray, out hit , Mathf.Infinity))
+        if (Input.GetMouseButton(0))
         {
-            if(hit.collider.TryGetComponent<ICharacter>(out ICharacter curChar))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                viewStat.Data = curChar.Data;
+                if (hit.collider.TryGetComponent<ICharacter>(out ICharacter curChar))
+                    viewStat.Data = curChar.CharData;
+                
             }
-
         }
+        
 
     }
 

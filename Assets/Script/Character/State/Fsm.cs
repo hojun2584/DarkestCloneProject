@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class Fsm
 {
-    protected BaseState state;
+    public BaseState curState;
 
 
     public void ChangeState(BaseState nextState)
     {
 
-        if (state == nextState)
+        if (curState == nextState)
             return;
 
-        if (state != null)
-            state.ExitState();
+        if (curState != null)
+            curState.ExitState();
 
-        state = nextState;
-        state.EnterState();
+        curState = nextState;
+        curState.EnterState();
     }
 
     public void UpdateState()
     {
-        if (state == null)
+        if (curState == null)
             return;
 
 
-        state.UpdateState();
+        curState.UpdateState();
     }
 
 

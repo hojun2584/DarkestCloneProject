@@ -25,8 +25,6 @@ public class IdleState : CharacterState
 
     public override void UpdateState()
     {
-        owner.curState = Input.GetKey(KeyCode.D) ? STATE.MOVE : STATE.IDLE;
-
-
+        Debug.Log("¼û ½¬´Â Áß");
     }
 }

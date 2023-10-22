@@ -18,7 +18,9 @@ public class ViewStatus : MonoBehaviour , InitViewAble
     { 
         set
         {
+            
             data = value;
+            InitView();
         }
     }
     CharacterData data;
@@ -38,7 +40,5 @@ public class ViewStatus : MonoBehaviour , InitViewAble
 
         }
         
-        
-
     }
 }

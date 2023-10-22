@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ICharacter
 {
-    public CharacterData Data 
+    public CharacterData CharData 
     { 
         get;
     }
@@ -17,10 +17,6 @@ public interface IHitAble
     public abstract void Hit(float damage);
 }
 
-public interface IAttackAble
-{
-    public abstract void Attack(iDieAble target);
-}
 
 public interface iDieAble : IHitAble
 {
@@ -30,29 +26,29 @@ public interface iDieAble : IHitAble
 
 public interface IStategy
 {
-    public abstract void StartegyUse();
+    
 
 }
 
 
-public interface IAttackStartegy
+public interface ISkillUseStrategy
 {
-    public WeaponData Data { get; set; }
+    public WeaponData WeaponData { get; set; }
 
-    public abstract void AttackStartegy(iDieAble target);
+    public abstract void SkillStategy(ICharacter target);
 
 }
-public interface IDieStartegy
+public interface IDieStrategy
 {
     public abstract void DieStartegy();
 }
 
-public interface IHitStartegy
+public interface IHitStrategy
 {
     public abstract void HitStartegy(float damage);
 }
 
-public interface IFightAble : IHitAble, IAttackAble , iDieAble
+public interface IFightAble : IHitAble, ISkillUseStrategy , iDieAble
 {
     
 }

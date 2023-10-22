@@ -77,7 +77,7 @@ public class CharacterManager : MonoBehaviour
             {
                 case CharacterEnum.ARCHER:
                     Character obj =  Instantiate(archer,pos[i]).GetComponent<Character>();
-                    obj.Data = archerData.CloneObj;
+                    obj.CharData = archerData.CloneObj;
 
                     break;
                 case CharacterEnum.WARRIOR:

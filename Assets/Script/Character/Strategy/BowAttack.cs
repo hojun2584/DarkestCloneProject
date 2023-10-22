@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowAttack : IAttackStartegy
+public class BowAttack : ISkillUseStrategy
 {
     public WeaponData Data 
     { 
         get => throw new System.NotImplementedException();
         set => throw new System.NotImplementedException();
     }
+    public WeaponData WeaponData { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    public void AttackStartegy(iDieAble target)
+    public void SkillStategy(ICharacter target)
     {
         throw new System.NotImplementedException();
     }

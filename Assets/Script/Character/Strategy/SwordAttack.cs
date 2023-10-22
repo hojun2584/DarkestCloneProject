@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttack : IAttackStartegy
+public class SwordAttack : ISkillUseStrategy
 {
 
     SwordAttack(WeaponData data)
@@ -30,8 +30,10 @@ public class SwordAttack : IAttackStartegy
         }
     }
 
-    public void AttackStartegy(iDieAble target)
+    public WeaponData WeaponData { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    public void SkillStategy(ICharacter target)
     {
-        target.Hit(AttackPoint);
+        throw new System.NotImplementedException();
     }
 }
