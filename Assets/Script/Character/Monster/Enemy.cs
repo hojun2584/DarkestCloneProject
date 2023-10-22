@@ -5,9 +5,8 @@ using UnityEngine;
 public class Enemy : Character
 {
 
-    protected new void Awake()
+    protected void Awake()
     {
-        base.Awake();
         
     }
 
