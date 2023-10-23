@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowAttack : ISkillUseStrategy
+public class BowAttack : ISkillStrategy
 {
     public WeaponData Data 
     { 
@@ -11,7 +11,7 @@ public class BowAttack : ISkillUseStrategy
     }
     public WeaponData WeaponData { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    public void SkillStategy(ICharacter target)
+    public float UseSkill(ICharacter target)
     {
         throw new System.NotImplementedException();
     }
@@ -27,4 +27,5 @@ public class BowAttack : ISkillUseStrategy
     {
         
     }
+
 }

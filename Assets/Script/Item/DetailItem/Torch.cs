@@ -8,16 +8,17 @@ public class Torch : Item, IConsumeAbleItem
     int lightValue = 30;
 
     public Torch(ItemData data)
+        :base(data)
     {
-        Data = data.CloneObj;        
+              
     }
 
-    public override void Use()
+    public override void Use(ICharacter user , ICharacter target)
     {
         Cunsume();
     }
 
-    public void Cunsume()
+    public void Cunsume(ICharacter character = null)
     {
         Data.Amount -= 1;
         Enviromental.enviroMental += lightValue;

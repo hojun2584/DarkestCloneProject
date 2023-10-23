@@ -4,10 +4,9 @@ using UnityEngine;
 
 public interface IUseAble
 {
-    public abstract void Use();
+    public abstract void Use(ICharacter user , ICharacter target);
 
 }
-
 
 public interface IClickUseAble
 {
@@ -18,18 +17,25 @@ public interface IClickUseAble
 public interface IItem : IUseAble
 {
 
-    public ItemData Data { get; }
+    public abstract ItemData Data { get; }
 
 }
 
 public interface IConsumeAbleItem : IItem
 {
 
-    public void Cunsume();
+    public abstract void Cunsume(ICharacter cunsumeTarget);
+}
+
+public interface IEquipeAbleItem : IItem
+{
+    public ArmorData ArmorInfo { get;}
+    public abstract void Equip(ICharacter equipTarget);
+
 }
 
 
 public interface InitViewAble
 {
-    public void InitView();
+    public abstract void InitView();
 }

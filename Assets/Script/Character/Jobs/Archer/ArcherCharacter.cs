@@ -5,11 +5,11 @@ using UnityEngine;
 public class ArcherCharacter : Player
 {
 
-    protected void Awake()
+    public void Dodge()
     {
 
-        hpBar.value = 0.5f;
-        
+
+
     }
 
 
