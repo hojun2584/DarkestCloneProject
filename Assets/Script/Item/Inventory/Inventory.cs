@@ -10,7 +10,8 @@ public class Inventory : MonoBehaviour
 {
 
     List<IItem> itemList = new List<IItem>();
-    
+
+    public static Item null_Item = null;
     public List<ItemSlot> itemSlotList = new List<ItemSlot>();
 
 

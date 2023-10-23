@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -251,7 +251,7 @@ GameObject:
   - component: {fileID: 176447860}
   - component: {fileID: 176447862}
   - component: {fileID: 176447861}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: StatusName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,6 +477,18 @@ PrefabInstance:
     - target: {fileID: 3277011514823669502, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
       propertyPath: m_Name
       value: ItemLayout (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277011514823669502, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387394505976474857, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460631270584824815, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6840368715364124166, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
       propertyPath: m_AnchorMax.y
@@ -736,7 +748,7 @@ GameObject:
   - component: {fileID: 312417005}
   - component: {fileID: 312417008}
   - component: {fileID: 312417007}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GameObject (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1046,6 +1058,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemLayout (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3277011514823669502, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387394505976474857, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460631270584824815, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6840368715364124166, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1166,6 +1190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 511312449}
   - component: {fileID: 511312448}
+  - component: {fileID: 511312450}
   m_Layer: 0
   m_Name: RayController
   m_TagString: Untagged
@@ -1185,7 +1210,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f94ad05f746444bb6e8be097a05f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewStat: {fileID: 565229912}
+  graphicRay: {fileID: 0}
+  InvenMask: 0
+  statusMask: 0
 --- !u!4 &511312449
 Transform:
   m_ObjectHideFlags: 0
@@ -1201,6 +1228,19 @@ Transform:
   m_Father: {fileID: 544832027}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &511312450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 511312447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a95ff629c5b97854fa498552828f3f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewStat: {fileID: 565229912}
 --- !u!1 &544832026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,7 +1389,7 @@ GameObject:
   - component: {fileID: 565229910}
   - component: {fileID: 565229913}
   - component: {fileID: 565229912}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: StatusInfoFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1471,7 +1511,7 @@ GameObject:
   - component: {fileID: 575952954}
   - component: {fileID: 575952956}
   - component: {fileID: 575952955}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: StatusAtk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1923,7 +1963,7 @@ GameObject:
   - component: {fileID: 853380959}
   - component: {fileID: 853380958}
   - component: {fileID: 853380957}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2225,6 +2265,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemLayout (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3277011514823669502, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387394505976474857, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460631270584824815, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6840368715364124166, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2377,7 +2429,7 @@ GameObject:
   - component: {fileID: 1066597718}
   - component: {fileID: 1066597720}
   - component: {fileID: 1066597719}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: StatusSpAtk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2682,7 +2734,7 @@ GameObject:
   - component: {fileID: 1258975538}
   - component: {fileID: 1258975540}
   - component: {fileID: 1258975539}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: StatusSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3272,6 +3324,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemLayout (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3277011514823669502, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387394505976474857, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460631270584824815, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6840368715364124166, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3467,7 +3531,7 @@ GameObject:
   - component: {fileID: 1993004295}
   - component: {fileID: 1993004297}
   - component: {fileID: 1993004296}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: StatusSpeed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3603,7 +3667,7 @@ GameObject:
   - component: {fileID: 2074099472}
   - component: {fileID: 2074099471}
   - component: {fileID: 2074099473}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: EnviroInfoFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3738,6 +3802,18 @@ PrefabInstance:
     - target: {fileID: 3277011514823669502, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
       propertyPath: m_Name
       value: ItemLayout
+      objectReference: {fileID: 0}
+    - target: {fileID: 3277011514823669502, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4387394505976474857, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460631270584824815, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6840368715364124166, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
       propertyPath: m_AnchorMax.y

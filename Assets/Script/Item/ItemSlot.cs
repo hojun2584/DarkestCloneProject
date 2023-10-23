@@ -60,7 +60,10 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
     public void OnClickUse()
     {
         haveItem.Use();
-        Debug.Log("clickUse");
+        if(haveItem.Data.Amount <= 0)
+        
+            haveItem = null;
+        
     }
 
 }

@@ -12,6 +12,9 @@ public class BattleManager : SingleTon<BattleManager>
     int current = 0;
 
 
+    static public ICharacter curCharcter;
+    static public ICharacter target;
+
     public ICharacter NextCharacter 
     {
         get

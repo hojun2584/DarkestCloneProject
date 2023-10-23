@@ -26,11 +26,8 @@ public enum EQUIPWEAPON
 
 public class Character : MonoBehaviour, ICharacter, IFightAble
 {
-
-    
-    protected ISkillUseStrategy skillStartegy;
+    protected ISkillStrategy skillStartegy;
     protected IDieStrategy dieStartegy;
-    protected IHitStrategy hitStartegy;
     protected EQUIPWEAPON weaponType;
 
     [SerializeField]
@@ -63,6 +60,9 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
         }
         set
         {
+            charterData.Speed += value.Speed;
+
+
             weapon = value;
         }
     }
@@ -70,18 +70,21 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
 
 
 
-    public virtual void Hit(float damage)
-    {
-        hitStartegy.HitStartegy(damage);
-    }
-
     public virtual void Die()
     {
-        dieStartegy.DieStartegy();
+        dieStartegy.UseDie();
     }
 
-    public virtual void SkillStategy(ICharacter target)
+
+    public void Hit(float damage)
     {
-        skillStartegy.SkillStategy(target);
+        throw new NotImplementedException();
+    }
+
+    public float UseSkill(ICharacter target)
+    {
+
+
+        return target.CharData.AttackPoint;
     }
 }

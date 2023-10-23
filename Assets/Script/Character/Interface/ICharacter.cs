@@ -13,7 +13,6 @@ public interface ICharacter
 
 public interface IHitAble
 {
-
     public abstract void Hit(float damage);
 }
 
@@ -31,24 +30,24 @@ public interface IStategy
 }
 
 
-public interface ISkillUseStrategy
+public interface ISkillStrategy
 {
     public WeaponData WeaponData { get; set; }
 
-    public abstract void SkillStategy(ICharacter target);
+    public abstract float UseSkill(ICharacter target);
 
 }
 public interface IDieStrategy
 {
-    public abstract void DieStartegy();
+    public abstract void UseDie();
 }
 
-public interface IHitStrategy
+public interface IHitStrate
 {
-    public abstract void HitStartegy(float damage);
+    public abstract void UseHit(ISkillStrategy attacker);
 }
 
-public interface IFightAble : IHitAble, ISkillUseStrategy , iDieAble
+public interface IFightAble : IHitAble, ISkillStrategy , iDieAble
 {
     
 }
