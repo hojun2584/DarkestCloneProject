@@ -2,21 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttack : IAttackStrategy
+public class SwordAttack : AttackStrategy
 {
-
-    public SwordAttack(Character owner)
+    public SwordAttack(Character owner) : base(owner)
     {
-        this.owner = owner;
     }
 
-    public Character Owner 
-    {
-        get { return owner; }
-    }
-    Character owner;
-
-    public float Damage 
+    public override float Damage 
     {
         get
         {
@@ -24,13 +16,19 @@ public class SwordAttack : IAttackStrategy
         }
     }
 
-    public void UseSkill(ICharacter target)
+    public override void UseSkill(ICharacter target)
     {
+
         Attack(target);
     }
 
-    public void Attack(IHitAble target)
+    public override void Attack(IHitAble target)
     {
+
         target.Hit(Damage,owner);
     }
+
+
+
+
 }

@@ -8,7 +8,7 @@ public enum CharacterEnum
     ARCHER = 0,
     WARRIOR,
     WIZARD,
-    ORC,
+    GOBLIN,
     GHOST,
     MERMAID
 }
@@ -18,13 +18,16 @@ public class CharacterManager : MonoBehaviour
 {
 
     [SerializeField]
-    Transform[] pos = new Transform[4];
+    Transform[] playerPos = new Transform[3];
+
+    [SerializeField]
+    Transform[] monsterpos = new Transform[3];
 
     int maxPlayerCapa = 3;
     int maxMosterCapa = 4;
 
     List<CharacterEnum> playerArr = new List<CharacterEnum>();
-    List<Character> mostaerArr = new List<Character>();
+    List<CharacterEnum> monsterArr = new List<CharacterEnum>();
 
 
     public CharacterData archerData;
@@ -36,17 +39,28 @@ public class CharacterManager : MonoBehaviour
     public CharacterData wizzardData;
     public GameObject wizard;
 
+
+    public CharacterData goblinData;
+    public GameObject goblin;
+
+
     private void Awake()
     {
         PlayerAdd(CharacterEnum.ARCHER);
         PlayerAdd(CharacterEnum.ARCHER);
         PlayerAdd(CharacterEnum.ARCHER);
+        monsterArr.Add(CharacterEnum.GOBLIN);
+        monsterArr.Add(CharacterEnum.GOBLIN);
+        monsterArr.Add(CharacterEnum.GOBLIN);
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
         PlayerCreate();
+        MonsterCreate();
+
     }
 
 
@@ -62,6 +76,7 @@ public class CharacterManager : MonoBehaviour
         
     }
 
+
     public void PlayerCreate()
     {
 
@@ -74,42 +89,50 @@ public class CharacterManager : MonoBehaviour
             switch (playerArr[i])
             {
                 case CharacterEnum.ARCHER:
-                    obj =  Instantiate(archer,pos[i]).GetComponent<Character>();
+                    obj =  Instantiate(archer,playerPos[i]).GetComponent<Character>();
                     obj.CharData = archerData.CloneObj;
                     break;
                 case CharacterEnum.WARRIOR:
-                    obj = Instantiate(warrior, pos[i]).GetComponent<Character>();
+                    obj = Instantiate(warrior, playerPos[i]).GetComponent<Character>();
                     obj.CharData = warriorData.CloneObj;
                     break;
                 case CharacterEnum.WIZARD:
-                    obj = Instantiate(wizard, pos[i]).GetComponent<Character>();
+                    obj = Instantiate(wizard, playerPos[i]).GetComponent<Character>();
                     obj.CharData = wizzardData.CloneObj;
                     break;
             }
+
         }
 
 
         
     }
 
-    public void MonsterAdd (CharacterEnum charEnum)
+    public void MonsterCreate ()
     {
-        if (playerArr.Count >= maxMosterCapa)
+        Character obj;
+
+        for(int i = 0; i< monsterArr.Count ; i++)
         {
-            Debug.Log("over monster List");
-            return;
+
+            switch (monsterArr[i])
+            {
+                case CharacterEnum.GOBLIN:
+                    obj = Instantiate(goblin, monsterpos[i]).GetComponent<Character>();
+                    obj.CharData = goblinData.CloneObj;
+                    break;
+                case CharacterEnum.WARRIOR:
+                    obj = Instantiate(warrior, monsterpos[i]).GetComponent<Character>();
+                    break;
+                case CharacterEnum.WIZARD:
+                    obj = Instantiate(wizard, monsterpos[i]).GetComponent<Character>();
+                    break;
+            }
+
         }
 
-        switch (charEnum)
-        {
-            case CharacterEnum.ORC:
-                break;
-            case CharacterEnum.GHOST:
-                break;
-            case CharacterEnum.MERMAID:
-                break;
 
-        }
+
     }
 
 }
