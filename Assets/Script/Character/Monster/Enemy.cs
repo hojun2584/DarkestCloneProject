@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Enemy : Character
 {
+
+
+
     public override void Die()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void EnterTurn()
