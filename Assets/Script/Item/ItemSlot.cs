@@ -52,16 +52,12 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
     private void InitView()
     {
         spriteCompo.sprite = ItemData.SpriteImage;
-
-        Debug.Log(ItemData.Amount + " " + ItemData.MaxAmount);
-
     }
 
     public void OnClickUse()
     {
         haveItem.Use();
         if(haveItem.Data.Amount <= 0)
-        
             haveItem = null;
         
     }

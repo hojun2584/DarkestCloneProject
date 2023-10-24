@@ -22,14 +22,27 @@ public class CharacterData : ScriptableObject
     public float AttackPoint { get; set; }[SerializeField] float power;
     public float SpAttack { get; set; }[SerializeField] float spAttack;
     public float Speed { get; set; }[SerializeField] float speed;
-    public float Hp { get; set; }[SerializeField] float hp;
+    public float Hp 
+    {
+        get
+        {
+            return hp;
+        }
+        set
+        {
+            if (value < maxHp)
+                hp = value;
+            else
+                hp = maxHp;
+        }
+    }[SerializeField] float hp;
     public float MaxHp { get; set; }[SerializeField] float maxHp;
     public int Armor { get; set; }[SerializeField] int armor;
     public int Dodge { get; set; }[SerializeField] int dodge;
     public List<IEquipeAbleItem> EquipItems { get;}
     [SerializeField] List<IEquipeAbleItem> equipeItems = new List<IEquipeAbleItem>();
 
-    public List<ISkillStrategy> skill = new List<ISkillStrategy>();
+    public List<IHitStrategy> skill = new List<IHitStrategy>();
 
     public CharacterData CloneObj
     {

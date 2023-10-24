@@ -24,14 +24,18 @@ public enum EQUIPWEAPON
 
 }
 
-public class Character : MonoBehaviour, ICharacter, IFightAble
+public abstract class Character : MonoBehaviour, ICharacter
 {
-    protected ISkillStrategy skillStartegy;
-    protected IDieStrategy dieStartegy;
+    protected List<ISkillStrategy> skills = new List<ISkillStrategy>();
+    public ISkillStrategy selectSkill;
+    public IHitStrategy hitStrategy;
+    public IDieStrategy dieStrategy;
     protected EQUIPWEAPON weaponType;
 
     [SerializeField]
-    protected Slider hpBar;
+    protected Image hpBar;
+
+
 
 
 
@@ -52,6 +56,20 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
     [SerializeField]
     CharacterData charterData = null;
 
+    public float Hp
+    {
+        set
+        {
+            hpBar.fillAmount = (float)CharData.MaxHp / (float)value;
+            CharData.Hp = value;
+        }
+        get
+        {
+            return charterData.Hp;
+        }
+    }
+
+
     public WeaponData WeaponData 
     {
         get 
@@ -60,31 +78,18 @@ public class Character : MonoBehaviour, ICharacter, IFightAble
         }
         set
         {
-            charterData.Speed += value.Speed;
-
-
             weapon = value;
         }
     }
     public WeaponData weapon;
 
 
+    public abstract void EnterTurn();
 
-    public virtual void Die()
-    {
-        dieStartegy.UseDie();
-    }
+    public abstract void Hit(float damage, ICharacter Attacker);
 
+    public abstract void Die();
 
-    public void Hit(float damage)
-    {
-        throw new NotImplementedException();
-    }
+    public abstract void UseSkill(ICharacter target);
 
-    public float UseSkill(ICharacter target)
-    {
-
-
-        return target.CharData.AttackPoint;
-    }
 }

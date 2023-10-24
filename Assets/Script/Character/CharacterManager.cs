@@ -41,14 +41,11 @@ public class CharacterManager : MonoBehaviour
         PlayerAdd(CharacterEnum.ARCHER);
         PlayerAdd(CharacterEnum.ARCHER);
         PlayerAdd(CharacterEnum.ARCHER);
-
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
         PlayerCreate();
     }
 
@@ -68,6 +65,7 @@ public class CharacterManager : MonoBehaviour
     public void PlayerCreate()
     {
 
+        Character obj;
 
         for(int i = 0; i < playerArr.Count; i++)
         {
@@ -76,15 +74,16 @@ public class CharacterManager : MonoBehaviour
             switch (playerArr[i])
             {
                 case CharacterEnum.ARCHER:
-                    Character obj =  Instantiate(archer,pos[i]).GetComponent<Character>();
+                    obj =  Instantiate(archer,pos[i]).GetComponent<Character>();
                     obj.CharData = archerData.CloneObj;
-
                     break;
                 case CharacterEnum.WARRIOR:
-                    Instantiate(warrior, pos[i]).GetComponent<Character>();
+                    obj = Instantiate(warrior, pos[i]).GetComponent<Character>();
+                    obj.CharData = warriorData.CloneObj;
                     break;
                 case CharacterEnum.WIZARD:
-                    Instantiate(wizard, pos[i]).GetComponent<Character>();
+                    obj = Instantiate(wizard, pos[i]).GetComponent<Character>();
+                    obj.CharData = wizzardData.CloneObj;
                     break;
             }
         }
