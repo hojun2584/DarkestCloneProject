@@ -5,7 +5,7 @@ using UnityEngine;
 public class Torch : Item, IConsumeAbleItem
 {
 
-    int lightValue = 30;
+    const int lightValue = 30;
 
     public Torch(ItemData data)
         :base(data)

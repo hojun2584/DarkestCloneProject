@@ -17,4 +17,6 @@ MonoBehaviour:
   spAttack: 10
   speed: 5
   hp: 20
+  maxHp: 20
   armor: 2
+  dodge: 0

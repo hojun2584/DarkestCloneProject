@@ -34,7 +34,11 @@ public class CharacterRay : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 if (hit.collider.TryGetComponent<ICharacter>(out ICharacter curChar))
+                {
                     viewStat.Data = curChar.CharData;
+                    curCharacter = curChar;
+
+                }
 
             }
         }

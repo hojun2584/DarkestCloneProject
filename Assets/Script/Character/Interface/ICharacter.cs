@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ICharacter
+public interface ICharacter : IFightAble
 {
     public CharacterData CharData 
     { 
@@ -13,7 +13,7 @@ public interface ICharacter
 
 public interface IHitAble
 {
-    public abstract void Hit(float damage);
+    public abstract void Hit(float damage , ICharacter Attacker);
 }
 
 
@@ -23,31 +23,56 @@ public interface iDieAble : IHitAble
 }
 
 
-public interface IStategy
+
+public interface IHitStrategy
 {
+    public Character Owner { get; }
+    public abstract void Hit(float damage, ICharacter target);
+    
     
 
 }
 
-
 public interface ISkillStrategy
 {
-    public WeaponData WeaponData { get; set; }
+    public Character Owner 
+    { 
+        get;
+    }
 
-    public abstract float UseSkill(ICharacter target);
-
+    public abstract void UseSkill(ICharacter target);
 }
+
+public interface IHealAble
+{
+    public abstract void Heal();
+}
+
+
+
+public interface IAttackStrategy : ISkillStrategy
+{
+    public abstract void Attack(IHitAble target);
+}
+
+public interface IHealStrategy : ISkillStrategy
+{
+    public abstract void Heal(IHitAble target);
+}
+
 public interface IDieStrategy
 {
-    public abstract void UseDie();
+
+    public abstract void Die();
+    
 }
 
-public interface IHitStrate
+public interface ISkillUseAble
 {
-    public abstract void UseHit(ISkillStrategy attacker);
+    public abstract void UseSkill(ICharacter target);
 }
 
-public interface IFightAble : IHitAble, ISkillStrategy , iDieAble
+public interface IFightAble : IHitAble, ISkillUseAble , iDieAble
 {
     
 }

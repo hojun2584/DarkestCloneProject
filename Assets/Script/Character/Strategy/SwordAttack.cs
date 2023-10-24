@@ -2,38 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttack : ISkillStrategy
+public class SwordAttack : IAttackStrategy
 {
 
-    SwordAttack(WeaponData data)
+    public SwordAttack(Character owner)
     {
-        this.data = data;
+        this.owner = owner;
     }
-    public WeaponData Data
-    {
-        get;
-        set;
-    }
-    WeaponData data;
 
-    public float AttackPoint 
+    public Character Owner 
+    {
+        get { return owner; }
+    }
+    Character owner;
+
+    public float Damage 
     {
         get
         {
-
-            //!!TODOLIST damage calculating
-            return (float)data.AttackPoint;
-        }
-        set
-        {
-            data.AttackPoint = (int)value;
+            return (float)owner.CharData.AttackPoint * 1.2f;
         }
     }
 
-    public WeaponData WeaponData { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
-    public float UseSkill(ICharacter target)
+    public void UseSkill(ICharacter target)
     {
-        throw new System.NotImplementedException();
+        Attack(target);
+    }
+
+    public void Attack(IHitAble target)
+    {
+        target.Hit(Damage,owner);
     }
 }

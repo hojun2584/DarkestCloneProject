@@ -2,30 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BowAttack : ISkillStrategy
+public class BowAttack : IAttackStrategy
 {
-    public WeaponData Data 
-    { 
-        get => throw new System.NotImplementedException();
-        set => throw new System.NotImplementedException();
-    }
-    public WeaponData WeaponData { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-    public float UseSkill(ICharacter target)
+    public BowAttack(Character owner)
     {
-        throw new System.NotImplementedException();
+        this.owner = owner;
     }
-
-    // Start is called before the first frame update
-    void Start()
+    
+    public Character Owner 
     {
-        
+        get 
+        {
+            return owner;
+        }
     }
+    Character owner;
 
-    // Update is called once per frame
-    void Update()
+    public float Damage 
     {
-        
+        get
+        {
+            return (owner.CharData.AttackPoint * 0.5f) + (owner.CharData.Speed);
+        }
     }
 
+
+    public void UseSkill(ICharacter target)
+    {
+        Attack(target);
+    }
+
+    public void Attack(IHitAble target)
+    {
+        target.Hit(Damage,owner);
+    }
 }
