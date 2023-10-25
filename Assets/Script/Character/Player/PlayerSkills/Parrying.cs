@@ -7,6 +7,7 @@ public class Parrying : HitStrategy
     public Parrying(Character owner)
         : base(owner)
     {
+
     }
 
     public override void Hit(float damage, ICharacter attacker)

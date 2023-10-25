@@ -5,17 +5,27 @@ using UnityEngine;
 public class ArcherCharacter : Player
 {
 
-    bool isParryingState = false;
+    
 
-
-
-    public void Awake()
+    public new void Awake()
     {
-
-        hitStrategy = new JustHit(this);
+        base.Awake();
     }
 
-    public void SetSkillStartegy()
+    public void Start()
+    {
+
+
+    }
+
+    public void Update()
+    {
+
+        stateMachine.UpdateState();
+
+    }
+
+    public void SetSkillStartegy(ISkillStrategy skill)
     {
 
     }

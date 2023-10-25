@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fsm
+public abstract class Fsm
 {
     public BaseState curState;
+    public Character owner;
 
+    protected Fsm(Character owner)
+    {
+        this.owner = owner;
 
-    public void ChangeState(BaseState nextState)
+    }
+
+    public virtual void ChangeState(BaseState nextState)
     {
 
         if (curState == nextState)
@@ -20,12 +26,10 @@ public class Fsm
         curState.EnterState();
     }
 
-    public void UpdateState()
+    public virtual void UpdateState()
     {
         if (curState == null)
             return;
-
-
         curState.UpdateState();
     }
 

@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mage : Player
+public class CharFsm : Fsm
 {
 
-    protected new void Awake()
-    {
-        
-    }
-
+    
 
 }

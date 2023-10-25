@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13925859204c9444b695314a2e4007c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 0}
-  charterData: {fileID: 0}
+  IsMyTurn: 0
+  hpBar: {fileID: 5112822912460275987}
+  charterData: {fileID: 11400000, guid: bfa08852f0c42fc4fa4a1192013ff0ab, type: 2}
   weapon: {fileID: 0}
 --- !u!95 &55544938489420369
 Animator:
