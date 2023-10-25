@@ -60,12 +60,20 @@ public interface IHealStrategy : ISkillStrategy
     public abstract void Heal(IHitAble target);
 }
 
+public interface IBuffStrategy : ISkillStrategy
+{
+    public abstract void Buff(ICharacter target , int count = 1);
+}
+
 public interface IDieStrategy
 {
-
+    public Character Owner { get;}
     public abstract void Die();
     
 }
+
+
+
 
 public interface ISkillUseAble
 {

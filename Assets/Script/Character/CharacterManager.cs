@@ -89,8 +89,9 @@ public class CharacterManager : MonoBehaviour
             switch (playerArr[i])
             {
                 case CharacterEnum.ARCHER:
-                    obj =  Instantiate(archer,playerPos[i]).GetComponent<Character>();
-                    obj.CharData = archerData.CloneObj;
+                    var temp = Instantiate(archer,playerPos[i]);
+                    
+
                     break;
                 case CharacterEnum.WARRIOR:
                     obj = Instantiate(warrior, playerPos[i]).GetComponent<Character>();

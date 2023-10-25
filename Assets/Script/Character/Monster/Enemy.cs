@@ -6,10 +6,22 @@ public class Enemy : Character
 {
 
 
+    protected void Awake()
+    {
+        CharData = CharData.CloneObj;
+        hitStrategy = new JustHit(this);
+        stateMachine = new MonsterMachine(this);
+        stateMachine.ChangeState( new BattleIdle(stateMachine) );
+        dieStrategy = new JustDie(this);
 
+        BattleManager.enemyArray.Add(this);
+
+    }
     public override void Die()
     {
-        
+
+        dieStrategy.Die();
+
     }
 
     public override void EnterTurn()
@@ -17,13 +29,15 @@ public class Enemy : Character
         throw new System.NotImplementedException();
     }
 
-    public override void Hit(float damage, ICharacter Attacker)
+    public override void Hit(float damage, ICharacter attacker)
     {
-        throw new System.NotImplementedException();
+        hitStrategy.Hit(damage,attacker);
     }
 
     public override void UseSkill(ICharacter target)
     {
-        throw new System.NotImplementedException();
+        //!!TODOLIST require mosnter behavior define!!
+        //
+
     }
 }

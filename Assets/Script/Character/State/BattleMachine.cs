@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharFsm : Fsm
+public class BattleMachine : Fsm
 {
 
-    bool IsAttackDely = false;
-
-
-    public CharFsm()
+    public BattleMachine(Character owner) : base(owner)
     {
-        
+
     }
+
+    
+
+
 
 }

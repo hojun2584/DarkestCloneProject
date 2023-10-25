@@ -6,9 +6,11 @@ public class Goblin : Enemy
 {
 
 
-    public void Awake()
+    public new void Awake()
     {
-        skills.Add(new GoblinClaw(this));
+        base.Awake();
+        skills.Add( new GoblinClaw(this) );
+
     }
 
     public override void Die()

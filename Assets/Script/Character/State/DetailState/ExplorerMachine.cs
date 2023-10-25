@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mage : Player
+public class ExplorerMachine : Fsm
 {
-
-    protected new void Awake()
+    public ExplorerMachine(Character owner) : base(owner)
     {
-        
+
     }
+
+
+
 
 
 }

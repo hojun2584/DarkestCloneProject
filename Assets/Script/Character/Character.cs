@@ -31,12 +31,14 @@ public abstract class Character : MonoBehaviour, ICharacter
     public IHitStrategy hitStrategy;
     public IDieStrategy dieStrategy;
     protected EQUIPWEAPON weaponType;
+    public bool IsMyTurn = false;
+    public List<BuffStrategy> buffs = new List<BuffStrategy>();
+
+
 
     [SerializeField]
     protected Image hpBar;
-
-
-
+    public Fsm stateMachine;
 
 
     public CharacterData CharData 
@@ -60,6 +62,15 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         set
         {
+            if( 0 >= value)
+            {
+
+                // hp 호출하면 바로 오브젝트 destroy 될듯 추후 개발에 따라서 정리 해야 함
+                //dieStrategy.Die();
+
+                return;
+            }
+
             hpBar.fillAmount = (float)CharData.MaxHp / (float)value;
             CharData.Hp = value;
         }
@@ -68,6 +79,7 @@ public abstract class Character : MonoBehaviour, ICharacter
             return charterData.Hp;
         }
     }
+
 
 
     public WeaponData WeaponData 
@@ -82,7 +94,6 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
     }
     public WeaponData weapon;
-
 
     public abstract void EnterTurn();
 

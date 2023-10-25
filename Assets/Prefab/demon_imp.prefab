@@ -1647,8 +1647,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd49214da60cc6f43a3f51bb4c49a25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBar: {fileID: 0}
-  charterData: {fileID: 0}
+  IsMyTurn: 0
+  hpBar: {fileID: 9098136985552372447}
+  charterData: {fileID: 11400000, guid: 477ed5b336d7dc045a52314e07430328, type: 2}
   weapon: {fileID: 0}
 --- !u!1 &1828280181306358
 GameObject:

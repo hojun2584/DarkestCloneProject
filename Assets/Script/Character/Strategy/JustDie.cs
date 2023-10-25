@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mage : Player
+public class JustDie : DieStrategy
 {
-
-    protected new void Awake()
+    public JustDie(Character owner) : base(owner)
     {
-        
+
     }
-
-
 }
