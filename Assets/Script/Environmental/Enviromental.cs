@@ -52,7 +52,6 @@ public class Enviromental : SingleTon<Enviromental>
                 enviro.light = 100;
 
 
-            Debug.Log("enviro.light = "  + enviro.light);
         }
     }
 

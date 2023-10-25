@@ -12,7 +12,7 @@ public class Parrying : HitStrategy
 
     public override void Hit(float damage, ICharacter attacker)
     {
-        if (IsDodge())
+        if (IsDodge(attacker.CharData.Accuracy))
         {
             attacker.Hit(Owner.CharData.AttackPoint / 2, Owner);
             return;

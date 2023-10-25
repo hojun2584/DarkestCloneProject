@@ -14,7 +14,6 @@ public class Enemy : Character
         stateMachine.ChangeState( new BattleIdle(stateMachine) );
         dieStrategy = new JustDie(this);
 
-        BattleManager.enemyArray.Add(this);
 
     }
     public override void Die()

@@ -12,8 +12,9 @@ public class ViewStatus : MonoBehaviour , InitViewAble
 
     [SerializeField]
     TextMeshProUGUI[] status;
-    
-    
+
+
+
     public CharacterData Data 
     { 
         set
@@ -25,20 +26,18 @@ public class ViewStatus : MonoBehaviour , InitViewAble
     }
     CharacterData data;
 
-
-    
-
     public void InitView()
     {
         var dataList = data.GetInitList;
+        int i = 0;
 
-        
-        for(int i = 0; i< status.Length; i++)
+        foreach ( var item in dataList ) 
         {
-
-            status[i].text = dataList[i];
-
+            status[i].text = item;
+            i++;
         }
+        
+        
         
     }
 }

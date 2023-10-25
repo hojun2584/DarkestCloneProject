@@ -20,3 +20,4 @@ MonoBehaviour:
   maxHp: 30
   armor: 5
   dodge: 0
+  accuracy: 85

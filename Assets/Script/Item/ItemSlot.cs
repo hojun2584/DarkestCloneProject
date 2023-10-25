@@ -9,6 +9,8 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
 
     
     public Inventory inven = null;
+    Image ImageCompo = null;
+    public Sprite noneImage;
 
     public ItemData ItemData 
     {
@@ -39,11 +41,10 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
     }
     Item haveItem;
 
-    Image spriteCompo = null;
 
     private void Start()
     {
-        if (!gameObject.TryGetComponent<Image>(out spriteCompo))
+        if (!gameObject.TryGetComponent<Image>(out ImageCompo))
             Debug.Log("이미지 컴포넌트 없음" + gameObject.name);
 
         inven.itemSlotList.Insert(inven.itemSlotList.Count,this);
@@ -51,15 +52,33 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
 
     private void InitView()
     {
-        spriteCompo.sprite = ItemData.SpriteImage;
+        if (haveItem == null)
+        {
+            ImageCompo.sprite = noneImage;
+        }
+
+
+        ImageCompo.sprite = ItemData.SpriteImage;
     }
 
     public void OnClickUse()
     {
+        if (haveItem == null)
+            return;
+
+
         haveItem.Use();
         if(haveItem.Data.Amount <= 0)
+        {
+
+            Debug.Log(haveItem.Data.Amount);
+            inven.itemList.Remove(haveItem);
             haveItem = null;
-        
+            ImageCompo.sprite = noneImage;
+        }
+
+
+
     }
 
 }

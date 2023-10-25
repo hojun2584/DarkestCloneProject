@@ -9,13 +9,11 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 
-    List<IItem> itemList = new List<IItem>();
+    public List<IItem> itemList = new List<IItem>();
 
-    public static Item null_Item = null;
     public List<ItemSlot> itemSlotList = new List<ItemSlot>();
 
-
-
+    
     [SerializeField]
     public bool IsCapacity
     {
@@ -38,6 +36,14 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         itemList.Capacity = itemSlotList.Count;
+    }
+
+    private void Update()
+    {
+        foreach(var item in itemList)
+        {
+            Debug.Log(item == null);
+        }
     }
 
 
@@ -76,8 +82,9 @@ public class Inventory : MonoBehaviour
         else
             Debug.Log("insert impossible " + gameObject.name + " 플로팅 바 띄어서 더 이상 집어 넣을 수 없음 알리기");
         
-
         InitViewItem();
+        
+        
         return false; ;
     }
 

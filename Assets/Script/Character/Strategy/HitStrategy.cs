@@ -12,15 +12,19 @@ public abstract class HitStrategy : IHitStrategy
     public Character Owner { get => Owner; }
     Character owner;
 
-    protected bool IsDodge(int min = 0, int max = 100)
+    protected bool IsDodge(int accuracy ,int min = 0, int max = 100)
     {
 
-        int flag = Random.Range(min, max);
+        int flag = Random.Range(min, max) ;
 
-        if (0 < flag && flag < Owner.CharData.Dodge)
-            return true;
-
-        return false;
+        if (flag >= accuracy - owner.CharData.Dodge)
+        {
+            Debug.Log("회피 성공");
+            return false;
+        }
+        
+            
+        return true;
     }
 
     public abstract void Hit(float damage, ICharacter target);
