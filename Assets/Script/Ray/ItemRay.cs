@@ -64,17 +64,14 @@ public class ItemRay : MonoBehaviour
             {
                 if (result.gameObject.TryGetComponent<ItemSlot> (out ItemSlot slot))
                 {
-                    if (slot.HaveItem != null)
-                        slot.OnClickUse();
-
+                    slot.OnClickUse();
                 }
                     
             }
-
-
-
-
         }
+
+
+
 
     }
 

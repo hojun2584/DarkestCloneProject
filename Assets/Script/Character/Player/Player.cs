@@ -7,16 +7,11 @@ public class Player : Character , IFightAble
 
     protected void Awake()
     {
-
-
         CharData = CharData.CloneObj;
         hitStrategy = new JustHit(this);
         dieStrategy = new JustDie(this);
         stateMachine = new ExplorerMachine(this);
         stateMachine.ChangeState(new MoveState(stateMachine));
-        BattleManager.playerArray.Add(this);
-
-        
     }
 
 

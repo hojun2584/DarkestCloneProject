@@ -19,9 +19,16 @@ public class CharacterData : ScriptableObject
         }
     }
     [SerializeField] string charName;
-    public float AttackPoint { get; set; }[SerializeField] float power;
-    public float SpAttack { get; set; }[SerializeField] float spAttack;
-    public float Speed { get; set; }[SerializeField] float speed;
+    public float AttackPoint { get => power; set { power = value; } }
+    [SerializeField] float power;
+    public float Critical { get => critical; set { critical = value; } }
+    [SerializeField] float critical;
+    public float SpAttack { get => SpAttack; set { spAttack = value; } }
+    [SerializeField] float spAttack;
+    public float Speed { get => speed; set { speed = value; } }
+    [SerializeField] float speed;
+    public float Fear { get => fear; set { fear = value; } }
+    [SerializeField] float fear;
     public float Hp 
     {
         get
@@ -36,10 +43,15 @@ public class CharacterData : ScriptableObject
                 hp = maxHp;
         }
     }[SerializeField] float hp;
-    public float MaxHp { get; set; }[SerializeField] float maxHp;
-    public int Armor { get; set; }[SerializeField] int armor;
-    public int Dodge { get; set; }[SerializeField] int dodge;
-    public List<IEquipeAbleItem> EquipItems { get;}
+    public float MaxHp { get => maxHp; set { maxHp = value; } }
+    [SerializeField] float maxHp;
+    public int Armor { get => armor; set { armor = value; } }
+    [SerializeField] int armor;
+    public int Dodge { get => dodge; set { dodge = value; } }
+    [SerializeField] int dodge;
+    public int Accuracy { get => accuracy; set { accuracy = value; } }
+    [SerializeField] int accuracy;
+    public List<IEquipeAbleItem> EquipItems { get => equipeItems; }
     [SerializeField] List<IEquipeAbleItem> equipeItems = new List<IEquipeAbleItem>();
 
     public List<IHitStrategy> skill = new List<IHitStrategy>();
@@ -84,13 +96,14 @@ public class CharacterData : ScriptableObject
         {
             List<string> list = new List<string>();
 
-            list.Add(charName);
-            list.Add(power.ToString() );
-            list.Add(spAttack.ToString());
-            list.Add(speed.ToString());
-            list.Add(hp.ToString());
+            list.Add(Hp.ToString() + " / " +maxHp.ToString());
+            list.Add(Fear.ToString());
+            list.Add(critical.ToString());
+            list.Add(Accuracy.ToString());
+            list.Add(AttackPoint.ToString());
+            list.Add(dodge.ToString());
             list.Add(armor.ToString());
-
+            list.Add(Speed.ToString());
             return list;
         }
     }

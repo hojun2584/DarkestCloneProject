@@ -10,6 +10,8 @@ public class ArcherCharacter : Player
     public new void Awake()
     {
         base.Awake();
+
+        skills.Add( new BowAttack(this) );
     }
 
     public void Start()

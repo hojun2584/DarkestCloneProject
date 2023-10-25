@@ -21,17 +21,7 @@ public class ItemData : ScriptableObject
         }
         set
         {
-
-
-            if (value <= 0)
-            {
-                DestroyImmediate(this);
-            }
-            else
-            {
-                amount = value;
-            }
-            
+            amount = value;
         }
     }
     [SerializeField]

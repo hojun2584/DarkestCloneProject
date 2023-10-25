@@ -13,7 +13,7 @@ public interface ICharacter : IFightAble
 
 public interface IHitAble
 {
-    public abstract void Hit(float damage , ICharacter Attacker);
+    public abstract void Hit(float damage , ICharacter attacker);
 }
 
 
@@ -27,10 +27,7 @@ public interface iDieAble : IHitAble
 public interface IHitStrategy
 {
     public Character Owner { get; }
-    public abstract void Hit(float damage, ICharacter target);
-    
-    
-
+    public abstract void Hit(float damage, ICharacter attacker);
 }
 
 public interface ISkillStrategy

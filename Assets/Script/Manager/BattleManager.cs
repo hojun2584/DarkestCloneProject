@@ -7,36 +7,16 @@ using UnityEngine;
 public class BattleManager : SingleTon<BattleManager>
 {
 
-    public static List<Player> playerArray = new List<Player>();
-    public static List<Enemy> enemyArray = new List<Enemy>();
-    List<ICharacter> characterList = new List<ICharacter>();
+    public List<Player> playerArray = new List<Player>();
+    public List<Enemy> enemyArray = new List<Enemy>();
+    List<Character> characterList = new List<Character>();
     int current = 0;
 
+    static public Character curCharcter;
+    static public Character target;
 
-    static public ICharacter curCharcter;
-    static public ICharacter target;
-
-    public ICharacter aNextCharacter 
-    {
-        get
-        {
-            
-            current = current < characterList.Count ? current++ : 0;            
-            
-            ICharacter aliveP =  playerArray.Find(player => player.CharData.Hp <= 0);
-            ICharacter aliveE =  enemyArray.Find(enemy => enemy.CharData.Hp <= 0);
-
-
-            if ( aliveE == null || aliveE == null )
-                return null;
-
-
-            //ICharacter curChar = characterList[ characterList.Keys[current] ];
-
-
-            return null;
-        }    
-    }
+    [SerializeField]
+    ViewStatus status;
 
 
     private new void Awake()
@@ -46,10 +26,9 @@ public class BattleManager : SingleTon<BattleManager>
     }
 
 
-    public ICharacter NextCharacter()
+    public Character NextCharacter()
     {
-        // 환형 연결 리스트로 사용 하기 위한 지정자 current
-        // list의 Count 보다 커질 시 0으로 초기화
+        
         current = current < characterList.Count ? current++ : 0;
 
         return characterList[current];
@@ -67,15 +46,17 @@ public class BattleManager : SingleTon<BattleManager>
                 characterList.Add(enemy);
         }
 
-        characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();        
+        characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
+
+
         curCharcter = characterList[current];
+        status.Data = curCharcter.CharData;
 
     }
+
     public void Update()
     {
-        Debug.Log(curCharcter);
-        Debug.Log("player" + playerArray.Count);
-        Debug.Log("enemy" + enemyArray.Count);
+        
     }
 
     public Character GetCurCharacter()

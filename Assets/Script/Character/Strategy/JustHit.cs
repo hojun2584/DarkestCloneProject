@@ -8,9 +8,9 @@ public class JustHit : HitStrategy
     {
     }
 
-    public override void Hit(float damage, ICharacter target)
+    public override void Hit(float damage, ICharacter attacker)
     {
-        if (IsDodge())
+        if (IsDodge(attacker.CharData.Accuracy))
             return;
 
         Owner.Hp -= damage;
