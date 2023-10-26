@@ -20,7 +20,8 @@ public class Goblin : Enemy
 
     public override void Hit(float damage, ICharacter Attacker)
     {
-        
+        Hp -= damage;
+        Debug.Log(Hp);
     }
 
     public override void UseSkill(ICharacter target)

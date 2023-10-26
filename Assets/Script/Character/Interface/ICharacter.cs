@@ -36,8 +36,10 @@ public interface ISkillStrategy
     { 
         get;
     }
-
+    
     public abstract void UseSkill(ICharacter target);
+
+    public SkillData SkillModel { get;}
 }
 
 public interface IHealAble

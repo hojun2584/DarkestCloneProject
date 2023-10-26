@@ -15,7 +15,7 @@ public abstract class DieStrategy : IDieStrategy
     public virtual void Die()
     {
         GameObject.DestroyImmediate(owner.CharData);
-        GameObject.Destroy(owner) ;
+        GameObject.Destroy(owner.gameObject);
 
         Debug.Log("dieSt call");
     }

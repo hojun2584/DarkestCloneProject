@@ -14,19 +14,17 @@ public class BattleState : BaseState
 
         foreach(BuffStrategy buff in buffs)
             buff.ActiveBuff();
-        
-
 
 
     }
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void UpdateState()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

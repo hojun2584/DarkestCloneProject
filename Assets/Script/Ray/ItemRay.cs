@@ -9,7 +9,8 @@ using UnityEngine.EventSystems;
 public enum RAYFLAGS
 {
     STATUS = 1 << 8,
-    INVENTORY = 1 << 9
+    INVENTORY = 1 << 9,
+
 }
 
 public class ItemRay : MonoBehaviour
@@ -59,14 +60,12 @@ public class ItemRay : MonoBehaviour
 
         foreach (RaycastResult result in raycastResults)
         {
-
             if((RAYFLAGS)(1 << result.gameObject.layer) == mask)
             {
-                if (result.gameObject.TryGetComponent<ItemSlot> (out ItemSlot slot))
-                {
+                if (result.gameObject.TryGetComponent<IClickUseAble> (out IClickUseAble slot))
                     slot.OnClickUse();
-                }
-                    
+
+                
             }
         }
 

@@ -26,7 +26,7 @@ public enum EQUIPWEAPON
 
 public abstract class Character : MonoBehaviour, ICharacter
 {
-    protected List<ISkillStrategy> skills = new List<ISkillStrategy>();
+    public List<ISkillStrategy> skills = new List<ISkillStrategy>();
     public ISkillStrategy selectSkill;
     public IHitStrategy hitStrategy;
     public IDieStrategy dieStrategy;
@@ -65,22 +65,19 @@ public abstract class Character : MonoBehaviour, ICharacter
             if( 0 >= value)
             {
 
-                // hp 호출하면 바로 오브젝트 destroy 될듯 추후 개발에 따라서 정리 해야 함
-                //dieStrategy.Die();
+                dieStrategy.Die();
 
                 return;
             }
-
-            hpBar.fillAmount = (float)CharData.MaxHp / (float)value;
+            
             CharData.Hp = value;
+            //hpBar.fillAmount = (float)charterData.Hp / (float)CharData.MaxHp;
         }
         get
         {
-            return charterData.Hp;
+            return CharData.Hp;
         }
     }
-
-
 
     public WeaponData WeaponData 
     {
@@ -94,6 +91,14 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
     }
     public WeaponData weapon;
+
+
+    public void Update()
+    {
+        float temp = (float)CharData.Hp / (float)CharData.MaxHp;
+        hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, temp, Time.deltaTime * 1.0f);
+
+    }
 
     public abstract void EnterTurn();
 

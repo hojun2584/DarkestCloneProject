@@ -14,6 +14,13 @@ public abstract class BuffStrategy : IBuffStrategy
     public Character Owner { get { return owner; } }
     Character owner;
 
+    public SkillData SkillModel { get => skill; }
+    SkillData skill;
+
+
+
+
+
     public bool IsSame(BuffStrategy other)
     {
         return other != null && GetType() == other.GetType();

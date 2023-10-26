@@ -11,13 +11,6 @@ public class BattleIdle : BaseState
 
     }
 
-    public ICharacter Target 
-    {
-        get
-        {
-            return BattleManager.target;
-        }    
-    }
 
     public override void EnterState()
     {
@@ -33,8 +26,6 @@ public class BattleIdle : BaseState
     public override void UpdateState()
     {
 
-        if (owner.selectSkill != null &&Target != null)
-            owner.selectSkill.UseSkill(Target);
     }
 
     
