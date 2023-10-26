@@ -11,7 +11,8 @@ public class ArcherCharacter : Player
     {
         base.Awake();
 
-        skills.Add( new BowAttack(this) );
+        skills.Add( new BowAttack(this,SKILL.ARROWATTACK) );
+        
     }
 
     public void Start()
@@ -22,7 +23,7 @@ public class ArcherCharacter : Player
 
     public void Update()
     {
-
+        
         stateMachine.UpdateState();
 
     }

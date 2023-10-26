@@ -2,19 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerAttack : IAttackStrategy
+public abstract class PlayerAttack : AttackStrategy
 {
-
-    protected PlayerAttack(Character owner)
+    protected PlayerAttack(Character owner, SKILL data)
+        : base(owner)
     {
+
         this.owner = owner;
+        this.data = SKillModel.skillDict[data];
+
     }
 
-    public Character Owner => owner;
-    Character owner;
-
-    public abstract void Attack(IHitAble target);
-
-    public abstract void UseSkill(ICharacter target);
 
 }

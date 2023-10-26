@@ -6,7 +6,7 @@ using TMPro;
 
 public class CharacterRay : MonoBehaviour
 {
-    public static RAYFLAGS flags;
+    public RAYFLAGS flags;
     RaycastHit hitItem;
     [SerializeField]
     ViewStatus viewStat;
@@ -33,11 +33,18 @@ public class CharacterRay : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                if (hit.collider.TryGetComponent<ICharacter>(out ICharacter curChar))
+                
+                if (hit.collider.TryGetComponent<Player>(out Player targetP))
                 {
-                    viewStat.Data = curChar.CharData;
-                    curCharacter = curChar;
+                    viewStat.Data = targetP.CharData;
+                    BattleManager.Target = targetP;
+                    // 상태머신으로 처리 할 것
+                    //curCharacter = curChar;
+                }
 
+                if(hit.collider.TryGetComponent<Enemy>(out Enemy targetE))
+                {
+                    BattleManager.Target = targetE;
                 }
 
             }

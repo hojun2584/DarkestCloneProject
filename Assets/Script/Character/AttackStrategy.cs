@@ -11,6 +11,14 @@ public abstract class AttackStrategy : ISkillStrategy
         this.owner = owner;
     }
 
+    public SkillData SkillModel
+    {
+        get
+        {
+            return data;
+        }
+    }
+    protected SkillData data;
     public abstract float Damage { get;}
 
     public Character Owner => owner;

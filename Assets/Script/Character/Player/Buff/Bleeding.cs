@@ -25,7 +25,6 @@ public class Bleeding : BuffStrategy
     public override void Buff(ICharacter target , int count = 4 )
     {
         Character buffTarget = target as Character;
-
         BuffStrategy buff = IsAlready();
         buff.count += count;
 

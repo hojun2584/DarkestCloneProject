@@ -6,7 +6,7 @@ public class Enemy : Character
 {
 
 
-    protected void Awake()
+    protected  void Awake()
     {
         CharData = CharData.CloneObj;
         hitStrategy = new JustHit(this);
@@ -14,13 +14,17 @@ public class Enemy : Character
         stateMachine.ChangeState( new BattleIdle(stateMachine) );
         dieStrategy = new JustDie(this);
 
-
     }
     public override void Die()
     {
 
         dieStrategy.Die();
 
+    }
+
+    public new void Update()
+    {
+        base.Update();
     }
 
     public override void EnterTurn()

@@ -5,13 +5,15 @@ using UnityEngine;
 public class Player : Character , IFightAble
 {
 
-    protected void Awake()
+    protected  void Awake()
     {
         CharData = CharData.CloneObj;
         hitStrategy = new JustHit(this);
         dieStrategy = new JustDie(this);
         stateMachine = new ExplorerMachine(this);
         stateMachine.ChangeState(new MoveState(stateMachine));
+
+
     }
 
 
@@ -60,6 +62,10 @@ public class Player : Character , IFightAble
         Debug.Log("정의되지 않은 클래스 player die 호출");
     }
 
+    public new void Update()
+    {
+        base.Update();
+    }
 
     /// <summary>
     /// 플레이어가 자신에 턴에 들어 왔을 때 초기화 해야 하는 코드 들

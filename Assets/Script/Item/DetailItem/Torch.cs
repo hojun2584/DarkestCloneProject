@@ -21,7 +21,6 @@ public class Torch : Item, IConsumeAbleItem
     public void Cunsume(ICharacter character = null)
     {
         Data.Amount -= 1;
-
         Enviromental.enviroMental += lightValue;
     }
 

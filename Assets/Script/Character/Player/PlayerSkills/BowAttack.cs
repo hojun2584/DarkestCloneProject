@@ -6,13 +6,12 @@ using static UnityEngine.UI.GridLayoutGroup;
 public class BowAttack : PlayerAttack
 {
 
-    public BowAttack(Character owner) : base(owner)
+    public BowAttack(Character owner , SKILL data) : base(owner , data)
     {
         
     }
-    
 
-    public float Damage 
+    public override float Damage
     {
         get
         {
@@ -21,8 +20,6 @@ public class BowAttack : PlayerAttack
             return damage;
         }
     }
-
-
     public override void Attack(IHitAble target)
     {
         Debug.Log("BowAttack");
