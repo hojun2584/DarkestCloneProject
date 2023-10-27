@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Fsm
 {
-    public BaseState curState;
+    public BaseState curState = null;
     public Character owner;
 
     protected Fsm(Character owner)
@@ -17,7 +17,10 @@ public abstract class Fsm
     {
 
         if (curState == nextState)
+        {
+            Debug.Log("??");
             return;
+        }
 
         if (curState != null)
             curState.ExitState();

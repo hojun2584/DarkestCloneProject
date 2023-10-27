@@ -39,7 +39,7 @@ public interface ISkillStrategy
     
     public abstract void UseSkill(ICharacter target);
 
-    public SkillData SkillModel { get;}
+    public SkillData Data { get;}
 }
 
 public interface IHealAble

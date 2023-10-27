@@ -66,7 +66,6 @@ public abstract class Character : MonoBehaviour, ICharacter
             {
 
                 dieStrategy.Die();
-
                 return;
             }
             

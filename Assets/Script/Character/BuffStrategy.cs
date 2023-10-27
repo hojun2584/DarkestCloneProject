@@ -7,19 +7,16 @@ public abstract class BuffStrategy : IBuffStrategy
 
     public int count = 0;
 
-    public BuffStrategy(Character owner)
+    public BuffStrategy(Character owner, SKILL data)
     {
+        this.data = SKillModel.skillDict[data];
         this.owner = owner;
     }
     public Character Owner { get { return owner; } }
     Character owner;
 
-    public SkillData SkillModel { get => skill; }
-    SkillData skill;
-
-
-
-
+    public SkillData Data { get => data; }
+    SkillData data;
 
     public bool IsSame(BuffStrategy other)
     {

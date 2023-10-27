@@ -5,14 +5,54 @@ using UnityEngine;
 
 public class MoveState : BaseState
 {
+
+    static int moveValue = 0;
+    static int distance;
+    int minRange = 100;
+    int maxRange = 500;
+
+
     public MoveState(Fsm machine) : base(machine)
     {
-
+        
     }
+
 
     public override void EnterState()
     {
+        distance = Random.Range(minRange, maxRange)*3;
+        moveValue = 0;
+
+        Debug.Log("mone state enter");
+    }
+
+    public override void UpdateState()
+    {
+
+        bool backMove = Input.GetKey(KeyCode.A);
+        bool isMove = Input.GetKey(KeyCode.D);
+
+
+        if (isMove)
+            moveValue += 1;
         
+
+        aniCompo.SetBool("Move", isMove);
+        aniCompo.SetBool("Idle", !isMove);
+
+
+        if (moveValue >= distance)
+        {
+            ExitState();
+        
+            owner.stateMachine = new BattleMachine(stateMachine.owner);
+            owner.stateMachine.curState = new BattleIdle(stateMachine);
+            Debug.Log("call");
+        }
+
+        //aniCompo.SetBool("BackMove" , backMove);
+        //aniCompo.SetBool("backMove", !backMove);
+
     }
 
     public override void ExitState()
@@ -20,19 +60,8 @@ public class MoveState : BaseState
 
         //!!TODOLIST = battle phase 진입 하는거 변수 설정 해서 처리하기
         //stateMachine = new BattleMachine(owner);
-
+        aniCompo.SetBool("Move", false);
+        aniCompo.SetBool("Idle", true);
     }
 
-    public override void UpdateState()
-    {
-
-        bool backMove = Input.GetKey(KeyCode.A);
-        bool move = Input.GetKey(KeyCode.D);
-        
-        aniCompo.SetBool("Move", move);
-        aniCompo.SetBool("Idle", !move);
-        //aniCompo.SetBool("BackMove" , backMove);
-        //aniCompo.SetBool("backMove", !backMove);
-
-    }
 }

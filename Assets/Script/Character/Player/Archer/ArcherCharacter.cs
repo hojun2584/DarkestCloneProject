@@ -11,7 +11,11 @@ public class ArcherCharacter : Player
     {
         base.Awake();
 
+
+        //최소 4개는 집어 넣을 것 
         skills.Add( new BowAttack(this,SKILL.ARROWATTACK) );
+        skills.Add( new ParryingSkill(this,SKILL.PARRYING));
+
         
     }
 
@@ -21,7 +25,7 @@ public class ArcherCharacter : Player
 
     }
 
-    public void Update()
+    public new void Update()
     {
         
         stateMachine.UpdateState();

@@ -36,10 +36,13 @@ public class CharacterRay : MonoBehaviour
                 
                 if (hit.collider.TryGetComponent<Player>(out Player targetP))
                 {
-                    viewStat.Data = targetP.CharData;
-                    BattleManager.Target = targetP;
                     // 상태머신으로 처리 할 것
                     //curCharacter = curChar;
+
+                    Debug.Log(targetP.CharData == null);
+
+                    viewStat.Data = targetP.CharData;
+                    BattleManager.Target = targetP;
                 }
 
                 if(hit.collider.TryGetComponent<Enemy>(out Enemy targetE))

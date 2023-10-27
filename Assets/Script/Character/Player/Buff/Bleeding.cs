@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bleeding : BuffStrategy
 {
-    public Bleeding(Character owner) : base(owner)
+    public Bleeding(Character owner, SKILL data) : base(owner, data)
     {
     }
 

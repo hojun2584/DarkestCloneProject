@@ -7,7 +7,8 @@ public class BattleMachine : Fsm
 
     public BattleMachine(Character owner) : base(owner)
     {
-
+        curState = new BattleIdle(this);
+        BattleManager.isBattleOn = true;
     }
 
     

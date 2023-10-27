@@ -15,7 +15,7 @@ public class SkillSlot : MonoBehaviour , IClickUseAble
         set
         {
             skill = value;
-            icon.sprite = skill.SkillModel.icon;
+            icon.sprite = skill.Data.icon;
         }
 
     }
@@ -41,7 +41,6 @@ public class SkillSlot : MonoBehaviour , IClickUseAble
             Debug.Log("go!");
         }
         BattleManager.skill = skill;
-
 
     }
 }
