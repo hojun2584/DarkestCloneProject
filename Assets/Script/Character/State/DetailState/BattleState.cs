@@ -10,17 +10,19 @@ public class BattleState : BaseState
 
     public override void EnterState()
     {
-        List<BuffStrategy> buffs = owner.buffs;
+        //List<BuffStrategy> buffs = owner.buffs;
 
-        foreach(BuffStrategy buff in buffs)
+        foreach(BuffStrategy buff in owner.buffs)
             buff.ActiveBuff();
 
+
+        Debug.Log("battle mode enter");
 
     }
 
     public override void ExitState()
     {
-        
+        owner.IsMyTurn = false;
     }
 
     public override void UpdateState()

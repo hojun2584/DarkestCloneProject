@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 
 public enum CharacterEnum
 {
-    ARCHER = 0,
+    ARCHER,
     WARRIOR,
     WIZARD,
-    GOBLIN,
-    GHOST,
-    MERMAID
 }
 
+
+public enum EnemyEnum
+{
+    NORMAL
+}
 
 public class CharacterManager : MonoBehaviour
 {
@@ -26,36 +29,40 @@ public class CharacterManager : MonoBehaviour
     int maxPlayerCapa = 3;
     int maxMosterCapa = 3;
 
-    List<CharacterEnum> playerArr = new List<CharacterEnum>();
-    List<CharacterEnum> monsterArr = new List<CharacterEnum>();
+    List<GameObject> playerArray = new List<GameObject>();
+    List<GameObject> enemyArray;
 
-    [SerializeField]
+    Dictionary<EnemyEnum, List<GameObject> > enemyDict = new Dictionary<EnemyEnum, List<GameObject>>();
+    
+
     public BattleManager battleManager;
 
-
-
-    public CharacterData archerData;
     public GameObject archer;
-
-    public CharacterData warriorData;
     public GameObject warrior;
-
-    public CharacterData wizzardData;
     public GameObject wizard;
 
-
-    public CharacterData goblinData;
     public GameObject goblin;
+    public GameObject ghost;
+    public GameObject mermaid;
 
 
     private void Awake()
     {
-        PlayerAdd(CharacterEnum.ARCHER);
-        PlayerAdd(CharacterEnum.ARCHER);
-        PlayerAdd(CharacterEnum.ARCHER);
-        monsterArr.Add(CharacterEnum.GOBLIN);
-        monsterArr.Add(CharacterEnum.GOBLIN);
-        monsterArr.Add(CharacterEnum.GOBLIN);
+        PlayerAdd(archer);
+        PlayerAdd(archer);
+        PlayerAdd(archer);
+
+
+        List<GameObject> normalParty = new List<GameObject>();
+        normalParty.Add(goblin);
+        normalParty.Add(goblin);
+        normalParty.Add(goblin);
+
+        enemyDict.Add(EnemyEnum.NORMAL , normalParty);
+
+        //monsterArr.Add(CharacterEnum.GOBLIN);
+        //monsterArr.Add(CharacterEnum.GOBLIN);
+        //monsterArr.Add(CharacterEnum.GOBLIN);
         
     }
 
@@ -63,20 +70,27 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         PlayerCreate();
-        MonsterCreate();
+
+    }
+
+    public void Update()
+    {
+
+        
+
 
     }
 
 
-    public void PlayerAdd (CharacterEnum charEnum)
+    public void PlayerAdd (GameObject player)
     {
 
-        if(playerArr.Count >= maxPlayerCapa)
+        if(playerArray.Count >= maxPlayerCapa)
         {
             Debug.Log("over Player List");
             return;
         }
-        playerArr.Add(charEnum);
+        playerArray.Add(player);
         
     }
 
@@ -84,51 +98,31 @@ public class CharacterManager : MonoBehaviour
     public void PlayerCreate()
     {
 
-        Player obj = null;
+        GameObject obj = null;
 
-        for(int i = 0; i < playerArr.Count; i++)
+        for(int i = 0; i < playerArray.Count; i++)
         {
-            switch (playerArr[i])
-            {
-                case CharacterEnum.ARCHER:
-                    obj = Instantiate(archer,playerPos[i]).GetComponent<Player>();
-                    break;
-                case CharacterEnum.WARRIOR:
-                    obj = Instantiate(warrior, playerPos[i]).GetComponent<Player>();
-                    //obj.CharData = warriorData.CloneObj; 여기 버그 날듯 체크해볼 것
-                    break;
-                case CharacterEnum.WIZARD:
-                    obj = Instantiate(wizard, playerPos[i]).GetComponent<Player>();
-                    obj.CharData = wizzardData.CloneObj;
-                    break;
-            }
-            battleManager.AddPlayer(obj);
+            obj = Instantiate(playerArray[i], playerPos[i]);
+            battleManager.PlayerAdd(obj);
         }
-        
-        
+
+
     }
 
     public void MonsterCreate ()
     {
-        Enemy obj = null;
+        GameObject obj = null;
 
-        for(int i = 0; i< monsterArr.Count ; i++)
+        Array values = Enum.GetValues(typeof(EnemyEnum));
+        System.Random random = new System.Random();
+        EnemyEnum randomParty = (EnemyEnum)values.GetValue(random.Next(values.Length));
+        List<GameObject> enemyParty = enemyDict[randomParty];
+
+        for (int i = 0; i< enemyParty.Count ; i++)
         {
-            switch (monsterArr[i])
-            {
-                case CharacterEnum.GOBLIN:
-                    obj = Instantiate(goblin, monsterpos[i]).GetComponent<Enemy>();
-                    obj.CharData = goblinData.CloneObj;
-                    break;
-                case CharacterEnum.WARRIOR:
-                    obj = Instantiate(warrior, monsterpos[i]).GetComponent<Enemy>();
-                    break;
-                case CharacterEnum.WIZARD:
-                    obj = Instantiate(wizard, monsterpos[i]).GetComponent<Enemy>();
-                    break;
-            }
-            battleManager.AddEnemy(obj);
+            obj = Instantiate(enemyParty[i], monsterpos[i]);
         }
+
 
     }
 

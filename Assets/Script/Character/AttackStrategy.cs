@@ -11,7 +11,7 @@ public abstract class AttackStrategy : ISkillStrategy
         this.owner = owner;
     }
 
-    public SkillData SkillModel
+    public SkillData Data
     {
         get
         {
