@@ -55,18 +55,6 @@ public class UIModel : MonoBehaviour
             initObject.InitView();
     }
 
-    public bool InitObj(InitViewAble initobject)
-    {
-        var obj = initAbleList.Find(x => x == initobject);
-
-        if (obj == null)
-            return false;
-
-        obj.InitView();
-        return true;
-
-    }
-
 
     public void AddViewer(InitViewAble viewr)
     {

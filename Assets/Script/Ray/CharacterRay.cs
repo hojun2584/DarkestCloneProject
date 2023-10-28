@@ -39,12 +39,16 @@ public class CharacterRay : MonoBehaviour
                     // 상태머신으로 처리 할 것
                     //curCharacter = curChar;
 
-                    Debug.Log(targetP.CharData == null);
 
-                    viewStat.Data = targetP.CharData;
+                    if (!BattleManager.isBattleOn)
+                    {
+                        viewStat.Data = targetP.CharData;
+                        BattleManager.CurCharacter = targetP;
+                        Debug.Log("teget set");
+                    }
+
                     BattleManager.Target = targetP;
                 }
-
                 if(hit.collider.TryGetComponent<Enemy>(out Enemy targetE))
                 {
                     BattleManager.Target = targetE;

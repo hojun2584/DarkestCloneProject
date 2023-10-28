@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -955,7 +955,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 235877445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c42ef6951dd05f41a5de8932468d4fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d77c855c1fc7c44b90fc41983c39a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &256698141
@@ -3148,9 +3148,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowAttack: {fileID: 21300000, guid: 05a76542b6be12e4e9c831f2397db70b, type: 3}
   cloAttack: {fileID: 21300000, guid: 90f916ccb0445244cbc3600f90d16147, type: 3}
-  gurad: {fileID: 0}
-  move: {fileID: 0}
+  gurad: {fileID: 21300000, guid: d93de0643b3b9cb46bf231bc17736962, type: 3}
+  move: {fileID: 21300000, guid: ebdb29a78c14c6041850b0dbba2a302f, type: 3}
   parrying: {fileID: 21300000, guid: 818d81bb37bc3d747b2d9bac35a63fad, type: 3}
+  eat: {fileID: 0}
 --- !u!1 &733330618 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4387394505976474857, guid: 120904d0f9fd048488aeae5243ab1263, type: 3}
@@ -4028,7 +4029,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 956105369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c42ef6951dd05f41a5de8932468d4fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d77c855c1fc7c44b90fc41983c39a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &963194225
@@ -4767,7 +4768,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1209370512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c42ef6951dd05f41a5de8932468d4fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d77c855c1fc7c44b90fc41983c39a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1267997535 stripped
@@ -5334,7 +5335,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 1608317831}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c42ef6951dd05f41a5de8932468d4fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d77c855c1fc7c44b90fc41983c39a38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1669261013
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1669261014}
+  - component: {fileID: 1669261015}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1669261014
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669261013}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 140}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1669261015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669261013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a3eda3eabf6834393fa636d3732213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1733547081
@@ -6477,7 +6522,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2021367339}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c42ef6951dd05f41a5de8932468d4fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d77c855c1fc7c44b90fc41983c39a38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2061506496

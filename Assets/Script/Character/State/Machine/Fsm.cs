@@ -13,20 +13,18 @@ public abstract class Fsm
 
     }
 
-    public virtual void ChangeState(BaseState nextState)
+    public void ChangeState(BaseState nextState)
     {
 
         if (curState == nextState)
-        {
-            Debug.Log("??");
             return;
-        }
 
         if (curState != null)
             curState.ExitState();
 
         curState = nextState;
         curState.EnterState();
+
     }
 
     public virtual void UpdateState()

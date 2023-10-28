@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e13925859204c9444b695314a2e4007c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsMyTurn: 0
+  isMyTurn: 0
   hpBar: {fileID: 5112822912460275987}
   charterData: {fileID: 11400000, guid: bfa08852f0c42fc4fa4a1192013ff0ab, type: 2}
   weapon: {fileID: 0}
@@ -62,7 +62,7 @@ Animator:
   m_GameObject: {fileID: 6204525855911623589}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 7908f1a2bde075d478e43a6e8b8277be, type: 3}
-  m_Controller: {fileID: 9100000, guid: 901f30c080db1e14ca7b581583fecf68, type: 2}
+  m_Controller: {fileID: 9100000, guid: 4a2c2b688f815844384185cc5e22a9c3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

@@ -46,6 +46,9 @@ public class SKillModel : MonoBehaviour
     Sprite move;
     [SerializeField]
     Sprite parrying;
+    [SerializeField]
+    Sprite eat;
+
 
     public static Dictionary<SKILL, SkillData> skillDict = new Dictionary<SKILL, SkillData>();
 

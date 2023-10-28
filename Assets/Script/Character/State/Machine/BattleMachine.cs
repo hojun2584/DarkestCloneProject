@@ -9,6 +9,8 @@ public class BattleMachine : Fsm
     {
         curState = new BattleIdle(this);
         BattleManager.isBattleOn = true;
+
+    
     }
 
     

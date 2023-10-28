@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillSlot : MonoBehaviour , IClickUseAble
+public class SkillSlot : MonoBehaviour, IClickUseAble
 {
 
 
     Image icon;
 
-    public ISkillStrategy Skill 
+    public ISkillStrategy Skill
     {
         get => skill;
         set
@@ -27,14 +27,14 @@ public class SkillSlot : MonoBehaviour , IClickUseAble
         icon = GetComponent<Image>();
     }
 
-    
+
 
     public void OnClickUse()
     {
-        if(skill == null)
+        if (skill == null)
         {
             Debug.Log("click Skill");
-            return ;
+            return;
         }
         else
         {

@@ -22,5 +22,8 @@ public class GoblinClaw : AttackStrategy
         Attack(target);
     }
 
-
+    public override void UseSkill(List<ICharacter> targets)
+    {
+        throw new System.NotImplementedException();
+    }
 }

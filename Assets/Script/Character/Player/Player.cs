@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : Character , IFightAble
 {
 
-    protected  void Awake()
+    protected void Awake()
     {
         CharData = CharData.CloneObj;
         hitStrategy = new JustHit(this);
@@ -72,9 +73,10 @@ public class Player : Character , IFightAble
     {
     }
 
-    public override void Hit(float damage, ICharacter Attacker)
+    public override void Hit(float damage, ICharacter attacker)
     {
-        Debug.Log("정의되지 않은 클래스 player hit 호출");
+        Debug.Log("player hit call");
+        hitStrategy.Hit(damage, attacker);
     }
 
     public override void UseSkill(ICharacter target)

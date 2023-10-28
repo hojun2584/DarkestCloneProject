@@ -17,16 +17,38 @@ public class BattleState : BaseState
 
 
         Debug.Log("battle mode enter");
+        owner.hitStrategy = new JustHit(owner);
+        aniCompo.SetBool("Parrying" , false);
+
 
     }
 
     public override void ExitState()
     {
-        owner.IsMyTurn = false;
+        CorutineRunner.Start(AttackAnim());
+        Debug.Log("battle mode out");
     }
 
     public override void UpdateState()
     {
+        if (owner.isMyTurn == false)
+            owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
+
+        if (!BattleManager.isBattleOn)
+            owner.stateMachine.ChangeState(new MoveState(owner.stateMachine));
         
+
+
     }
+
+
+
+    IEnumerator AttackAnim()
+    {
+
+        yield return null;
+        aniCompo.SetBool("Attack", false);
+    }
+
+
 }

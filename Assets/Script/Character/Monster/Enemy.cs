@@ -6,13 +6,13 @@ public class Enemy : Character
 {
 
 
-    protected  void Awake()
+    protected void Awake()
     {
         CharData = CharData.CloneObj;
         hitStrategy = new JustHit(this);
-        stateMachine = new MonsterMachine(this);
-        stateMachine.ChangeState( new BattleIdle(stateMachine) );
         dieStrategy = new JustDie(this);
+        stateMachine = new MonsterMachine(this);
+        stateMachine.ChangeState( new MonsterBattleIdle(stateMachine) );
 
     }
     public override void Die()
@@ -25,6 +25,9 @@ public class Enemy : Character
     public new void Update()
     {
         base.Update();
+        if (stateMachine != null)
+            stateMachine.curState.UpdateState();
+
     }
 
     public override void EnterTurn()
