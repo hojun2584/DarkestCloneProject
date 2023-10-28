@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ParryingSkill : BuffStrategy
 {
+
     public ParryingSkill(Character owner , SKILL data) : base(owner , data)
     {
+        animator = owner.gameObject.GetComponent<Animator>();
     }
 
     public override void Buff(ICharacter target , int count = 1)
@@ -18,5 +20,11 @@ public class ParryingSkill : BuffStrategy
     public override void UseSkill(ICharacter target)
     {
         Buff(Owner);
+        animator.SetBool("Parrying", true);
+    }
+
+    public override void UseSkill(List<ICharacter> targets)
+    {
+        throw new System.NotImplementedException();
     }
 }

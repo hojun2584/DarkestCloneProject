@@ -30,12 +30,14 @@ public class CharacterManager : MonoBehaviour
     int maxMosterCapa = 3;
 
     List<GameObject> playerArray = new List<GameObject>();
-    List<GameObject> enemyArray;
+    List<GameObject> enemyArray = new List<GameObject>();
 
     Dictionary<EnemyEnum, List<GameObject> > enemyDict = new Dictionary<EnemyEnum, List<GameObject>>();
     
 
     public BattleManager battleManager;
+    bool isAlreday = false;
+
 
     public GameObject archer;
     public GameObject warrior;
@@ -48,10 +50,10 @@ public class CharacterManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerAdd(archer);
-        PlayerAdd(archer);
-        PlayerAdd(archer);
+        PlayerAdd(warrior);
+        PlayerAdd(warrior);
 
+        PlayerAdd(warrior);
 
         List<GameObject> normalParty = new List<GameObject>();
         normalParty.Add(goblin);
@@ -70,16 +72,25 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         PlayerCreate();
-
     }
 
     public void Update()
     {
 
+        if(!isAlreday && BattleManager.isBattleOn)
+        {
+            isAlreday=true;
+            Debug.Log("monster Create");
+            MonsterCreate();
+        }
+
+        if (!BattleManager.isBattleOn)
+            isAlreday = false;
         
 
-
+        
     }
+
 
 
     public void PlayerAdd (GameObject player)
@@ -103,7 +114,8 @@ public class CharacterManager : MonoBehaviour
         for(int i = 0; i < playerArray.Count; i++)
         {
             obj = Instantiate(playerArray[i], playerPos[i]);
-            battleManager.PlayerAdd(obj);
+            battleManager.PlayerAdd(obj.GetComponent<Player>());
+
         }
 
 
@@ -112,18 +124,18 @@ public class CharacterManager : MonoBehaviour
     public void MonsterCreate ()
     {
         GameObject obj = null;
-
         Array values = Enum.GetValues(typeof(EnemyEnum));
         System.Random random = new System.Random();
         EnemyEnum randomParty = (EnemyEnum)values.GetValue(random.Next(values.Length));
-        List<GameObject> enemyParty = enemyDict[randomParty];
+        List<GameObject> enemyParty = new List<GameObject>(enemyDict[randomParty]);
 
         for (int i = 0; i< enemyParty.Count ; i++)
         {
             obj = Instantiate(enemyParty[i], monsterpos[i]);
+            battleManager.EnemyAdd(obj.GetComponent<Enemy>());
         }
 
-
+        battleManager.InitBattle();
     }
 
 }

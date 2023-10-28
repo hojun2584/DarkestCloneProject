@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AttackStrategy : ISkillStrategy
+public abstract class AttackStrategy : IAttackStrategy
 {
 
 
@@ -26,4 +26,5 @@ public abstract class AttackStrategy : ISkillStrategy
 
     public abstract void UseSkill(ICharacter target);
     public abstract void Attack(IHitAble target);
+    public abstract void UseSkill(List<ICharacter> targets);
 }

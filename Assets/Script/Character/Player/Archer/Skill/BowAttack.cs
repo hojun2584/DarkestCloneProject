@@ -6,6 +6,8 @@ using static UnityEngine.UI.GridLayoutGroup;
 public class BowAttack : PlayerAttack
 {
 
+
+
     public BowAttack(Character owner , SKILL data) : base(owner , data)
     {
         
@@ -22,7 +24,8 @@ public class BowAttack : PlayerAttack
     }
     public override void Attack(IHitAble target)
     {
-        Debug.Log("BowAttack");
+        animator.SetBool("Attack",true);
+        animator.SetInteger("Skill",0);
         target.Hit(Damage,Owner);
     }
 
@@ -30,4 +33,11 @@ public class BowAttack : PlayerAttack
     {
         Attack(target);
     }
+
+    public override void UseSkill(List<ICharacter> targets)
+    {
+        throw new System.NotImplementedException();
+    }
+
+
 }

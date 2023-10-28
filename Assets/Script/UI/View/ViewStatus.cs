@@ -26,6 +26,8 @@ public class ViewStatus : MonoBehaviour , InitViewAble
     }
     CharacterData data;
 
+
+
     public void InitView()
     {
         var dataList = data.GetInitList;

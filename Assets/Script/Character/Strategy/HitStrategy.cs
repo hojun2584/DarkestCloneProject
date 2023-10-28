@@ -5,11 +5,14 @@ using UnityEngine;
 public abstract class HitStrategy : IHitStrategy
 {
 
+    protected Animator animator;
+
     public HitStrategy(Character owner)
     {
         this.owner = owner;
+        animator = owner.GetComponent<Animator>();
     }
-    public Character Owner { get => Owner; }
+    public Character Owner { get => owner; }
     Character owner;
 
     protected bool IsDodge(int accuracy ,int min = 0, int max = 100)
@@ -27,7 +30,7 @@ public abstract class HitStrategy : IHitStrategy
         return true;
     }
 
-    public abstract void Hit(float damage, ICharacter target);
+    public abstract void Hit(float damage, ICharacter attacker);
     
 
 

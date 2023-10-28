@@ -6,11 +6,14 @@ public abstract class BuffStrategy : IBuffStrategy
 {
 
     public int count = 0;
+    protected Animator animator;
+
 
     public BuffStrategy(Character owner, SKILL data)
     {
         this.data = SKillModel.skillDict[data];
         this.owner = owner;
+        animator = owner.GetComponent<Animator>();
     }
     public Character Owner { get { return owner; } }
     Character owner;
@@ -48,6 +51,5 @@ public abstract class BuffStrategy : IBuffStrategy
             Owner.buffs.Remove(Owner.buffs.Find(x => IsSame(this)));
     }
 
-
-
+    public abstract void UseSkill(List<ICharacter> targets);
 }

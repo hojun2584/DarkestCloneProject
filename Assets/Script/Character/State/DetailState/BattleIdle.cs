@@ -14,26 +14,28 @@ public class BattleIdle : BaseState
 
     public override void EnterState()
     {
-        aniCompo.SetBool("Idle" , true);
+        
         owner.selectSkill = null;
+        
 
-        Debug.Log("battleIdle move enter");
+
+        Debug.Log("battleIdle enter");
 
     }
 
     public override void ExitState()
     {
-        
+        Debug.Log("battleIdle exit");
     }
 
     public override void UpdateState()
     {
+        if (owner.isMyTurn == true)
+            owner.stateMachine.ChangeState(new BattleState(stateMachine));
 
-        // owner.selectskill 이 뭐냐 에 따라서 anicompo 설정하는 거 해줘야 할듯
 
-        if (owner.IsMyTurn == true)
-            stateMachine.ChangeState(new BattleState(stateMachine));
-
+        if (BattleManager.isBattleOn == false)
+            owner.stateMachine.ChangeState(new MoveState(stateMachine));
 
 
     }

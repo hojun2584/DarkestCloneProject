@@ -42,4 +42,9 @@ public class Bleeding : BuffStrategy
 
         base.ActiveBuff();
     }
+
+    public override void UseSkill(List<ICharacter> targets)
+    {
+        throw new System.NotImplementedException();
+    }
 }

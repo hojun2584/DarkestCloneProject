@@ -31,7 +31,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     public IHitStrategy hitStrategy;
     public IDieStrategy dieStrategy;
     protected EQUIPWEAPON weaponType;
-    public bool IsMyTurn = false;
+    public bool isMyTurn = false;
     public List<BuffStrategy> buffs = new List<BuffStrategy>();
 
 
@@ -62,15 +62,19 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         set
         {
-            if( 0 >= value)
-            {
-
-                dieStrategy.Die();
-                return;
-            }
             
+            //float temp;
+            //if (value <= 0)
+            //    temp = 0;
+            //else
+            //    temp = (float)CharData.Hp / (float)CharData.MaxHp;
+
+            //hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, temp, Time.deltaTime * 1.0f);
+
+            if (0 >= value)
+                dieStrategy.Die();
+
             CharData.Hp = value;
-            //hpBar.fillAmount = (float)charterData.Hp / (float)CharData.MaxHp;
         }
         get
         {

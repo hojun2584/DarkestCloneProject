@@ -23,7 +23,8 @@ public class MoveState : BaseState
         distance = Random.Range(minRange, maxRange)*3;
         moveValue = 0;
 
-        Debug.Log("mone state enter");
+
+        Debug.Log("move enter");
     }
 
     public override void UpdateState()
@@ -46,12 +47,12 @@ public class MoveState : BaseState
             ExitState();
         
             owner.stateMachine = new BattleMachine(stateMachine.owner);
-            owner.stateMachine.curState = new BattleIdle(stateMachine);
-            Debug.Log("call");
+            owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
+
+            BattleManager.isBattleOn = true;
         }
 
-        //aniCompo.SetBool("BackMove" , backMove);
-        //aniCompo.SetBool("backMove", !backMove);
+
 
     }
 
