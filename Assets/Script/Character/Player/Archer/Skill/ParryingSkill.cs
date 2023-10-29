@@ -5,12 +5,12 @@ using UnityEngine;
 public class ParryingSkill : BuffStrategy
 {
 
-    public ParryingSkill(Character owner , SKILL data) : base(owner , data)
+    public ParryingSkill(Character owner, SKILL data) : base(owner, data)
     {
         animator = owner.gameObject.GetComponent<Animator>();
     }
 
-    public override void Buff(ICharacter target , int count = 1)
+    public override void Buff(ICharacter target, int count = 1)
     {
         Owner.hitStrategy = new Parrying(Owner);
         //!!TODO_LIST dodge 필히 수정할 것 반드시 패링해서 때리게 됨
@@ -22,9 +22,5 @@ public class ParryingSkill : BuffStrategy
         Buff(Owner);
         animator.SetBool("Parrying", true);
     }
-
-    public override void UseSkill(List<ICharacter> targets)
-    {
-        throw new System.NotImplementedException();
-    }
 }
+

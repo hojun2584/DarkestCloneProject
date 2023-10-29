@@ -13,6 +13,7 @@ public class JustDie : DieStrategy
     {
 
         aniCompo = owner.GetComponent<Animator>();
+        
 
     }
     public override void Die()
@@ -22,6 +23,7 @@ public class JustDie : DieStrategy
         Owner.hitStrategy = null;
         Owner.stateMachine = null;
         CorutineRunner.Start(DieCorutin());
+        Owner.GetComponent<BoxCollider>().enabled = false;
     }
 
     IEnumerator DieCorutin()

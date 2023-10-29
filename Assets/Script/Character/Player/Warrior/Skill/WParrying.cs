@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Guard : HitStrategy
+public class WParrying : HitStrategy
 {
 
+    float armorMultiple = 1.5f;
 
-    int armorMultiple = 2;
-    public Guard(Character owner) : base(owner)
+    public WParrying(Character owner) : base(owner)
     {
-
-
 
     }
 
@@ -19,13 +17,11 @@ public class Guard : HitStrategy
 
         float armor = Owner.CharData.Armor * armorMultiple;
 
-        if ( damage >= armor)
+        if(damage >= armor)
             Owner.Hit(damage, attacker);
 
-        
+        attacker.Hit(Owner.CharData.Armor, Owner);
+        animator.SetTrigger("Counter");
 
-    
-        return;
     }
-
 }

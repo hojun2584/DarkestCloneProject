@@ -10,7 +10,6 @@ public class Torch : Item, IConsumeAbleItem
     public Torch(ItemData data)
         :base(data)
     {
-              
     }
 
     public override void Use(ICharacter user , ICharacter target)

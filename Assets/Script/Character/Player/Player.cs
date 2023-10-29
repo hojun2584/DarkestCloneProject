@@ -6,6 +6,8 @@ using UnityEngine;
 public class Player : Character , IFightAble
 {
 
+
+
     protected void Awake()
     {
         CharData = CharData.CloneObj;
@@ -15,46 +17,69 @@ public class Player : Character , IFightAble
         stateMachine.ChangeState(new MoveState(this.stateMachine));
     }
 
+    public Armor equipArmor = null;
+    public Weapon equipWeapon = null;
 
-    public int Armor
+    public int CharStatusArmor
     {
         get
         {
-            
-            return CharData.Armor;
+            int armor = 0;
+
+            if (equipArmor != null)
+                armor += equipArmor.ArmorInfo.Armor;
+
+            return CharData.Armor + armor;
         }
-        set
-        {
-            CharData.Armor = value;
-        }
+        set{ CharData.Armor = value; }
     }
 
-    
-
-    public float Power
+    public float AttackPoint
     {
-        get
-        {
-            return CharData.AttackPoint;
-        }
-        set
-        {
-            CharData.AttackPoint = value;
-        }
+        get{ return CharData.AttackPoint; }
+        set{ CharData.AttackPoint = value; }
+    }
+
+    public float SpAttack
+    {
+        get { return CharData.SpAttack; }
+        set { CharData.SpAttack = value;}
     }
 
     public float Speed 
     {
-        get
-        {
-            return CharData.Speed;
-        }
-        set
-        {
-            CharData.Speed = value;
-        }
-
+        get{ return CharData.Speed;}
+        set{ CharData.Speed = value;}
     }
+    
+    public float Critical 
+    {
+        get { return CharData.Critical; }
+        set { CharData.Critical = value; }
+    }
+
+    public float Fear 
+    {
+        get { return CharData.Fear; }
+        set { CharData.Fear = value; }
+    }
+
+    public float MaxHp 
+    {
+        get { return CharData.MaxHp; }
+        set { CharData.MaxHp = value; }
+    }
+    public int Armor
+    {
+        get { return CharData.Armor; }
+        set { CharData.Armor = value; }
+    }
+    public int Dodge 
+    {
+        get { return CharData.Dodge; }
+        set { CharData.Dodge = value; }
+    }
+
 
     public override void Die()
     {

@@ -34,6 +34,7 @@ public abstract class Character : MonoBehaviour, ICharacter
     public bool isMyTurn = false;
     public List<BuffStrategy> buffs = new List<BuffStrategy>();
 
+    
 
 
     [SerializeField]
@@ -45,12 +46,6 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         get 
         {
-            if (charterData == null)
-                return null;
-
-            if (WeaponData == null)
-                return charterData;
-            
             return charterData;
         }
         set { charterData = value; }
@@ -63,14 +58,6 @@ public abstract class Character : MonoBehaviour, ICharacter
         set
         {
             
-            //float temp;
-            //if (value <= 0)
-            //    temp = 0;
-            //else
-            //    temp = (float)CharData.Hp / (float)CharData.MaxHp;
-
-            //hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, temp, Time.deltaTime * 1.0f);
-
             if (0 >= value)
                 dieStrategy.Die();
 
@@ -82,18 +69,7 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
     }
 
-    public WeaponData WeaponData 
-    {
-        get 
-        {
-            return weapon;
-        }
-        set
-        {
-            weapon = value;
-        }
-    }
-    public WeaponData weapon;
+    
 
 
     public void Update()

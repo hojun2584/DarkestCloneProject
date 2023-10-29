@@ -28,8 +28,4 @@ public class SwordAttack : AttackStrategy
         target.Hit(Damage,owner);
     }
 
-    public override void UseSkill(List<ICharacter> targets)
-    {
-        throw new System.NotImplementedException();
-    }
 }

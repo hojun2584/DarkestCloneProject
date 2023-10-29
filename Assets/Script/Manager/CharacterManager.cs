@@ -53,7 +53,7 @@ public class CharacterManager : MonoBehaviour
         PlayerAdd(warrior);
         PlayerAdd(warrior);
 
-        PlayerAdd(warrior);
+        PlayerAdd(archer);
 
         List<GameObject> normalParty = new List<GameObject>();
         normalParty.Add(goblin);

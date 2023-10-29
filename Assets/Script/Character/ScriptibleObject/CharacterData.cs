@@ -62,31 +62,6 @@ public class CharacterData : ScriptableObject
     }
 
 
-    public void AddArmor(IEquipeAbleItem armor)
-    {
-        AttackPoint += armor.ArmorInfo.AttackPoint;
-        Speed += armor.ArmorInfo.Spped;
-        SpAttack += armor.ArmorInfo.SpAttack;
-        MaxHp += armor.ArmorInfo.MaxHp;
-        Armor += armor.ArmorInfo.Armor;
-        Dodge += armor.ArmorInfo.Dodge;
-        equipeItems.Add(armor);
-    }
-
-    public void PopArmor(IEquipeAbleItem armor)
-    {
-        int index = equipeItems.IndexOf(armor);
-        AttackPoint -= armor.ArmorInfo.AttackPoint;
-        Speed -= armor.ArmorInfo.Spped;
-        SpAttack -= armor.ArmorInfo.SpAttack;
-        MaxHp -= armor.ArmorInfo.MaxHp;
-        Armor -= armor.ArmorInfo.Armor;
-        Dodge -= armor.ArmorInfo.Dodge;
-        equipeItems.RemoveAt(index);
-
-
-
-    }
 
     public List<string> GetInitList
     {

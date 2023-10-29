@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 
 public class ItemSlot : MonoBehaviour ,IClickUseAble
 {
@@ -11,6 +11,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
     public Inventory inven = null;
     Image ImageCompo = null;
     public Sprite noneImage;
+    public TextMeshProUGUI textMesh;
 
     public ItemData ItemData 
     {
@@ -20,7 +21,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
         }
         set
         {
-            itemData = Instantiate((ItemData)value);
+            itemData = value;
             InitView();
         }
     }
@@ -47,7 +48,11 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
         if (!gameObject.TryGetComponent<Image>(out ImageCompo))
             Debug.Log("이미지 컴포넌트 없음" + gameObject.name);
 
-        inven.itemSlotList.Insert(inven.itemSlotList.Count,this);
+    }
+
+    public void Update()
+    {
+        InitView();
     }
 
     private void InitView()
@@ -55,10 +60,18 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
         if (haveItem == null)
         {
             ImageCompo.sprite = noneImage;
+
+            if(textMesh != null)
+                textMesh.text = "";
+
+            return;
         }
 
 
         ImageCompo.sprite = ItemData.SpriteImage;
+        textMesh.text = itemData.ItemName + itemData.Amount;
+
+
     }
 
     public void OnClickUse()
@@ -70,8 +83,6 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
         haveItem.Use();
         if(haveItem.Data.Amount <= 0)
         {
-
-            Debug.Log(haveItem.Data.Amount);
             inven.itemList.Remove(haveItem);
             haveItem = null;
             ImageCompo.sprite = noneImage;

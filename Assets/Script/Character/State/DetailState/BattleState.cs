@@ -12,15 +12,16 @@ public class BattleState : BaseState
     {
         //List<BuffStrategy> buffs = owner.buffs;
 
-        foreach(BuffStrategy buff in owner.buffs)
-            buff.ActiveBuff();
+        owner.hitStrategy = new JustHit(owner);
+        aniCompo.SetBool("Parrying", false);
+
+
+        for (int i = 0; i < owner.buffs.Count; i++)
+            owner.buffs[i].ActiveBuff();
+        
 
 
         Debug.Log("battle mode enter");
-        owner.hitStrategy = new JustHit(owner);
-        aniCompo.SetBool("Parrying" , false);
-
-
     }
 
     public override void ExitState()

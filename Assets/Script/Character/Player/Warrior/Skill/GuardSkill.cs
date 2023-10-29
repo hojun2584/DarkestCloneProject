@@ -16,9 +16,5 @@ public class GuardSkill : BuffStrategy
         animator.SetBool("Parrying", true);
     }
 
-    public override void UseSkill(List<ICharacter> targets)
-    {
-        throw new System.NotImplementedException();
-    }
 
 }

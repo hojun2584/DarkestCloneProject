@@ -12,9 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0b34a25bc1e9b14e8c251e42309efc8, type: 3}
   m_Name: PlateArmor
   m_EditorClassIdentifier: 
+  amount: 1
+  maxAmount: 1
+  cost: 100
+  itemName: WoodShield
+  spriteImage: {fileID: 21300000, guid: d61e2390a38b59e449704ddc5e70bd54, type: 3}
   attackPoint: 0
   spAttack: 0
-  speed: -2
+  speed: 0
+  critical: 0
   maxHp: 10
   armor: 15
-  dodge: -5
+  dodge: 0

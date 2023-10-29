@@ -34,10 +34,5 @@ public class BowAttack : PlayerAttack
         Attack(target);
     }
 
-    public override void UseSkill(List<ICharacter> targets)
-    {
-        throw new System.NotImplementedException();
-    }
-
 
 }
