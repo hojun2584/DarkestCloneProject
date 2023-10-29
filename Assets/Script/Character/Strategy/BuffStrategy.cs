@@ -38,9 +38,13 @@ public abstract class BuffStrategy : IBuffStrategy
     public virtual void Buff(ICharacter target, int count = 1)
     {
         Character buffTarget = target as Character;
-
         BuffStrategy buff = IsAlready();
-        buff.count += count;
+
+        if (buff == null)
+            Owner.buffs.Add(this);
+
+        else
+            buff.count += 1;
     }
 
     public virtual void ActiveBuff() 
@@ -51,5 +55,4 @@ public abstract class BuffStrategy : IBuffStrategy
             Owner.buffs.Remove(Owner.buffs.Find(x => IsSame(this)));
     }
 
-    public abstract void UseSkill(List<ICharacter> targets);
 }

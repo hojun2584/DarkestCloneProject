@@ -41,6 +41,9 @@ public class MoveState : BaseState
         aniCompo.SetBool("Move", isMove);
         aniCompo.SetBool("Idle", !isMove);
 
+        aniCompo.SetBool("BackMove" , backMove);
+        aniCompo.SetBool("Idle", !backMove);
+
 
         if (moveValue >= distance)
         {

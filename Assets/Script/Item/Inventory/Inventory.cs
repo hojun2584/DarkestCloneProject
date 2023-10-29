@@ -40,10 +40,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        foreach(var item in itemList)
-        {
-            Debug.Log(item == null);
-        }
+        
     }
 
 

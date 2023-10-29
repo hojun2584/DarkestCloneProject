@@ -26,7 +26,10 @@ public enum SKILL
     CLOATTACK,
     GUARD,
     MOVE,
-    PARRYING
+    PARRYING,
+    BLEEDING,
+    STUN,
+    SHILDATTACK,
 
 }
 
@@ -48,6 +51,10 @@ public class SKillModel : MonoBehaviour
     Sprite parrying;
     [SerializeField]
     Sprite eat;
+    [SerializeField]
+    Sprite stun;
+    [SerializeField]
+    Sprite shildAttack;
 
 
     public static Dictionary<SKILL, SkillData> skillDict = new Dictionary<SKILL, SkillData>();
@@ -59,7 +66,10 @@ public class SKillModel : MonoBehaviour
         skillDict.Add(SKILL.CLOATTACK, new SkillData(cloAttack , "CloAttack") );
         skillDict.Add(SKILL.GUARD, new SkillData(gurad, "Guard"));
         skillDict.Add(SKILL.MOVE, new SkillData(move , "Move"));
-        skillDict.Add(SKILL.PARRYING, new SkillData(parrying,"parrying"));
+        skillDict.Add(SKILL.PARRYING, new SkillData(parrying,"Parrying"));
+        skillDict.Add(SKILL.BLEEDING, new SkillData(eat,"Bleeding"));
+        skillDict.Add(SKILL.STUN, new SkillData(stun, "Stun"));
+        skillDict.Add(SKILL.SHILDATTACK, new SkillData(gurad , "ShildAttack"));
 
     }
 

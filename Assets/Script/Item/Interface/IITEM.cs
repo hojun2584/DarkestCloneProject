@@ -29,8 +29,8 @@ public interface IConsumeAbleItem : IItem
 
 public interface IEquipeAbleItem : IItem
 {
-    public ArmorData ArmorInfo { get;}
     public abstract void Equip(ICharacter equipTarget);
+    public abstract void UnEquip(ICharacter unEquipTarget);
 
 }
 

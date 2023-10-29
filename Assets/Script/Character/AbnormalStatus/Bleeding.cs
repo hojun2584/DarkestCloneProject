@@ -6,12 +6,14 @@ public class Bleeding : BuffStrategy
 {
     public Bleeding(Character owner, SKILL data) : base(owner, data)
     {
+
+        
     }
 
     int GetDamage()
     {
         
-        return Random.Range(0,5);
+        return Random.Range(3,6);
     }
 
     public int Count 
@@ -22,29 +24,16 @@ public class Bleeding : BuffStrategy
         }
     }
 
-    public override void Buff(ICharacter target , int count = 4 )
-    {
-        Character buffTarget = target as Character;
-        BuffStrategy buff = IsAlready();
-        buff.count += count;
-
-    }
 
     public override void UseSkill(ICharacter target)
     {
-        ActiveBuff();
+        Buff(target);
     }
 
     public override void ActiveBuff()
     {
-        Owner.Hp -= GetDamage();
-
-
+        Owner.Hit(GetDamage(),Owner);
         base.ActiveBuff();
     }
 
-    public override void UseSkill(List<ICharacter> targets)
-    {
-        throw new System.NotImplementedException();
-    }
 }

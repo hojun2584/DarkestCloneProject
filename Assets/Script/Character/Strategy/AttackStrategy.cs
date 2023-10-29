@@ -26,5 +26,4 @@ public abstract class AttackStrategy : IAttackStrategy
 
     public abstract void UseSkill(ICharacter target);
     public abstract void Attack(IHitAble target);
-    public abstract void UseSkill(List<ICharacter> targets);
 }
