@@ -51,12 +51,10 @@ public class CharacterManager : MonoBehaviour
     private void Awake()
     {
         PlayerAdd(archer);
-        PlayerAdd(archer);
+        PlayerAdd(warrior);
         PlayerAdd(archer);
 
         List<GameObject> normalParty = new List<GameObject>();
-        normalParty.Add(goblin);
-        normalParty.Add(goblin);
         normalParty.Add(goblin);
 
         enemyDict.Add(EnemyEnum.NORMAL , normalParty);

@@ -17,10 +17,11 @@ MonoBehaviour:
   cost: 100
   itemName: Sword
   spriteImage: {fileID: 21300000, guid: d9b7fa4ba9e055645adcab3b294e6e99, type: 3}
+  comment: "\uACF5\uACA9\uB825\uC744 30 \uC2A4\uD53C\uB4DC\uB97C 10 \uC62C\uB9BD\uB2C8\uB2E4."
   attackPoint: 30
   spAttack: 0
   speed: 10
-  critical: 5
+  critical: 0
   maxHp: 0
   armor: 0
   dodge: 0

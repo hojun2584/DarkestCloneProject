@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SkillSlot : MonoBehaviour, IClickUseAble
+public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
 {
 
 
@@ -19,6 +19,18 @@ public class SkillSlot : MonoBehaviour, IClickUseAble
         }
 
     }
+
+    public string Comment 
+    {
+        get 
+        {
+            if(skill == null)
+                return null;
+
+            return skill.Data.comment;
+        }
+    }
+
     ISkillStrategy skill = null;
 
     // Start is called before the first frame update
@@ -48,5 +60,10 @@ public class SkillSlot : MonoBehaviour, IClickUseAble
         }
         BattleManager.skill = skill;
 
+    }
+
+    public void ExplainView()
+    {
+        throw new System.NotImplementedException();
     }
 }

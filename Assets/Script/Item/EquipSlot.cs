@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EquipSlot : MonoBehaviour , IClickUseAble
+public class EquipSlot : MonoBehaviour , IClickUseAble , IExplainAble
 {
 
     Player player;
@@ -16,6 +16,7 @@ public class EquipSlot : MonoBehaviour , IClickUseAble
     [SerializeField]
     Sprite noneImage;
 
+
     public enum ViewFlag
     {
         ARMOR,
@@ -26,6 +27,17 @@ public class EquipSlot : MonoBehaviour , IClickUseAble
 
     [SerializeField]
     ViewFlag viewFlag = new ViewFlag();
+
+    public string Comment 
+    {
+        get 
+        {
+            if (item == null)
+                return null;
+
+            return item.Data.Comment;
+        }
+    }
 
     private void Awake()
     {
@@ -73,5 +85,8 @@ public class EquipSlot : MonoBehaviour , IClickUseAble
 
     }
 
-
+    public void ExplainView()
+    {
+        
+    }
 }

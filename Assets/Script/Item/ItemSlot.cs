@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ItemSlot : MonoBehaviour ,IClickUseAble
+public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
 {
 
     
@@ -40,6 +40,17 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
             haveItem = value;
         }
     }
+
+    public string Comment 
+    {
+        get 
+        {
+            if (ItemData == null)
+                return null;
+            return ItemData.Comment;
+        }
+    }
+
     public Item haveItem;
 
 
@@ -88,6 +99,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
         {
             inven.itemList.Remove(haveItem);
             haveItem = null;
+            ItemData = null;
             ImageCompo.sprite = noneImage;
         }
 
@@ -95,4 +107,8 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
 
     }
 
+    public void ExplainView()
+    {
+        throw new System.NotImplementedException();
+    }
 }

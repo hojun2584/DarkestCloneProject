@@ -11,8 +11,8 @@ public class Warrior : Player
         base.Awake();
         skills.Add(new BowAttack(this,SKILL.ARROWATTACK));
         skills.Add(new GuardSkill(this,SKILL.GUARD ) );
-        skills.Add(new WParryinhSkill(this, SKILL.GUARD));
-        skills.Add(new ShildAttack(this,SKILL.GUARD));
+        skills.Add(new WParryinhSkill(this, SKILL.PARRYING));
+        skills.Add(new ShildAttack(this,SKILL.SHILDATTACK));
     }
 
 
