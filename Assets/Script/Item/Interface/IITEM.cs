@@ -30,7 +30,7 @@ public interface IConsumeAbleItem : IItem
 public interface IEquipeAbleItem : IItem
 {
     public abstract void Equip(ICharacter equipTarget);
-    public abstract void UnEquip(ICharacter unEquipTarget);
+    public abstract void UnEquip();
 
 }
 

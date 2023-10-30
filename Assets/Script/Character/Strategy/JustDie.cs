@@ -22,6 +22,7 @@ public class JustDie : DieStrategy
         Owner.skills = null;
         Owner.hitStrategy = null;
         Owner.stateMachine = null;
+        aniCompo.SetBool("Die", true);
         CorutineRunner.Start(DieCorutin());
         Owner.GetComponent<BoxCollider>().enabled = false;
     }
@@ -30,7 +31,6 @@ public class JustDie : DieStrategy
     {
 
         Debug.Log("dieco on");
-        aniCompo.SetBool("Die", true);
         yield return new WaitForSeconds(dieTime);
         GameObject.DestroyImmediate(Owner.CharData);
         BattleManager.DieCharacter(Owner);

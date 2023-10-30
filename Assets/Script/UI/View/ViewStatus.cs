@@ -32,7 +32,6 @@ public class ViewStatus : MonoBehaviour , InitViewAble
     }
     CharacterData data;
 
-    Armor equipArmor;
 
     public void InitView()
     {
@@ -53,15 +52,6 @@ public class ViewStatus : MonoBehaviour , InitViewAble
     public void Update()
     {
 
-        
-        if (BattleManager.CurCharacter is Player)
-        {
-            this.equipArmor = ((Player)BattleManager.CurCharacter).equipArmor;
-
-            if(equipArmor != null)
-                armor.sprite = equipArmor.Data.SpriteImage;
-
-        }
 
         InitView();
 

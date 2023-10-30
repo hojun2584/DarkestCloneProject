@@ -6,7 +6,7 @@ public class Stun : BuffStrategy
 {
 
     
-    float delayTime;
+    float delayTime =2.0f;
 
 
     public Stun(Character owner, SKILL data) : base(owner, data)

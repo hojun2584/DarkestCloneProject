@@ -14,9 +14,7 @@ public class MonsterBattle : BaseState
     public override void EnterState()
     {
 
-        Debug.Log(owner);
-
-
+        
         for (int i = 0; i < owner.buffs.Count; i++)
             owner.buffs[i].ActiveBuff();
 

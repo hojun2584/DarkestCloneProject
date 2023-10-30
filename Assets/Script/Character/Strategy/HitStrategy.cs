@@ -23,11 +23,11 @@ public abstract class HitStrategy : IHitStrategy
         if (flag >= accuracy - owner.CharData.Dodge)
         {
             Debug.Log("회피 성공");
-            return false;
+            return true;
         }
         
             
-        return true;
+        return false;
     }
 
     public abstract void Hit(float damage, ICharacter attacker);

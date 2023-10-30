@@ -12,7 +12,7 @@ public class BattleManager : SingleTon<BattleManager>
 
     
     static public List<Player> playerArray = new List<Player>();
-    static List<Enemy> enemyArray = new List<Enemy>();
+    static public List<Enemy> enemyArray = new List<Enemy>();
     static List<Character> characterList = new List<Character>();
     // 전투가 끝나고 다시 전투 들어 갈 때 초기화 어디선가 해줘야함
     // 상태머신 바꾸면서 초기화 해주는 것도 나쁘지 않을 지도?
@@ -76,13 +76,15 @@ public class BattleManager : SingleTon<BattleManager>
     }
 
 
-    public bool IsEndBattle()
+    public void EndBattle()
     {
 
+        isBattleOn = false;
+        curCharcter = characterList[0];
+        
 
-
+        
         Debug.Log("battleEnd");
-        return true;
     }
 
 
@@ -103,17 +105,15 @@ public class BattleManager : SingleTon<BattleManager>
 
 
         if (enemyArray.Count <= 0 && isBattleOn == true)
-        {
-            isBattleOn = false;
-            curCharcter = characterList[0];
-        }
+            EndBattle();
+
 
         if (curCharcter == null)
         {
             CurCharacter = characterList[current];
             curCharcter.isMyTurn = true;
         }
-        
+
 
             
 

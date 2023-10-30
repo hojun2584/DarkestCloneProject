@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5c9cb3e01113b848942eb1b487acdcc, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
+  amount: 1
+  maxAmount: 1
+  cost: 100
+  itemName: Sword
+  spriteImage: {fileID: 21300000, guid: d9b7fa4ba9e055645adcab3b294e6e99, type: 3}
   attackPoint: 30
+  spAttack: 0
   speed: 10
   critical: 5
+  maxHp: 0
+  armor: 0
+  dodge: 0

@@ -44,7 +44,6 @@ public class CharacterRay : MonoBehaviour
                     {
                         viewStat.Data = targetP.CharData;
                         BattleManager.CurCharacter = targetP;
-                        Debug.Log("teget set");
                     }
 
                     BattleManager.Target = targetP;

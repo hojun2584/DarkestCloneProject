@@ -31,6 +31,12 @@ public class SkillSlot : MonoBehaviour, IClickUseAble
 
     public void OnClickUse()
     {
+        if (BattleManager.isBattleOn == false)
+            return;
+
+        if (!(BattleManager.CurCharacter is Player))
+            return;
+
         if (skill == null)
         {
             Debug.Log("click Skill");
