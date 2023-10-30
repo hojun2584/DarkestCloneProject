@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public enum ItemEnum
 {
@@ -17,16 +18,19 @@ public class InsertItemBtn : MonoBehaviour
     [SerializeField]
     Inventory inven;
 
+    [SerializeField]
+    GameObject shopObject;
+
+
     public ItemData potion;
     public ArmorData armor;
     public WeaponData weapon;
+    public TextMeshProUGUI itemName;
 
     Image viewer;
 
     public ItemEnum itemSelect;
 
-    [SerializeField]
-    ItemData hpPotion;
 
     Dictionary<ItemEnum , Item> itemDict = new Dictionary<ItemEnum , Item>();
 
@@ -39,37 +43,41 @@ public class InsertItemBtn : MonoBehaviour
 
     private void Awake()
     {
-        
-
         viewer = GetComponent<Image>();
-
     }
 
-    public void Start()
+
+
+    public void OnEnable()
     {
         itemSelect = GetRandomItem();
+
+        Debug.Log("enable");
+
 
         switch (itemSelect)
         {
             case ItemEnum.POTION:
                 viewer.sprite = potion.SpriteImage;
+                itemName.text = potion.ItemName;
                 break;
             case ItemEnum.ARMOR:
                 viewer.sprite = armor.SpriteImage;
+                itemName.text = armor.ItemName;
                 break;
             case ItemEnum.WEAPON:
                 viewer.sprite = weapon.SpriteImage;
+                itemName.text = weapon.ItemName;
                 break;
         }
 
-        Debug.Log(itemSelect);
 
     }
 
 
     public void InsertItem()
     {
-        
+        Debug.Log("insertItem item select" + itemSelect);
 
         switch (itemSelect)
         {
@@ -84,8 +92,8 @@ public class InsertItemBtn : MonoBehaviour
                 break;
         }
 
-
-
+        shopObject.SetActive(false);
+        BattleManager.isBattleOn = false;
     }
 
 

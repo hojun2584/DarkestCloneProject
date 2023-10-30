@@ -62,8 +62,7 @@ public class MoveState : BaseState
     public override void ExitState()
     {
 
-        //!!TODOLIST = battle phase 진입 하는거 변수 설정 해서 처리하기
-        //stateMachine = new BattleMachine(owner);
+        
         aniCompo.SetBool("Move", false);
         aniCompo.SetBool("Idle", true);
     }

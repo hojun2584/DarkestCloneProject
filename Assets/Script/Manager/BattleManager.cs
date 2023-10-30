@@ -18,6 +18,10 @@ public class BattleManager : SingleTon<BattleManager>
     // 상태머신 바꾸면서 초기화 해주는 것도 나쁘지 않을 지도?
     static int current = 0;
 
+    [SerializeField]
+    GameObject shopObject;
+
+
 
     public static bool isBattleOn = false;
 
@@ -81,10 +85,8 @@ public class BattleManager : SingleTon<BattleManager>
 
         isBattleOn = false;
         curCharcter = characterList[0];
-        
 
-        
-        Debug.Log("battleEnd");
+        shopObject.SetActive(true);
     }
 
 
@@ -105,7 +107,12 @@ public class BattleManager : SingleTon<BattleManager>
 
 
         if (enemyArray.Count <= 0 && isBattleOn == true)
+        {
+
             EndBattle();
+
+            Debug.Log("endbattleCall");
+        }
 
 
         if (curCharcter == null)

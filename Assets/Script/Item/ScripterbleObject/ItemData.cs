@@ -80,4 +80,15 @@ public class ItemData : ScriptableObject
         }
     }
 
+    public virtual string Comment 
+    {
+        get
+        {
+            return comment;
+        }
+    }
+    [SerializeField]string comment;
+    
+
+
 }

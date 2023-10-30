@@ -148,9 +148,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inven: {fileID: 3097545137664149387, guid: 039ac803a188cd54f9c0c1969cd6617b, type: 3}
+  shopObject: {fileID: 0}
   potion: {fileID: 11400000, guid: 1821b8c4ae6f2514db6fedfa49e82fdc, type: 2}
   armor: {fileID: 11400000, guid: 2d7d391bcfeca5747923d0187398e621, type: 2}
   weapon: {fileID: 11400000, guid: 38688a03584251c4e954ed580a6be39c, type: 2}
+  itemName: {fileID: 1361040587422890063}
   itemSelect: 0
   hpPotion: {fileID: 11400000, guid: 1821b8c4ae6f2514db6fedfa49e82fdc, type: 2}
 --- !u!1 &4579926604793632495

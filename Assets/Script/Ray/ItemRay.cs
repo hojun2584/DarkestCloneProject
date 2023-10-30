@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 [Flags]
 public enum RAYFLAGS
@@ -22,6 +23,10 @@ public class ItemRay : MonoBehaviour
 
     RAYFLAGS mask;
 
+    [SerializeField]
+    GameObject commentBox;
+    [SerializeField]
+    TextMeshProUGUI comment;
     public RAYFLAGS InvenMask;
     public RAYFLAGS statusMask;
 
@@ -40,17 +45,14 @@ public class ItemRay : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SearchItemToMask(InvenMask);
-            SearchItemToMask(statusMask);
-        }
+        commentBox.SetActive(false);
+
+        RAYFLAGS flag = InvenMask |= statusMask;
+        SearchItemToMask(flag);
     }
 
     public void SearchItemToMask(RAYFLAGS mask)
     {
-
-
         PointerEventData pointerData = new PointerEventData(EventSystem.current);
         pointerData.position = Input.mousePosition;
 
@@ -60,19 +62,57 @@ public class ItemRay : MonoBehaviour
 
         foreach (RaycastResult result in raycastResults)
         {
-            if((RAYFLAGS)(1 << result.gameObject.layer) == mask)
+            if( ((RAYFLAGS)result.gameObject.layer ^ mask) != 0)
             {
-                if (result.gameObject.TryGetComponent<IClickUseAble> (out IClickUseAble slot))
-                    slot.OnClickUse();
 
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if (result.gameObject.TryGetComponent<IClickUseAble>(out IClickUseAble slot))
+                        slot.OnClickUse();
+                }
                 
             }
+
+
+            if (result.gameObject.TryGetComponent<IExplainAble>(out IExplainAble comment))
+            {
+                
+                Vector3 mousePosition = Input.mousePosition;
+                mousePosition.z = 10; // 이 값은 카메라와 오브젝트 사이의 거리에 따라 조정해야 합니다.
+                commentBox.transform.position = mousePosition;
+
+                if(comment.Comment != null) 
+                {
+                    commentBox.SetActive(true);
+                    this.comment.text = comment.Comment;
+                }
+
+
+
+
+            }
+
+
         }
-
-
-
-
     }
+    
+    //void ViewComment()
+    //{
+
+    //    PointerEventData pointerData = new PointerEventData(EventSystem.current);
+    //    pointerData.position = Input.mousePosition;
+    //    List<RaycastResult> raycastResults = new List<RaycastResult>();
+    //    EventSystem.current.RaycastAll(pointerData, raycastResults);
+
+    //    foreach (RaycastResult result in raycastResults)
+    //    {
+    //        if (result.gameObject.TryGetComponent<IExplainAble>(out IExplainAble comment))
+    //            gameObject.transform.position = Input.mousePosition;
+            
+    //    }
+
+
+    //}
 
 
 
