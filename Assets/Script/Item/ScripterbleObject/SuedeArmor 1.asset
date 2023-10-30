@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a0b34a25bc1e9b14e8c251e42309efc8, type: 3}
-  m_Name: SuedeArmor
+  m_Name: SuedeArmor 1
   m_EditorClassIdentifier: 
   amount: 1
   maxAmount: 1

@@ -5,14 +5,19 @@ using UnityEngine;
 public class Item : IItem
 {
 
-    protected Item(ItemData data)
+    public Item(ItemData data)
     {
         this.itemData = data.CloneObj;
     }
+
+
     public ItemData Data
     {
         get
         {
+            if(itemData == null)
+                return null;
+
             return itemData;
         }
         set
@@ -21,7 +26,7 @@ public class Item : IItem
         }
         
     }
-    ItemData itemData;
+    public ItemData itemData = null;
 
 
 

@@ -50,9 +50,8 @@ public class CharacterManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerAdd(warrior);
-        PlayerAdd(warrior);
-
+        PlayerAdd(archer);
+        PlayerAdd(archer);
         PlayerAdd(archer);
 
         List<GameObject> normalParty = new List<GameObject>();
@@ -86,9 +85,13 @@ public class CharacterManager : MonoBehaviour
 
         if (!BattleManager.isBattleOn)
             isAlreday = false;
-        
 
-        
+
+
+        if(BattleManager.playerArray.Count <= 0)
+        {
+            Debug.Log("¾À ÀüÈ¯ ÇÏ±â");
+        }
     }
 
 

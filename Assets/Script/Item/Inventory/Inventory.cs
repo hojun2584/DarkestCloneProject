@@ -13,6 +13,16 @@ public class Inventory : MonoBehaviour
 
     public List<ItemSlot> itemSlotList = new List<ItemSlot>();
 
+    public int gold = 100;
+
+    public bool IsBuyItem(int cost)
+    {
+
+        if(gold >= cost) 
+            return true;
+
+        return false;
+    }
     
     [SerializeField]
     public bool IsCapacity
@@ -26,10 +36,6 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void Awake()
-    {
-        
-    }
 
 
     // Start is called before the first frame update
@@ -38,25 +44,23 @@ public class Inventory : MonoBehaviour
         itemList.Capacity = itemSlotList.Count;
     }
 
-    private void Update()
-    {
-        
-    }
 
 
     public Item FindItem(Item item)
     {
-
-        return (Item)itemList.Find(data => data.Data.ItemName == item.Data.ItemName && data.Data.Amount < data.Data.MaxAmount);
+        
+        return (Item)itemList.Find(data => data.Data.name == item.Data.name && data.Data.Amount < data.Data.MaxAmount);
     }
 
     public bool InsertItem(Item item)
     {
 
         //var temp = itemList.Find(x => x.InfoItem.ItemName == setItem.InfoItem.ItemName && x.InfoItem.Amount < x.InfoItem.Capacity);
-        
+
 
         Item checkItem = FindItem(item);
+
+
 
         if(checkItem != null)
             checkItem.Data.Amount += 1;
@@ -67,26 +71,29 @@ public class Inventory : MonoBehaviour
             int index = itemList.IndexOf(null);
 
             if (index != -1)
-            {
                 itemList[index] = item;
-            }
             else
-            {
                 itemList.Insert(itemList.Count, item);
-            }
 
+
+            InitViewItem();
         }
         else
+        {
             Debug.Log("insert impossible " + gameObject.name + " 플로팅 바 띄어서 더 이상 집어 넣을 수 없음 알리기");
-        
-        InitViewItem();
-        
-        
-        return false; ;
+            return false;
+        }
+
+        return true;
     }
+
+
+
 
     public void InitViewItem()
     {
+
+        itemList.RemoveAll(item => item.Data.Amount <= 0);
 
         for (int i = 0; i < itemSlotList.Count; i++)
         {

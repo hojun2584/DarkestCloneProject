@@ -40,7 +40,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
             haveItem = value;
         }
     }
-    Item haveItem;
+    public Item haveItem;
 
 
     private void Start()
@@ -53,6 +53,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
     public void Update()
     {
         InitView();
+
     }
 
     private void InitView()
@@ -68,8 +69,9 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
         }
 
 
+
         ImageCompo.sprite = ItemData.SpriteImage;
-        textMesh.text = itemData.ItemName + itemData.Amount;
+        textMesh.text = itemData.ItemName +" "+ itemData.Amount;
 
 
     }
@@ -79,8 +81,9 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble
         if (haveItem == null)
             return;
 
-
         haveItem.Use();
+
+
         if(haveItem.Data.Amount <= 0)
         {
             inven.itemList.Remove(haveItem);

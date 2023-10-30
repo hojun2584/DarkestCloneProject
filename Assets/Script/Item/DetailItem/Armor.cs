@@ -6,10 +6,12 @@ public class Armor : Item, IEquipeAbleItem
 {
 
     Player owner;
+    Inventory inven;
 
-    public Armor(ItemData data) : base(data)
+
+    public Armor(ItemData data ,Inventory inven) : base(data)
     {
-
+        this.inven = inven;
     }
 
     public ArmorData ArmorInfo 
@@ -19,12 +21,21 @@ public class Armor : Item, IEquipeAbleItem
 
     public override void Use(ICharacter user = null, ICharacter target = null)
     {
+        base.Use(user, target);
         Equip(BattleManager.CurCharacter);
     }
 
     public void Equip(ICharacter equipTarget)
     {
+        owner = equipTarget as Player;
+        Data.Amount -= 1;
 
+        if (owner.equipArmor != null)
+        {
+            owner.equipArmor.Data.Amount += 1;
+            inven.InsertItem((Item)owner.equipArmor);
+            owner.equipArmor.UnEquip();
+        }
         owner = equipTarget as Player;
         owner.equipArmor = this;
         owner.AttackPoint += ArmorInfo.AttackPoint;
@@ -36,13 +47,12 @@ public class Armor : Item, IEquipeAbleItem
         owner.Armor += ArmorInfo.Armor;
     }
 
-    public void UnEquip(ICharacter unEquipTarget)
+    public void UnEquip()
     {
-        owner = unEquipTarget as Player;
-        owner.equipArmor = this;
+        owner = BattleManager.CurCharacter as Player;
+        owner.equipArmor = null;
 
         owner.AttackPoint -= ArmorInfo.AttackPoint;
-        owner.SpAttack -= ArmorInfo.SpAttack;
         owner.Speed -= ArmorInfo.Spped;
         owner.Critical -= ArmorInfo.Critical;
         owner.Hp -= ArmorInfo.MaxHp;

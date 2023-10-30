@@ -37,7 +37,6 @@ public class UIModel : MonoBehaviour
     public Dictionary<int, string> textDict = new Dictionary<int, string>();
     public List<InitViewAble> initAbleList = new List<InitViewAble>();
 
-
     
     private void Awake()
     {
