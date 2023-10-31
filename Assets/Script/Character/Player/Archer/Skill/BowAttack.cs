@@ -10,7 +10,7 @@ public class BowAttack : PlayerAttack
 
     public BowAttack(Character owner , SKILL data) : base(owner , data)
     {
-        
+
     }
 
     public override float Damage
@@ -22,16 +22,25 @@ public class BowAttack : PlayerAttack
             return damage;
         }
     }
+
     public override void Attack(IHitAble target)
     {
         animator.SetBool("Attack",true);
         animator.SetInteger("Skill",0);
+        CorutineRunner.Start(Ani());
+
         target.Hit(Damage,Owner);
     }
 
     public override void UseSkill(ICharacter target)
     {
         Attack(target);
+    }
+
+    public IEnumerator Ani() 
+    {
+        yield return null;
+        animator.SetBool("Attack", false);
     }
 
 

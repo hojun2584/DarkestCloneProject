@@ -30,7 +30,6 @@ public class MoveState : BaseState
     public override void UpdateState()
     {
 
-        bool backMove = Input.GetKey(KeyCode.A);
         bool isMove = Input.GetKey(KeyCode.D);
 
 
@@ -41,14 +40,12 @@ public class MoveState : BaseState
         aniCompo.SetBool("Move", isMove);
         aniCompo.SetBool("Idle", !isMove);
 
-        aniCompo.SetBool("BackMove" , backMove);
-        aniCompo.SetBool("Idle", !backMove);
 
 
         if (moveValue >= distance)
         {
             ExitState();
-        
+
             owner.stateMachine = new BattleMachine(stateMachine.owner);
             owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
 

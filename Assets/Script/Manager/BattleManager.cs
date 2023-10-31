@@ -13,7 +13,7 @@ public class BattleManager : SingleTon<BattleManager>
     
     static public List<Player> playerArray = new List<Player>();
     static public List<Enemy> enemyArray = new List<Enemy>();
-    static List<Character> characterList = new List<Character>();
+    static List<Character> characterList;
     // 전투가 끝나고 다시 전투 들어 갈 때 초기화 어디선가 해줘야함
     // 상태머신 바꾸면서 초기화 해주는 것도 나쁘지 않을 지도?
     static int current = 0;
@@ -62,6 +62,12 @@ public class BattleManager : SingleTon<BattleManager>
     private new void Awake()
     {
         base.Awake();
+        characterList = new List<Character>();
+
+        playerArray = new List<Player>();
+        enemyArray = new List<Enemy>();
+        current = 0;
+        Debug.Log("call awke battle manager");
         //chars.Sort( ( x , y ) => x.Data.Speed.CompareTo(y.Data.Speed) );
     }
 
@@ -85,7 +91,7 @@ public class BattleManager : SingleTon<BattleManager>
 
         isBattleOn = false;
         curCharcter = characterList[0];
-
+        skill = null;
         shopObject.SetActive(true);
     }
 

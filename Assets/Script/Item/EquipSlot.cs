@@ -61,11 +61,20 @@ public class EquipSlot : MonoBehaviour , IClickUseAble , IExplainAble
         if (viewFlag == ViewFlag.WEAPON)
             item = player.equipWeapon;
 
-
+        Color color = view.color;
         if (item != null)
+        {
+            
+            color.a = 1f;
+            view.color = color;
             view.sprite = item.itemData.SpriteImage;
+
+        }
         else
-            view.sprite = noneImage;
+        {
+            color.a = 0f;
+            view.color = color;
+        }
             
 
     }
@@ -77,6 +86,10 @@ public class EquipSlot : MonoBehaviour , IClickUseAble , IExplainAble
 
         if(item != null)
         {
+            Color color = view.color;
+            color.a = 0f;
+            view.color = color;
+
             item.UnEquip();
             this.item.Data.Amount += 1;
             inven.InsertItem(this.item);

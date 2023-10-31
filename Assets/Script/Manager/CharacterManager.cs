@@ -14,7 +14,9 @@ public enum CharacterEnum
 
 public enum EnemyEnum
 {
-    NORMAL
+    NORMAL,
+    NORMALHARD
+
 }
 
 public class CharacterManager : MonoBehaviour
@@ -56,13 +58,18 @@ public class CharacterManager : MonoBehaviour
 
         List<GameObject> normalParty = new List<GameObject>();
         normalParty.Add(goblin);
+        normalParty.Add(goblin);
 
-        enemyDict.Add(EnemyEnum.NORMAL , normalParty);
+        enemyDict.Add(EnemyEnum.NORMAL , new List<GameObject>(normalParty) );
+        normalParty.Add(goblin);
 
-        //monsterArr.Add(CharacterEnum.GOBLIN);
-        //monsterArr.Add(CharacterEnum.GOBLIN);
-        //monsterArr.Add(CharacterEnum.GOBLIN);
         
+        enemyDict.Add(EnemyEnum.NORMALHARD,new List<GameObject>(normalParty));
+
+        //monsterArr.Add(CharacterEnum.GOBLIN);
+        //monsterArr.Add(CharacterEnum.GOBLIN);
+        //monsterArr.Add(CharacterEnum.GOBLIN);
+
     }
 
     // Start is called before the first frame update
