@@ -15,6 +15,7 @@ public class SingleTon<T> : MonoBehaviour where T : SingleTon<T>
             instance = (T)this;
         else
             Destroy(this.gameObject);
+
     }
 
 

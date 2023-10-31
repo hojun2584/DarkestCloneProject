@@ -13,8 +13,9 @@ public class BattleState : BaseState
         //List<BuffStrategy> buffs = owner.buffs;
 
         owner.hitStrategy = new JustHit(owner);
-        aniCompo.SetBool("Parrying", false);
 
+        Debug.Log("player enter state ???");
+        aniCompo.SetBool("Parrying", false);
 
         for (int i = 0; i < owner.buffs.Count; i++)
             owner.buffs[i].ActiveBuff();
@@ -46,7 +47,6 @@ public class BattleState : BaseState
 
     IEnumerator AttackAnim()
     {
-
         yield return null;
         aniCompo.SetBool("Attack", false);
     }

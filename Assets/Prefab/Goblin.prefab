@@ -1648,10 +1648,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd49214da60cc6f43a3f51bb4c49a25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsMyTurn: 0
+  isMyTurn: 0
   hpBar: {fileID: 9098136985552372447}
   charterData: {fileID: 11400000, guid: 477ed5b336d7dc045a52314e07430328, type: 2}
-  weapon: {fileID: 0}
 --- !u!65 &2831947624353004742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2216,7 +2215,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &3210147871610707748
 MonoBehaviour:

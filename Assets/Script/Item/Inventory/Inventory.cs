@@ -60,8 +60,6 @@ public class Inventory : MonoBehaviour
 
         Item checkItem = FindItem(item);
 
-
-
         if(checkItem != null)
             checkItem.Data.Amount += 1;
 
