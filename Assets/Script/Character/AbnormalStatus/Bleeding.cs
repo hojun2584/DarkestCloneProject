@@ -12,7 +12,6 @@ public class Bleeding : BuffStrategy
 
     int GetDamage()
     {
-        
         return Random.Range(3,6);
     }
 

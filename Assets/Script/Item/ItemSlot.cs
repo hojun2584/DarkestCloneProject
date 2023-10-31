@@ -9,7 +9,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
 
     
     public Inventory inven = null;
-    Image ImageCompo = null;
+    Image imageCompo = null;
     public Sprite noneImage;
     public TextMeshProUGUI textMesh;
 
@@ -56,7 +56,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
 
     private void Start()
     {
-        if (!gameObject.TryGetComponent<Image>(out ImageCompo))
+        if (!gameObject.TryGetComponent<Image>(out imageCompo))
             Debug.Log("이미지 컴포넌트 없음" + gameObject.name);
 
     }
@@ -71,7 +71,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
     {
         if (haveItem == null)
         {
-            ImageCompo.sprite = noneImage;
+            imageCompo.sprite = noneImage;
 
             if(textMesh != null)
                 textMesh.text = "";
@@ -79,9 +79,11 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
             return;
         }
 
+        Color color = imageCompo.color;
+        color.a = 1f;
+        imageCompo.color = color;
 
-
-        ImageCompo.sprite = ItemData.SpriteImage;
+        imageCompo.sprite = ItemData.SpriteImage;
         textMesh.text = itemData.ItemName +" "+ itemData.Amount;
 
 
@@ -100,7 +102,10 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
             inven.itemList.Remove(haveItem);
             haveItem = null;
             ItemData = null;
-            ImageCompo.sprite = noneImage;
+            Color color = imageCompo.color;
+            color.a = 0f;
+            imageCompo.color = color;
+            imageCompo.sprite = noneImage;
         }
 
 
