@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ArcherCharacter : Player
 {
@@ -15,7 +16,6 @@ public class ArcherCharacter : Player
         skills.Add(new GuardSkill(this,SKILL.GUARD));
         skills.Add( new ParryingSkill(this,SKILL.PARRYING));
         skills.Add(new ChargeShot(this, SKILL.EXPLOSIONARROW));
-
 
     }
 
