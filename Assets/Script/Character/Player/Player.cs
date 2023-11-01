@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Player : Character , IFightAble
 {
-
-
+    public Sprite icon;
 
     protected void Awake()
     {
