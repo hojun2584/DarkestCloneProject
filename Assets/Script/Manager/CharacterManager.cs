@@ -31,8 +31,8 @@ public class CharacterManager : MonoBehaviour
     int maxPlayerCapa = 3;
     int maxMosterCapa = 3;
 
-    List<GameObject> playerArray = new List<GameObject>();
-    List<GameObject> enemyArray = new List<GameObject>();
+    public List<GameObject> playerArray = new List<GameObject>();
+    public List<GameObject> enemyArray = new List<GameObject>();
 
     Dictionary<EnemyEnum, List<GameObject> > enemyDict = new Dictionary<EnemyEnum, List<GameObject>>();
     
@@ -52,9 +52,17 @@ public class CharacterManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerAdd(archer);
-        PlayerAdd(warrior);
-        PlayerAdd(archer);
+
+
+        playerArray = GameObject.Find("Data").GetComponent<CharacterSet>().playerArray;
+        
+
+        //foreach (GameObject item in temp)
+        //{
+        //    PlayerAdd(item);
+        //}
+
+
 
         List<GameObject> normalParty = new List<GameObject>();
         normalParty.Add(goblin);

@@ -85,6 +85,7 @@ MonoBehaviour:
   isMyTurn: 0
   hpBar: {fileID: 5809150651370295463}
   charterData: {fileID: 11400000, guid: d70c44b0dcdee24418206cb6e73bb59f, type: 2}
+  icon: {fileID: 21300000, guid: d9b7fa4ba9e055645adcab3b294e6e99, type: 3}
 --- !u!1 &7984073353324630758
 GameObject:
   m_ObjectHideFlags: 0
