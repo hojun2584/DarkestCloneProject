@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
@@ -15,7 +16,10 @@ public enum CharacterEnum
 public enum EnemyEnum
 {
     NORMAL,
-    NORMALHARD
+    NORMALHARD,
+    NORMALONE,
+    NORMALTWO,
+    NORMALTHREE,
 
 }
 
@@ -46,7 +50,7 @@ public class CharacterManager : MonoBehaviour
     public GameObject wizard;
 
     public GameObject goblin;
-    public GameObject ghost;
+    public GameObject fatman;
     public GameObject mermaid;
 
 
@@ -65,14 +69,26 @@ public class CharacterManager : MonoBehaviour
 
 
         List<GameObject> normalParty = new List<GameObject>();
+        normalParty.Add(fatman);
         normalParty.Add(goblin);
-        normalParty.Add(goblin);
-
+        normalParty.Add(fatman);        
         enemyDict.Add(EnemyEnum.NORMAL , new List<GameObject>(normalParty) );
-        normalParty.Add(goblin);
+        normalParty.Clear();
 
-        
+        //normalParty.Add(goblin);
+        normalParty.Add(goblin);
+        normalParty.Add(goblin);
+        normalParty.Add(fatman);        
         enemyDict.Add(EnemyEnum.NORMALHARD,new List<GameObject>(normalParty));
+        normalParty.Clear();
+
+        normalParty.Add(goblin);
+        enemyDict.Add(EnemyEnum.NORMALONE, new List<GameObject>(normalParty));
+        normalParty.Add(goblin);
+        enemyDict.Add(EnemyEnum.NORMALTWO, new List<GameObject>(normalParty));
+        normalParty.Add(goblin);
+        enemyDict.Add(EnemyEnum.NORMALTHREE, new List<GameObject>(normalParty));
+        normalParty.Clear();
 
         //monsterArr.Add(CharacterEnum.GOBLIN);
         //monsterArr.Add(CharacterEnum.GOBLIN);
@@ -103,8 +119,12 @@ public class CharacterManager : MonoBehaviour
 
         if(BattleManager.playerArray.Count <= 0)
         {
-            Debug.Log("¾À ÀüÈ¯ ÇÏ±â");
+            SceneManager.LoadScene("End");
+            BattleManager.isBattleOn = false;
+            isAlreday = false;
         }
+            
+        
     }
 
 
@@ -151,6 +171,8 @@ public class CharacterManager : MonoBehaviour
             battleManager.EnemyAdd(obj.GetComponent<Enemy>());
         }
 
+
+        BattleManager.CurCharacter.isMyTurn = false;
         battleManager.InitBattle();
     }
 

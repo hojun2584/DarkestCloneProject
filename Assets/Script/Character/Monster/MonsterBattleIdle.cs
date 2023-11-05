@@ -10,7 +10,7 @@ public class MonsterBattleIdle : BaseState
 
     public override void EnterState()
     {
-
+        Debug.Log("monster battle idle call");
     }
 
     public override void ExitState()

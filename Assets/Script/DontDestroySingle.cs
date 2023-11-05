@@ -8,7 +8,7 @@ public class DontDestroySingle<T> : SingleTon<T> where T : DontDestroySingle<T>
     protected new void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
 
     }
 

@@ -25,17 +25,7 @@ public class Inventory : MonoBehaviour
     }
     
     [SerializeField]
-    public bool IsCapacity
-    {
-        get
-        {
-            if (itemList.Count < itemSlotList.Count)
-                return true;
-
-            return false;
-        }
-    }
-
+    public bool IsCapacity => (itemList.Count < itemSlotList.Count);
 
 
     // Start is called before the first frame update
@@ -49,8 +39,16 @@ public class Inventory : MonoBehaviour
     public Item FindItem(Item item)
     {
         
-        return (Item)itemList.Find(data => data.Data.name == item.Data.name && data.Data.Amount < data.Data.MaxAmount);
+        return (Item)itemList.Find(data => data.Data.name == item.Data.name &&
+                                   data.Data.Amount < data.Data.MaxAmount);
     }
+
+    //public bool TryFindItem(out Item item)
+    //{
+    //    item = (Item)itemList.Find(data => data.Data.name == item.Data.name &&
+    //                               data.Data.Amount < data.Data.MaxAmount);
+    //    return item != null;
+    //}
 
     public bool InsertItem(Item item)
     {
@@ -61,9 +59,9 @@ public class Inventory : MonoBehaviour
         Item checkItem = FindItem(item);
 
         if(checkItem != null)
+        {
             checkItem.Data.Amount += 1;
-
-
+        }
         else if ( IsCapacity )
         {
             int index = itemList.IndexOf(null);
@@ -95,7 +93,6 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < itemSlotList.Count; i++)
         {
-
             if (i >= itemList.Count)
                 break;
 

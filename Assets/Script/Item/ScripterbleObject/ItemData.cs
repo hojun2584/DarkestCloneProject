@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 
 
-
-
-
 [CreateAssetMenu(fileName ="ItemData" , menuName ="ScriptableObject/ItemData") ]
 public class ItemData : ScriptableObject
 {
