@@ -6,8 +6,8 @@ using UnityEngine;
 public class MoveState : BaseState
 {
 
-    static int moveValue = 0;
-    static int distance;
+    static float moveValue = 0;
+    static float distance;
     int minRange = 100;
     int maxRange = 500;
 
@@ -20,10 +20,11 @@ public class MoveState : BaseState
 
     public override void EnterState()
     {
-        distance = Random.Range(minRange, maxRange)*3;
+
+        Debug.Log("¿©±â °íÄ¥ °Í");
+        distance = Random.Range(minRange, maxRange);
         moveValue = 0;
-
-
+        aniCompo.SetBool("Parrying" , false);
         Debug.Log("move enter");
     }
 
@@ -34,7 +35,7 @@ public class MoveState : BaseState
 
 
         if (isMove)
-            moveValue += 1;
+            moveValue += ( 1f / BattleManager.playerArray.Count);
         
 
         aniCompo.SetBool("Move", isMove);
@@ -51,7 +52,6 @@ public class MoveState : BaseState
 
             BattleManager.isBattleOn = true;
         }
-
 
 
     }

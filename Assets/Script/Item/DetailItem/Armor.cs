@@ -25,6 +25,15 @@ public class Armor : Item, IEquipeAbleItem
         Equip(BattleManager.CurCharacter);
     }
 
+    bool isEquip;
+    bool IsEquip
+    {
+        get => isEquip;
+        set
+        {
+            isEquip = value;
+        }
+    }
     public void Equip(ICharacter equipTarget)
     {
         owner = equipTarget as Player;

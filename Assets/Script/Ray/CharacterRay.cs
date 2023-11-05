@@ -43,10 +43,11 @@ public class CharacterRay : MonoBehaviour
                     if (!BattleManager.isBattleOn)
                     {
                         viewStat.Data = targetP.CharData;
+                        BattleManager.CurCharacter.isMyTurn = false;
                         BattleManager.CurCharacter = targetP;
+                        BattleManager.CurCharacter.isMyTurn = true;
                     }
 
-                    BattleManager.Target = targetP;
                 }
                 if(hit.collider.TryGetComponent<Enemy>(out Enemy targetE))
                 {

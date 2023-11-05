@@ -8,7 +8,6 @@ public abstract class BaseState
     protected Character owner;
     protected Animator aniCompo;
 
-
     protected BaseState(Fsm machine)
     {
         stateMachine = machine;

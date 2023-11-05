@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class Player : Character , IFightAble
 {
     public Sprite icon;
+
 
     protected void Awake()
     {
@@ -13,6 +16,7 @@ public class Player : Character , IFightAble
         dieStrategy = new JustDie(this);
         stateMachine = new ExplorerMachine(this);
         stateMachine.ChangeState(new MoveState(this.stateMachine));
+        currentView.enabled = false;
     }
 
     public Armor equipArmor = null;
@@ -87,6 +91,9 @@ public class Player : Character , IFightAble
     public new void Update()
     {
         base.Update();
+
+        currentView.enabled = isMyTurn;
+
     }
 
     /// <summary>
