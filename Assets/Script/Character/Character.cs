@@ -34,14 +34,21 @@ public abstract class Character : MonoBehaviour, ICharacter
     public bool isMyTurn = false;
     public List<BuffStrategy> buffs = new List<BuffStrategy>();
 
-    
+
+    public Image currentView;
 
 
     [SerializeField]
     protected Image hpBar;
     public Fsm stateMachine;
+    public List<Fsm> smSterategys;
 
 
+    private void Start()
+    {
+        smSterategys = new List<Fsm>();
+
+    }
     public CharacterData CharData 
     {
         get 
@@ -57,7 +64,6 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         set
         {
-            
             if (0 >= value)
                 dieStrategy.Die();
 

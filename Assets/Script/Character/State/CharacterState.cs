@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class CharacterState : BaseState
 {
-
-    protected Character owner;
-    protected Animator aniCompo;
     protected GameObject gameObject;
 
     protected CharacterState(Character owner , Fsm machine)

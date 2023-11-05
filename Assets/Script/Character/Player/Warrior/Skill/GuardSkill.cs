@@ -11,7 +11,6 @@ public class GuardSkill : BuffStrategy
 
     public override void UseSkill(ICharacter target)
     {
-
         Owner.hitStrategy = new Guard(Owner);
         animator.SetBool("Parrying", true);
     }

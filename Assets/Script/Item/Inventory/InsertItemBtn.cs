@@ -11,8 +11,6 @@ public enum ItemEnum
     ARMOR,
     WEAPON
 }
-
-
 public class InsertItemBtn : MonoBehaviour
 {
     [SerializeField]

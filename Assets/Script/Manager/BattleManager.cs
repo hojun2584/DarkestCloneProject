@@ -42,6 +42,7 @@ public class BattleManager : SingleTon<BattleManager>
 
             if(skill!= null)
             {
+                
                 skill.UseSkill(value);
                 skill = null;
                 NextCharacter();
@@ -155,6 +156,8 @@ public class BattleManager : SingleTon<BattleManager>
     {
         characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
         curCharcter = characterList[current];
+
+
         curCharcter.isMyTurn = true;
     }
 
@@ -202,6 +205,7 @@ public class BattleManager : SingleTon<BattleManager>
     public void InitBattle()
     {
         current = 0;
+        
         InitCharList();
     }
 

@@ -16,12 +16,6 @@ public class Warrior : Player
     }
 
 
-    public void Start()
-    {
-        
-    }
-
-
     public new void Update()
     {
         base.Update();

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IUseAble
 {
-    public abstract void Use(ICharacter user , ICharacter target);
+    void Use(ICharacter user , ICharacter target);
 
 }
 

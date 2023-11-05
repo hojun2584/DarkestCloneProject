@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-
-
+    public static float enhencetAtk = 1;
     protected void Awake()
     {
         CharData = CharData.CloneObj;
@@ -14,6 +13,7 @@ public class Enemy : Character
         stateMachine = new MonsterMachine(this);
         stateMachine.ChangeState( new MonsterBattleIdle(stateMachine) );
 
+        currentView.enabled = false;
     }
     public override void Die()
     {
@@ -27,6 +27,10 @@ public class Enemy : Character
         base.Update();
         if (stateMachine != null)
             stateMachine.curState.UpdateState();
+
+        currentView.enabled = isMyTurn;
+
+
 
     }
 

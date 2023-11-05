@@ -36,8 +36,6 @@ public class Enviromental : SingleTon<Enviromental>
         }
 
     }
-
-
     
     static EnviroMentalSt enviro = new EnviroMentalSt();
 
@@ -51,7 +49,7 @@ public class Enviromental : SingleTon<Enviromental>
             else
                 enviro.light = 100;
 
-
+            Enemy.enhencetAtk *= enviroMental;
         }
     }
 

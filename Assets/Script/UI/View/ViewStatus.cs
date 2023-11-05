@@ -8,7 +8,7 @@ public class ViewStatus : MonoBehaviour , InitViewAble
 {
     // Start is called before the first frame update
     [SerializeField]
-    Image face;
+    Image icon;
 
     [SerializeField]
     TextMeshProUGUI[] status;
@@ -47,6 +47,13 @@ public class ViewStatus : MonoBehaviour , InitViewAble
             status[i].text = item;
             i++;
         }
+
+        Player target = BattleManager.CurCharacter as Player;
+        if (target != null)
+        {
+            icon.sprite = target.icon;
+        }
+
     }
 
     public void Update()

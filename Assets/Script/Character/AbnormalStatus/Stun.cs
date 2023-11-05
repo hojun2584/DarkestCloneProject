@@ -11,23 +11,10 @@ public class Stun : BuffStrategy
 
     public Stun(Character owner, SKILL data) : base(owner, data)
     {
-        Debug.Log("??");
-        animator.SetBool("Stun" , owner);
+        animator.SetBool("Stun" , true);
         count = 2;
     }
 
-
-    bool GetStun()
-    {
-
-        int percent = Random.Range(0, 10);
-
-        if (percent < 4)
-            return false;
-
-
-        return true;
-    }
 
     public override void UseSkill(ICharacter target)
     {
@@ -47,9 +34,8 @@ public class Stun : BuffStrategy
             CorutineRunner.Start(DelayAnimation());
 
         }
-        Debug.Log("stunnig call");
+        
         BattleManager.NextCharacter();
-
 
     }
 
