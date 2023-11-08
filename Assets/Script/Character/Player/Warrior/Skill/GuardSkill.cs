@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.UI.GridLayoutGroup;
 
-public class GuardSkill : BuffStrategy
+public class GuardSkill : ISkillStrategy
 {
     public GuardSkill(Character owner, SKILL data) : base(owner, data)
     {
+        owner.hitStrategy = new Guard(owner);
     }
 
-    public override void UseSkill(ICharacter target)
+    public Character Owner => throw new System.NotImplementedException();
+
+    public SkillData Data => throw new System.NotImplementedException();
+
+    public void UseSkill(ICharacter target)
     {
-        Owner.hitStrategy = new Guard(Owner);
-        animator.SetBool("Parrying", true);
+        throw new System.NotImplementedException();
     }
-
-
 }

@@ -6,9 +6,7 @@ public class MonsterMachine : Fsm
 {
     public MonsterMachine(Character owner) : base(owner)
     {
-
-
-
+        curState = new MonsterBattleIdle(this);
     }
 
 }

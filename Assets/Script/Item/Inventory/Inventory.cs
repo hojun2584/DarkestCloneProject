@@ -9,7 +9,7 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 
-    public List<IItem> itemList = new List<IItem>();
+    public List<Item> itemList = new List<Item>();
 
     public List<ItemSlot> itemSlotList = new List<ItemSlot>();
 
@@ -38,7 +38,6 @@ public class Inventory : MonoBehaviour
 
     public Item FindItem(Item item)
     {
-        
         return (Item)itemList.Find(data => data.Data.name == item.Data.name &&
                                    data.Data.Amount < data.Data.MaxAmount);
     }

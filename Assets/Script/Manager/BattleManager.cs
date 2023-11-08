@@ -9,13 +9,11 @@ public class BattleManager : SingleTon<BattleManager>
 
     public CharacterManager chManager;
 
-
-    
     static public List<Player> playerArray = new List<Player>();
     static public List<Enemy> enemyArray = new List<Enemy>();
     static List<Character> characterList;
-    // 전투가 끝나고 다시 전투 들어 갈 때 초기화 어디선가 해줘야함
-    // 상태머신 바꾸면서 초기화 해주는 것도 나쁘지 않을 지도?
+    
+    
     static int current = 0;
 
     [SerializeField]
@@ -27,13 +25,18 @@ public class BattleManager : SingleTon<BattleManager>
 
     public static Character CurCharacter
     {
-        get => curCharcter;
+        get => curCharacter;
         set
         {
-            curCharcter = value;
+            if(curCharacter != null)
+                curCharacter.isMyTurn = false;
+            
+            
+            curCharacter = value;
+            curCharacter.isMyTurn = true;
         }
     }
-    static Character curCharcter;
+    static Character curCharacter;
     public static Character Target 
     {
         get => target;
@@ -48,7 +51,6 @@ public class BattleManager : SingleTon<BattleManager>
                 NextCharacter();
                 return;
             }
-
             target = value;
         }
     }
@@ -77,13 +79,9 @@ public class BattleManager : SingleTon<BattleManager>
     {
 
         if (CurCharacter != null)
-        {
-            curCharcter.isMyTurn = false;
             current = current < characterList.Count - 1 ? current + 1 : 0;
-        }
-
+        
         CurCharacter = characterList[current];
-        curCharcter.isMyTurn = true;
     }
 
 
@@ -91,7 +89,7 @@ public class BattleManager : SingleTon<BattleManager>
     {
 
         isBattleOn = false;
-        curCharcter = characterList[0];
+
         skill = null;
         shopObject.SetActive(true);
     }
@@ -112,24 +110,15 @@ public class BattleManager : SingleTon<BattleManager>
         if(CurCharacter is Player)
             status.Data = CurCharacter.CharData;
 
-
         if (enemyArray.Count <= 0 && isBattleOn == true)
         {
-
             EndBattle();
-
             Debug.Log("endbattleCall");
         }
 
-
-        if (curCharcter == null)
-        {
+        if (curCharacter == null)
             CurCharacter = characterList[current];
-            curCharcter.isMyTurn = true;
-        }
-
-
-            
+           
 
     }
 
@@ -146,8 +135,7 @@ public class BattleManager : SingleTon<BattleManager>
         }
 
         characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
-        curCharcter = characterList[current];
-        curCharcter.isMyTurn = true;
+        CurCharacter = characterList[current];
 
     }
 
@@ -155,10 +143,8 @@ public class BattleManager : SingleTon<BattleManager>
     void InitCharList()
     {
         characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
-        curCharcter = characterList[current];
+        curCharacter = characterList[current];
 
-
-        curCharcter.isMyTurn = true;
     }
 
     public bool PlayerAdd(Player player)
