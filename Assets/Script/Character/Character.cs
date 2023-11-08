@@ -85,12 +85,12 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     }
 
-    public abstract void EnterTurn();
 
     public abstract void Hit(float damage, ICharacter Attacker);
 
     public abstract void Die();
 
-    public abstract void UseSkill(ICharacter target);
+    public abstract void UseSkill(Character target);
 
+    public abstract void UseSkill(ICharacter target);
 }

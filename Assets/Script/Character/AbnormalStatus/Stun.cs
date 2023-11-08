@@ -16,13 +16,6 @@ public class Stun : BuffStrategy
     }
 
 
-    public override void UseSkill(ICharacter target)
-    {
-        Buff(target);
-    }
-
-
-
     public override void ActiveBuff()
     {
 

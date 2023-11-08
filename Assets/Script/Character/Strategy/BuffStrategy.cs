@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BuffStrategy : IBuffStrategy
 {
 
-    public int count = 0;
+    public int count = 1;
     protected Animator animator;
 
 
@@ -33,16 +33,13 @@ public abstract class BuffStrategy : IBuffStrategy
         return buff;
     }
 
-    public abstract void UseSkill(ICharacter target);
-
-    public virtual void Buff(ICharacter target, int count = 1)
+    public virtual void Buff(Character target, int count = 1)
     {
         Character buffTarget = target as Character;
         BuffStrategy buff = IsAlready();
 
         if (buff == null)
             Owner.buffs.Add(this);
-
         else
             buff.count += 1;
     }

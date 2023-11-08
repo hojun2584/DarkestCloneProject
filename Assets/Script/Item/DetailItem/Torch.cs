@@ -12,12 +12,12 @@ public class Torch : Item, IConsumeAbleItem
     {
     }
 
-    public override void Use(ICharacter user , ICharacter target)
+    public override void Use(Character user , Character target)
     {
         Cunsume();
     }
 
-    public void Cunsume(ICharacter character = null)
+    public void Cunsume(Character character = null)
     {
         Data.Amount -= 1;
         Enviromental.enviroMental += lightValue;

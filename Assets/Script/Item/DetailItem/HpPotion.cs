@@ -12,28 +12,24 @@ public class HpPotion : Item, IConsumeAbleItem
 
     }
 
-    public void Cunsume(ICharacter cunsumeTarget)
+    public void Cunsume(Character cunsumeTarget)
     {
 
-    //    if(cunsumeTarget is Player)
-   //     {
+        if(cunsumeTarget is Player)
+        {
             if (cunsumeTarget.CharData.Hp == cunsumeTarget.CharData.MaxHp)
             {
                 MessageBox.ViewMessageBox("HP 가 이미 꽉 차 있습니다.");
-
-
                 return;
             }
+
             Data.Amount -= 1;
             cunsumeTarget.CharData.Hp += healPotion;
-     //   }
-
-
+        }
     }
 
-    public override void Use(ICharacter user = null, ICharacter target = null)
+    public override void Use(Character user = null, Character target = null)
     {
-        base.Use(user, target);
         Cunsume(BattleManager.CurCharacter);
     }
 

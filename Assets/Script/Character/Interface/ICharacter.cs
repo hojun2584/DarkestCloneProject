@@ -48,20 +48,15 @@ public interface IHealAble
 }
 
 
-
 public interface IAttackStrategy : ISkillStrategy
 {
     public abstract void Attack(IHitAble target);
 }
 
-public interface IHealStrategy : ISkillStrategy
-{
-    public abstract void Heal(IHitAble target);
-}
 
-public interface IBuffStrategy : ISkillStrategy
+public interface IBuffStrategy
 {
-    public abstract void Buff(ICharacter target , int count = 1);
+    public abstract void Buff(Character target , int count = 1);
 }
 
 public interface IDieStrategy
@@ -70,9 +65,6 @@ public interface IDieStrategy
     public abstract void Die();
     
 }
-
-
-
 
 public interface ISkillUseAble
 {

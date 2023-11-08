@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttack : AttackStrategy
+public class SwordAttack : PlayerAttack
 {
-    public SwordAttack(Character owner) : base(owner)
+    public SwordAttack(Character owner, SKILL data) : base(owner , data)
     {
     }
 
@@ -24,7 +24,6 @@ public class SwordAttack : AttackStrategy
 
     public override void Attack(IHitAble target)
     {
-
         target.Hit(Damage,owner);
     }
 

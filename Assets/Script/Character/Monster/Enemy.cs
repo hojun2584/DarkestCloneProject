@@ -11,8 +11,8 @@ public class Enemy : Character
         hitStrategy = new JustHit(this);
         dieStrategy = new JustDie(this);
         stateMachine = new MonsterMachine(this);
-        stateMachine.ChangeState( new MonsterBattleIdle(stateMachine) );
-
+        
+        
         currentView.enabled = false;
     }
     public override void Die()
@@ -34,10 +34,6 @@ public class Enemy : Character
 
     }
 
-    public override void EnterTurn()
-    {
-        throw new System.NotImplementedException();
-    }
 
     public override void Hit(float damage, ICharacter attacker)
     {
@@ -46,8 +42,10 @@ public class Enemy : Character
 
     public override void UseSkill(ICharacter target)
     {
-        //!!TODOLIST require mosnter behavior define!!
-        //
-
+        
+    }
+    public override void UseSkill(Character target)
+    {
+        
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IUseAble
 {
-    void Use(ICharacter user , ICharacter target);
+    void Use(Character user , Character target);
 
 }
 
@@ -14,22 +14,21 @@ public interface IClickUseAble
 
 }
 
-public interface IItem : IUseAble
+public interface IItemAble : IUseAble
 {
-
     public abstract ItemData Data { get; }
 
 }
 
-public interface IConsumeAbleItem : IItem
+public interface IConsumeAbleItem : IItemAble
 {
 
-    public abstract void Cunsume(ICharacter cunsumeTarget);
+    public abstract void Cunsume(Character cunsumeTarget);
 }
 
-public interface IEquipeAbleItem : IItem
+public interface IEquipeAbleItem : IItemAble
 {
-    public abstract void Equip(ICharacter equipTarget);
+    public abstract void Equip(Character equipTarget);
     public abstract void UnEquip();
 
 }

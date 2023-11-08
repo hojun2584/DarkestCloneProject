@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class ArcherCharacter : Player
 {
 
-    
-
     public new void Awake()
     {
         base.Awake();
@@ -19,32 +17,14 @@ public class ArcherCharacter : Player
 
     }
 
-    public void Start()
-    {
-
-
-    }
-
     public new void Update()
     {
         base.Update();
         if(stateMachine != null)
             stateMachine.UpdateState();
-
     }
 
 
-
-    public override void Die()
-    {
-        dieStrategy.Die();
-    }
-
-    public override void Hit(float damage, ICharacter attacker)
-    {
-        
-        hitStrategy.Hit(damage, attacker);
-    }
 
     public override void UseSkill(ICharacter target)
     {
