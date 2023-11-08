@@ -7,7 +7,6 @@ public class Bleeding : BuffStrategy
     public Bleeding(Character owner, SKILL data) : base(owner, data)
     {
 
-        
     }
 
     int GetDamage()
@@ -24,10 +23,6 @@ public class Bleeding : BuffStrategy
     }
 
 
-    public override void UseSkill(ICharacter target)
-    {
-        Buff(target);
-    }
 
     public override void ActiveBuff()
     {

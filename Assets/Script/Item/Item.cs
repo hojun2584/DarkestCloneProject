@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : IItem
+public abstract class Item : IItemAble
 {
 
     public Item(ItemData data)
@@ -29,8 +29,5 @@ public class Item : IItem
     public ItemData itemData = null;
 
 
-    public virtual void Use(ICharacter user = null , ICharacter target = null)
-    {
-        Debug.Log(itemData.ItemName + " 사용 하였습니다.");
-    }
+    public abstract void Use(Character user = null, Character target = null);
 }

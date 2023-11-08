@@ -10,8 +10,6 @@ public class Guard : HitStrategy
     public Guard(Character owner) : base(owner)
     {
 
-
-
     }
 
     public override void Hit(float damage, ICharacter attacker)
@@ -21,8 +19,6 @@ public class Guard : HitStrategy
 
         if ( damage >= armor)
             Owner.Hit(damage, attacker);
-
-        
 
     
         return;
