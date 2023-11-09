@@ -85,14 +85,8 @@ public class Player : Character , IFightAble
 
     public override void Die()
     {
-        dieStrategy.Die();    
+        Debug.Log("정의되지 않은 클래스 player die 호출");
     }
-    public override void Hit(float damage, ICharacter attacker)
-    {
-        hitStrategy.Hit(damage, attacker);
-    }
-
-
 
     public new void Update()
     {
@@ -104,15 +98,19 @@ public class Player : Character , IFightAble
 
     /// <summary>
     /// 플레이어가 자신에 턴에 들어 왔을 때 초기화 해야 하는 코드 들
-    /// </summary
+    /// </summary>
+    public override void EnterTurn()
+    {
+    }
+
+    public override void Hit(float damage, ICharacter attacker)
+    {
+        Debug.Log("player hit call");
+        hitStrategy.Hit(damage, attacker);
+    }
 
     public override void UseSkill(ICharacter target)
     {
         Debug.Log("정의되지 않은 클래스 UseSKill 호출");
-    }
-
-    public override void UseSkill(Character target)
-    {
-        throw new System.NotImplementedException();
     }
 }

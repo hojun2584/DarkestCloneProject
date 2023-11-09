@@ -11,6 +11,8 @@ public class FatMan : Enemy
         //skills.Add(new GoblinClaw(this));
         skills.Add(new FatmanSkill(this));
 
+
     }
+
 
 }

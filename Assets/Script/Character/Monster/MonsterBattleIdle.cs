@@ -20,7 +20,11 @@ public class MonsterBattleIdle : BaseState
     public override void UpdateState()
     {
         if (owner.isMyTurn == true)
+        {
             owner.stateMachine.ChangeState(new MonsterBattle(owner.stateMachine));
-        
+        }
+
+
+
     }
 }

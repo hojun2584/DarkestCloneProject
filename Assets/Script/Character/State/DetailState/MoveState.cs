@@ -45,7 +45,11 @@ public class MoveState : BaseState
 
         if (moveValue >= distance)
         {
+            ExitState();
+
             owner.stateMachine = new BattleMachine(stateMachine.owner);
+            owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
+
             BattleManager.isBattleOn = true;
         }
 
@@ -54,6 +58,8 @@ public class MoveState : BaseState
 
     public override void ExitState()
     {
+
+        
         aniCompo.SetBool("Move", false);
         aniCompo.SetBool("Idle", true);
     }

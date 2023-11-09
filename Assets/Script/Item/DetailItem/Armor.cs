@@ -19,8 +19,9 @@ public class Armor : Item, IEquipeAbleItem
         get { return (ArmorData)Data; }
     }
 
-    public override void Use(Character user = null, Character target = null)
+    public override void Use(ICharacter user = null, ICharacter target = null)
     {
+        base.Use(user, target);
         Equip(BattleManager.CurCharacter);
     }
 
@@ -33,7 +34,7 @@ public class Armor : Item, IEquipeAbleItem
             isEquip = value;
         }
     }
-    public void Equip(Character equipTarget)
+    public void Equip(ICharacter equipTarget)
     {
         owner = equipTarget as Player;
         Data.Amount -= 1;
@@ -44,7 +45,6 @@ public class Armor : Item, IEquipeAbleItem
             inven.InsertItem((Item)owner.equipArmor);
             owner.equipArmor.UnEquip();
         }
-
         owner = equipTarget as Player;
         owner.equipArmor = this;
         owner.AttackPoint += ArmorInfo.AttackPoint;

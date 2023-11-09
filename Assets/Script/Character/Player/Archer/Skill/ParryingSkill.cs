@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParryingSkill : BuffStrategy, ISkillStrategy
+public class ParryingSkill : BuffStrategy
 {
 
     public ParryingSkill(Character owner, SKILL data) : base(owner, data)

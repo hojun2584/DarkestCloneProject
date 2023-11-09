@@ -17,12 +17,13 @@ public class Weapon : Item, IEquipeAbleItem
         this.inven = inven;
     }
 
-    public override void Use(Character user = null, Character target = null)
+    public override void Use(ICharacter user = null, ICharacter target = null)
     {
+        base.Use(user, target);
         Equip(BattleManager.CurCharacter);
     }
 
-    public void Equip(Character equipTarget)
+    public void Equip(ICharacter equipTarget)
     {
         owner = equipTarget as Player;
         Data.Amount -= 1;

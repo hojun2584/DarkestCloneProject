@@ -18,6 +18,7 @@ public class Parrying : HitStrategy
             attacker.Hit(Owner.CharData.AttackPoint, Owner);
             animator.SetTrigger("Counter");
             Debug.Log("회피 성공 22");
+
             return;
         }
         Owner.Hp -= damage;

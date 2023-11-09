@@ -9,7 +9,7 @@ public class Warrior : Player
     public new void Awake()
     {
         base.Awake();
-        skills.Add(new SwordAttack(this,SKILL.ARROWATTACK));
+        skills.Add(new BowAttack(this,SKILL.ARROWATTACK));
         skills.Add(new GuardSkill(this,SKILL.GUARD ) );
         skills.Add(new WParryinhSkill(this, SKILL.PARRYING));
         skills.Add(new ShildAttack(this,SKILL.SHILDATTACK));
@@ -20,6 +20,13 @@ public class Warrior : Player
     {
         base.Update();
         stateMachine.UpdateState();
+
+    }
+
+
+    public override void Die()
+    {
+        dieStrategy.Die();
     }
 
     public override void Hit(float damage, ICharacter attacker)
