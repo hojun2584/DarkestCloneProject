@@ -12,7 +12,7 @@ public abstract class BaseState
     {
         stateMachine = machine;
         owner = machine.owner;
-        aniCompo = owner.GetComponent<Animator>();
+        aniCompo = owner.gameObject.GetComponent<Animator>();
 
     }
 

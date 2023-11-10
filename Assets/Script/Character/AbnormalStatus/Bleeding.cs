@@ -2,32 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bleeding : BuffStrategy
+public class Bleeding : AbState
 {
-    public Bleeding(Character owner, SKILL data) : base(owner, data)
+    public Bleeding(Character giver) : base(giver)
     {
-
     }
 
-    int GetDamage()
-    {
-        return Random.Range(3,6);
-    }
-
-    public int Count 
+    public float Damage 
     {
         get
         {
-            return count;
+            float min = Giver.CharData.AttackPoint*0.1f;
+            float max = 4 + min;
+            float damage = Random.Range(min,max);
+
+            return damage;
         }
     }
 
-
-
-    public override void ActiveBuff()
+    public override void Active()
     {
-        Owner.Hit(GetDamage(),Owner);
-        base.ActiveBuff();
+        Giver.Hit(Damage, Giver);
     }
-
 }

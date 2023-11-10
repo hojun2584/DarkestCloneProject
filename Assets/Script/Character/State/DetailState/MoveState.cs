@@ -32,8 +32,7 @@ public class MoveState : BaseState
     {
 
         bool isMove = Input.GetKey(KeyCode.D);
-
-
+        
         if (isMove)
             moveValue += ( 1f / BattleManager.playerArray.Count);
         
@@ -47,6 +46,8 @@ public class MoveState : BaseState
         {
             owner.stateMachine = new BattleMachine(stateMachine.owner);
             BattleManager.isBattleOn = true;
+            aniCompo.SetBool("Move", false);
+            aniCompo.SetBool("Idle", true);
         }
 
 

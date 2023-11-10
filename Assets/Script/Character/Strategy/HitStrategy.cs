@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class HitStrategy : IHitStrategy
+public abstract class HitStrategy
 {
 
     protected Animator animator;
@@ -30,7 +30,7 @@ public abstract class HitStrategy : IHitStrategy
         return false;
     }
 
-    public abstract void Hit(float damage, ICharacter attacker);
+    public abstract void Hit(float damage, Character attacker);
     
 
 
