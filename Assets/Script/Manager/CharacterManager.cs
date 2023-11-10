@@ -171,7 +171,6 @@ public class CharacterManager : MonoBehaviour
             battleManager.EnemyAdd(obj.GetComponent<Enemy>());
         }
 
-
         BattleManager.CurCharacter.isMyTurn = false;
         battleManager.InitBattle();
     }

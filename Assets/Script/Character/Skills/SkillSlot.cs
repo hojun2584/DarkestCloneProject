@@ -9,13 +9,13 @@ public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
 
     Image icon;
 
-    public ISkillStrategy Skill
+    public Skill Skill
     {
         get => skill;
         set
         {
             skill = value;
-            icon.sprite = skill.Data.icon;
+            icon.sprite = value.Data.icon;
         }
 
     }
@@ -25,13 +25,15 @@ public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
         get 
         {
             if(skill == null)
+            {
                 return null;
+            }
 
             return skill.Data.comment;
         }
     }
 
-    ISkillStrategy skill = null;
+    Skill skill = null;
 
     // Start is called before the first frame update
     void Start()
@@ -56,14 +58,10 @@ public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
         }
         else
         {
+            BattleManager.skill = skill;
             Debug.Log("go!");
         }
-        BattleManager.skill = skill;
-
+        
     }
 
-    public void ExplainView()
-    {
-        throw new System.NotImplementedException();
-    }
 }

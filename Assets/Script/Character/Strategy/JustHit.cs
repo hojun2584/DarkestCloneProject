@@ -9,7 +9,7 @@ public class JustHit : HitStrategy
 
     }
 
-    public override void Hit(float damage, ICharacter attacker)
+    public override void Hit(float damage, Character attacker)
     {
 
         Owner.Hp -= damage;

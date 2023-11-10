@@ -11,14 +11,9 @@ public class ExplorerMachine : Fsm
 
     public ExplorerMachine(Character owner) : base(owner)
     {
-
+        ChangeState(new MoveState(this));
     }
 
-    public override void UpdateState()
-    {
-        base.UpdateState();
-
-    }
 
 
 
