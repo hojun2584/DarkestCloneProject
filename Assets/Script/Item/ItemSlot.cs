@@ -11,6 +11,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
     public Inventory inven = null;
     Image imageCompo = null;
     public Sprite noneImage;
+    public static Sprite none;
     public TextMeshProUGUI textMesh;
 
     public ItemData ItemData 

@@ -10,16 +10,9 @@ public class BattleState : BaseState
 
     public override void EnterState()
     {
-        //List<BuffStrategy> buffs = owner.buffs;
-
-        owner.hitStrategy = new JustHit(owner);
-
-        Debug.Log("player enter state ???");
-        aniCompo.SetBool("Parrying", false);
-
-        for (int i = 0; i < owner.buffs.Count; i++)
-            owner.buffs[i].ActiveBuff();
         
+        owner.hitStrategy = new JustHit(owner);
+        aniCompo.SetBool("Parrying", false);
 
 
         Debug.Log("battle mode enter");
@@ -33,14 +26,14 @@ public class BattleState : BaseState
 
     public override void UpdateState()
     {
+
+
         if (owner.isMyTurn == false)
             owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
 
         if (!BattleManager.isBattleOn)
             owner.stateMachine.ChangeState(new MoveState(owner.stateMachine));
         
-
-
     }
 
 

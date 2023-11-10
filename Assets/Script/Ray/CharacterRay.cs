@@ -11,7 +11,7 @@ public class CharacterRay : MonoBehaviour
     [SerializeField]
     ViewStatus viewStat;
 
-    public static ICharacter curCharacter;
+    public static Character curCharacter;
 
     // Start is called before the first frame update
     void Start()

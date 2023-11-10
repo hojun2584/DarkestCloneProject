@@ -35,15 +35,11 @@ public class Enemy : Character
     }
 
 
-    public override void Hit(float damage, ICharacter attacker)
+    public override void Hit(float damage, Character attacker)
     {
         hitStrategy.Hit(damage,attacker);
     }
 
-    public override void UseSkill(ICharacter target)
-    {
-        
-    }
     public override void UseSkill(Character target)
     {
         

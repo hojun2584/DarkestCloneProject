@@ -24,18 +24,17 @@ public enum EQUIPWEAPON
 
 }
 
-public abstract class Character : MonoBehaviour, ICharacter
+public abstract class Character : MonoBehaviour
 {
-    public List<ISkillStrategy> skills = new List<ISkillStrategy>();
-    public ISkillStrategy selectSkill;
-    public IHitStrategy hitStrategy;
-    public IDieStrategy dieStrategy;
+    public List<Skill> skills = new List<Skill>();
+    public Skill selectSkill;
+    public HitStrategy hitStrategy;
+    public DieStrategy dieStrategy;
     protected EQUIPWEAPON weaponType;
     public bool isMyTurn = false;
-    public List<BuffStrategy> buffs = new List<BuffStrategy>();
-
-
     public Image currentView;
+
+    List<AbState> abnormal = new List<AbState>();
 
 
     [SerializeField]
@@ -75,9 +74,6 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
     }
 
-    
-
-
     public void Update()
     {
         float temp = (float)CharData.Hp / (float)CharData.MaxHp;
@@ -85,12 +81,21 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     }
 
+    public void AddAbState(AbState abnormal )
+    {
+        this.abnormal.Add(abnormal);
+    }
 
-    public abstract void Hit(float damage, ICharacter Attacker);
+    public void ActiveState()
+    {
+        foreach (var state in abnormal)
+            state.Active();
+    }
+
+    public abstract void Hit(float damage, Character Attacker);
 
     public abstract void Die();
 
     public abstract void UseSkill(Character target);
 
-    public abstract void UseSkill(ICharacter target);
 }

@@ -15,7 +15,6 @@ public class Player : Character , IFightAble
         hitStrategy = new JustHit(this);
         dieStrategy = new JustDie(this);
         stateMachine = new ExplorerMachine(this);
-        stateMachine.ChangeState(new MoveState(this.stateMachine));
         currentView.enabled = false;
     }
 
@@ -87,7 +86,7 @@ public class Player : Character , IFightAble
     {
         dieStrategy.Die();    
     }
-    public override void Hit(float damage, ICharacter attacker)
+    public override void Hit(float damage, Character attacker)
     {
         hitStrategy.Hit(damage, attacker);
     }
@@ -97,22 +96,16 @@ public class Player : Character , IFightAble
     public new void Update()
     {
         base.Update();
-
         currentView.enabled = isMyTurn;
-
     }
 
     /// <summary>
     /// 플레이어가 자신에 턴에 들어 왔을 때 초기화 해야 하는 코드 들
     /// </summary
 
-    public override void UseSkill(ICharacter target)
+    public override void UseSkill(Character target)
     {
         Debug.Log("정의되지 않은 클래스 UseSKill 호출");
     }
 
-    public override void UseSkill(Character target)
-    {
-        throw new System.NotImplementedException();
-    }
 }

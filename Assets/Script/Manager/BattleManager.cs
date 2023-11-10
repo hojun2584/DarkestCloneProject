@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System;
 using UnityEngine;
 
 public class BattleManager : SingleTon<BattleManager>
@@ -12,15 +12,13 @@ public class BattleManager : SingleTon<BattleManager>
     static public List<Player> playerArray = new List<Player>();
     static public List<Enemy> enemyArray = new List<Enemy>();
     static List<Character> characterList;
-    
-    
     static int current = 0;
+    static event Action changeChar;
+
+
 
     [SerializeField]
     GameObject shopObject;
-
-
-
     public static bool isBattleOn = false;
 
     public static Character CurCharacter
@@ -31,9 +29,11 @@ public class BattleManager : SingleTon<BattleManager>
             if(curCharacter != null)
                 curCharacter.isMyTurn = false;
             
-            
             curCharacter = value;
             curCharacter.isMyTurn = true;
+
+            changeChar();
+        
         }
     }
     static Character curCharacter;
@@ -42,11 +42,9 @@ public class BattleManager : SingleTon<BattleManager>
         get => target;
         set
         {
-
             if(skill!= null)
             {
-                
-                skill.UseSkill(value);
+                skill.UseSKill(value);
                 skill = null;
                 NextCharacter();
                 return;
@@ -55,7 +53,7 @@ public class BattleManager : SingleTon<BattleManager>
         }
     }
     static Character target;
-    static public ISkillStrategy skill;
+    static public Skill skill;
 
 
     [SerializeField]
@@ -66,12 +64,11 @@ public class BattleManager : SingleTon<BattleManager>
     {
         base.Awake();
         characterList = new List<Character>();
-
         playerArray = new List<Player>();
         enemyArray = new List<Enemy>();
         current = 0;
-        Debug.Log("call awke battle manager");
-        //chars.Sort( ( x , y ) => x.Data.Speed.CompareTo(y.Data.Speed) );
+
+        characterList.AddRange(playerArray);
     }
 
 
@@ -94,34 +91,6 @@ public class BattleManager : SingleTon<BattleManager>
         shopObject.SetActive(true);
     }
 
-
-    public static void DieCharacter(Character dieChar)
-    {
-        if (dieChar is Player)
-            playerArray.Remove((Player)dieChar);
-        else
-            enemyArray.Remove((Enemy)dieChar);
-
-        characterList.Remove(dieChar);
-    }
-
-    public void Update()
-    {
-        if(CurCharacter is Player)
-            status.Data = CurCharacter.CharData;
-
-        if (enemyArray.Count <= 0 && isBattleOn == true)
-        {
-            EndBattle();
-            Debug.Log("endbattleCall");
-        }
-
-        if (curCharacter == null)
-            CurCharacter = characterList[current];
-           
-
-    }
-
     public void Start()
     {
 
@@ -139,12 +108,27 @@ public class BattleManager : SingleTon<BattleManager>
 
     }
 
+    public void Update()
+    {
+        if(CurCharacter is Player)
+            status.Data = CurCharacter.CharData;
 
+        if (enemyArray.Count <= 0 && isBattleOn == true)
+        {
+            EndBattle();
+            Debug.Log("endbattleCall");
+        }
+
+        if (curCharacter == null)
+            CurCharacter = characterList[current];
+
+
+    }
     void InitCharList()
     {
+        characterList.AddRange(enemyArray);
         characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
-        curCharacter = characterList[current];
-
+        CurCharacter = characterList[current];
     }
 
     public bool PlayerAdd(Player player)
@@ -155,15 +139,6 @@ public class BattleManager : SingleTon<BattleManager>
         playerArray.Add(player);
 
         return true;
-    }
-    public bool PlayerAdd(GameObject m_player)
-    {
-        if(m_player.TryGetComponent<Player>(out Player player))
-        {
-            playerArray.Add(player);
-            return true;
-        }
-        return false;
     }
 
     public bool EnemyAdd(Enemy enemy) 
@@ -176,25 +151,34 @@ public class BattleManager : SingleTon<BattleManager>
         return true;
     }
 
-    public bool EnemyAdd(GameObject m_enemy)
+
+    public static void DieCharacter(Character dieChar)
     {
-        if (m_enemy.TryGetComponent<Enemy>(out Enemy enemy))
-        {
-            enemyArray.Add(enemy);
-            characterList.Add(enemy);
-            return true;
-        }
-            
-        return false;
+        if (dieChar is Player)
+            playerArray.Remove((Player)dieChar);
+        else
+            enemyArray.Remove((Enemy)dieChar);
+
+        characterList.Remove(dieChar);
     }
 
     public void InitBattle()
     {
         current = 0;
-        
+        characterList.AddRange(enemyArray);
         InitCharList();
     }
 
+
+    public static void AddChange(Action e)
+    {
+        changeChar += e;
+    }
+    public static void AddChangeSingle(Action e)
+    {
+        changeChar -= e;
+        changeChar += e;
+    }
 
 
 }
