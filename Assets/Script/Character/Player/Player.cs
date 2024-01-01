@@ -88,9 +88,9 @@ public class Player : Character , IFightAble
         Debug.Log("정의되지 않은 클래스 player die 호출");
     }
 
-    public new void Update()
+    public void Update()
     {
-        base.Update();
+        
 
         currentView.enabled = isMyTurn;
 

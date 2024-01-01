@@ -1,12 +1,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Flags]
+public enum STATE
+{
+    IDLE = 0,
+    MOVE,
+    ATTACK,
+    CRITICAL,
+    HIT,
+    DIE,
+}
 
-public abstract class Character : MonoBehaviour, ICharacter
+public enum EQUIPWEAPON
+{
+
+    SWORD = 0,
+    BOW,
+    WAND
+
+}
+
+public abstract class Re_Character : MonoBehaviour, ICharacter
 {
     public List<ISkillStrategy> skills = new List<ISkillStrategy>();
     public ISkillStrategy selectSkill;
@@ -22,8 +40,6 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     [SerializeField]
     protected Image hpBar;
-    float setHp;
-
     public Fsm stateMachine;
     public List<Fsm> smSterategys;
 
@@ -52,7 +68,6 @@ public abstract class Character : MonoBehaviour, ICharacter
                 dieStrategy.Die();
 
             CharData.Hp = value;
-            StartCoroutine( SetHpBar() );
         }
         get
         {
@@ -60,38 +75,15 @@ public abstract class Character : MonoBehaviour, ICharacter
         }
     }
 
-    float preHp = 1f;
-    float nextHp;
-    const float distance = 0.001f;
 
-    public bool IsLerp
+
+
+    public void Update()
     {
-        get
-        {
+        float temp = (float)CharData.Hp / (float)CharData.MaxHp;
+        hpBar.fillAmount = Mathf.Lerp(hpBar.fillAmount, temp, Time.deltaTime * 1.0f);
 
-            nextHp = Mathf.Lerp(hpBar.fillAmount, setHp, Time.deltaTime * 1.0f);
-
-            Debug.Log(nextHp);
-
-            if (Math.Abs(preHp - nextHp) >= distance || Math.Abs( nextHp - preHp) >= distance)
-                return true;
-
-            return false;
-        }
     }
-    IEnumerator SetHpBar()
-    {
-        while (IsLerp)
-        {
-            setHp = (float)CharData.Hp / (float)CharData.MaxHp;
-            hpBar.fillAmount = nextHp;
-            preHp = nextHp;
-            yield return null;
-        }
-        Debug.Log("Active");
-    }
-
-
 
     public abstract void EnterTurn();
 

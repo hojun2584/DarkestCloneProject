@@ -22,7 +22,7 @@ public class Armor : Item, IEquipeAbleItem
     public override void Use(ICharacter user = null, ICharacter target = null)
     {
         base.Use(user, target);
-        Equip(BattleManager.CurCharacter);
+        Equip(BattleManager.instance.CurCharacter);
     }
 
     bool isEquip;
@@ -58,7 +58,7 @@ public class Armor : Item, IEquipeAbleItem
 
     public void UnEquip()
     {
-        owner = BattleManager.CurCharacter as Player;
+        owner = BattleManager.instance.CurCharacter as Player;
         owner.equipArmor = null;
 
         owner.AttackPoint -= ArmorInfo.AttackPoint;

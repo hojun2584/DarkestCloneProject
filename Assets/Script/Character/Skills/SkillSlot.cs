@@ -46,7 +46,7 @@ public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
         if (BattleManager.isBattleOn == false)
             return;
 
-        if (!(BattleManager.CurCharacter is Player))
+        if (!(BattleManager.instance.CurCharacter is Player))
             return;
 
         if (skill == null)

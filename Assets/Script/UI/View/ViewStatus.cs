@@ -48,7 +48,7 @@ public class ViewStatus : MonoBehaviour , InitViewAble
             i++;
         }
 
-        Player target = BattleManager.CurCharacter as Player;
+        Player target = BattleManager.instance.CurCharacter as Player;
         if (target != null)
         {
             icon.sprite = target.icon;

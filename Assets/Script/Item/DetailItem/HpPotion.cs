@@ -34,7 +34,7 @@ public class HpPotion : Item, IConsumeAbleItem
     public override void Use(ICharacter user = null, ICharacter target = null)
     {
         base.Use(user, target);
-        Cunsume(BattleManager.CurCharacter);
+        Cunsume(BattleManager.instance.CurCharacter);
     }
 
 }

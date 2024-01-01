@@ -43,9 +43,9 @@ public class CharacterRay : MonoBehaviour
                     if (!BattleManager.isBattleOn)
                     {
                         viewStat.Data = targetP.CharData;
-                        BattleManager.CurCharacter.isMyTurn = false;
-                        BattleManager.CurCharacter = targetP;
-                        BattleManager.CurCharacter.isMyTurn = true;
+                        BattleManager.instance.CurCharacter.isMyTurn = false;
+                        BattleManager.instance.CurCharacter = targetP;
+                        BattleManager.instance.CurCharacter.isMyTurn = true;
                     }
 
                 }

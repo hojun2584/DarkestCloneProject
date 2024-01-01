@@ -50,7 +50,7 @@ public class EquipSlot : MonoBehaviour , IClickUseAble , IExplainAble
     // Update is called once per frame
     void Update()
     {
-        player = BattleManager.CurCharacter as Player;
+        player = BattleManager.instance.CurCharacter as Player;
 
         if (player == null)
             return;

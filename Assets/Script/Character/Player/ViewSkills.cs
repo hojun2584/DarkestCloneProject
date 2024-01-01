@@ -19,10 +19,10 @@ public class ViewSkills : MonoBehaviour
         // 그리고  그 것에 대한 값이 설정 될 때 set == use 스킬이 발동 되게 끔
         // 레이캐스트를 설정하고 그 것에 대한 값을 각각의 이미지가 컴포넌트가 가지는게 맞는 듯
 
-        if (BattleManager.CurCharacter is Player) 
+        if (BattleManager.instance.CurCharacter is Player) 
         { 
         
-            foreach (ISkillStrategy skill in BattleManager.CurCharacter.skills)
+            foreach (ISkillStrategy skill in BattleManager.instance.CurCharacter.skills)
             {
                 skills[i].Skill = skill;
                 i++;

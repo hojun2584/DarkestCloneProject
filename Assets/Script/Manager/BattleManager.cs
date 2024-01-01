@@ -21,19 +21,25 @@ public class BattleManager : SingleTon<BattleManager>
     [SerializeField]
     GameObject shopObject;
 
+    [SerializeField]
+    ViewStatus status;
 
 
     public static bool isBattleOn = false;
 
-    public static Character CurCharacter
+    public Character CurCharacter
     {
         get => curCharcter;
         set
         {
             curCharcter = value;
+
+            if (curCharcter is Player)
+                status.Data = CurCharacter.CharData;
         }
     }
     static Character curCharcter;
+
     public static Character Target 
     {
         get => target;
@@ -56,8 +62,6 @@ public class BattleManager : SingleTon<BattleManager>
     static public ISkillStrategy skill;
 
 
-    [SerializeField]
-    ViewStatus status;
 
 
     private new void Awake()
@@ -76,13 +80,13 @@ public class BattleManager : SingleTon<BattleManager>
     public static void NextCharacter()
     {
 
-        if (CurCharacter != null)
+        if (instance.CurCharacter != null)
         {
             curCharcter.isMyTurn = false;
             current = current < characterList.Count - 1 ? current + 1 : 0;
         }
 
-        CurCharacter = characterList[current];
+        instance.CurCharacter = characterList[current];
         curCharcter.isMyTurn = true;
     }
 
@@ -119,6 +123,7 @@ public class BattleManager : SingleTon<BattleManager>
             EndBattle();
 
             Debug.Log("endbattleCall");
+        
         }
 
 
@@ -157,8 +162,25 @@ public class BattleManager : SingleTon<BattleManager>
         characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
         curCharcter = characterList[current];
 
-
         curCharcter.isMyTurn = true;
+
+    }
+
+
+    IEnumerator WaitEndBattle()
+    {
+        yield return new WaitUntil( ()=> enemyArray.Count <= 0);
+
+
+
+    }
+
+    IEnumerator WaitPlayerDead()
+    {
+        yield return new WaitUntil(() => playerArray.Count <= 0);
+
+
+
     }
 
     public bool PlayerAdd(Player player)
@@ -205,8 +227,8 @@ public class BattleManager : SingleTon<BattleManager>
     public void InitBattle()
     {
         current = 0;
-        
         InitCharList();
+
     }
 
 

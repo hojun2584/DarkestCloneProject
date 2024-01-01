@@ -20,7 +20,7 @@ public class Weapon : Item, IEquipeAbleItem
     public override void Use(ICharacter user = null, ICharacter target = null)
     {
         base.Use(user, target);
-        Equip(BattleManager.CurCharacter);
+        Equip(BattleManager.instance.CurCharacter);
     }
 
     public void Equip(ICharacter equipTarget)
@@ -49,7 +49,7 @@ public class Weapon : Item, IEquipeAbleItem
 
     public void UnEquip()
     {
-        owner = BattleManager.CurCharacter as Player;
+        owner = BattleManager.instance.CurCharacter as Player;
         owner.equipWeapon = null;
         owner.AttackPoint -= weaponInfo.AttackPoint;
         owner.Speed -= weaponInfo.Spped;

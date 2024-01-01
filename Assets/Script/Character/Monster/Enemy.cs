@@ -22,16 +22,13 @@ public class Enemy : Character
 
     }
 
-    public new void Update()
+    public void Update()
     {
-        base.Update();
+        
         if (stateMachine != null)
             stateMachine.curState.UpdateState();
 
         currentView.enabled = isMyTurn;
-
-
-
     }
 
     public override void EnterTurn()

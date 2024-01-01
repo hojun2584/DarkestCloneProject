@@ -1,29 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using System;
 
 
-public enum CharacterEnum
-{
-    ARCHER,
-    WARRIOR,
-    WIZARD,
-}
 
-
-public enum EnemyEnum
-{
-    NORMAL,
-    NORMALHARD,
-    NORMALONE,
-    NORMALTWO,
-    NORMALTHREE,
-
-}
-
-public class CharacterManager : MonoBehaviour
+public class Re_CharacterManager : MonoBehaviour
 {
 
     [SerializeField]
@@ -38,8 +21,10 @@ public class CharacterManager : MonoBehaviour
     public List<GameObject> playerArray = new List<GameObject>();
     public List<GameObject> enemyArray = new List<GameObject>();
 
-    Dictionary<EnemyEnum, List<GameObject> > enemyDict = new Dictionary<EnemyEnum, List<GameObject>>();
-    
+    Dictionary<int, List<GameObject> > enemyDict = new Dictionary<int, List<GameObject>>();
+    EnemyEnum[] enemyEnums = (EnemyEnum[])Enum.GetValues(typeof(EnemyEnum));
+    int currentEnemyParty;
+
 
     public BattleManager battleManager;
     bool isAlreday = false;
@@ -72,22 +57,22 @@ public class CharacterManager : MonoBehaviour
         normalParty.Add(fatman);
         normalParty.Add(goblin);
         normalParty.Add(fatman);        
-        enemyDict.Add(EnemyEnum.NORMAL , new List<GameObject>(normalParty) );
+        enemyDict.Add((int)EnemyEnum.NORMAL , new List<GameObject>(normalParty) );
         normalParty.Clear();
 
         //normalParty.Add(goblin);
         normalParty.Add(goblin);
         normalParty.Add(goblin);
         normalParty.Add(fatman);        
-        enemyDict.Add(EnemyEnum.NORMALHARD,new List<GameObject>(normalParty));
+        enemyDict.Add((int)EnemyEnum.NORMALHARD,new List<GameObject>(normalParty));
         normalParty.Clear();
 
         normalParty.Add(goblin);
-        enemyDict.Add(EnemyEnum.NORMALONE, new List<GameObject>(normalParty));
+        enemyDict.Add((int)EnemyEnum.NORMALONE, new List<GameObject>(normalParty));
         normalParty.Add(goblin);
-        enemyDict.Add(EnemyEnum.NORMALTWO, new List<GameObject>(normalParty));
+        enemyDict.Add((int)EnemyEnum.NORMALTWO, new List<GameObject>(normalParty));
         normalParty.Add(goblin);
-        enemyDict.Add(EnemyEnum.NORMALTHREE, new List<GameObject>(normalParty));
+        enemyDict.Add((int)EnemyEnum.NORMALTHREE, new List<GameObject>(normalParty));
         normalParty.Clear();
 
         //monsterArr.Add(CharacterEnum.GOBLIN);
@@ -158,21 +143,20 @@ public class CharacterManager : MonoBehaviour
     public void MonsterCreate ()
     {
         GameObject obj = null;
-        Array values = Enum.GetValues(typeof(EnemyEnum));
-        System.Random random = new System.Random();
-        EnemyEnum randomParty = (EnemyEnum)values.GetValue(random.Next(values.Length));
-        List<GameObject> enemyParty = new List<GameObject>(enemyDict[randomParty]);
+        currentEnemyParty = UnityEngine.Random.Range((int)enemyEnums[0] , (int)enemyEnums[enemyEnums.Length-1]);
+        List<GameObject> enemyParty = new List<GameObject>(enemyDict[currentEnemyParty]);
+
 
         for (int i = 0; i< enemyParty.Count ; i++)
         {
             obj = Instantiate(enemyParty[i], monsterpos[i]);
             battleManager.EnemyAdd(obj.GetComponent<Enemy>());
         }
+        
 
 
         BattleManager.instance.CurCharacter.isMyTurn = false;
         battleManager.InitBattle();
-
     }
 
 }

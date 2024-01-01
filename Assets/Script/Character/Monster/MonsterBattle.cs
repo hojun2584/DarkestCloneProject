@@ -39,7 +39,7 @@ public class MonsterBattle : BaseState
         
         yield return new WaitForSeconds(waitNextTime);
 
-        if(BattleManager.CurCharacter == owner) 
+        if(BattleManager.instance.CurCharacter == owner) 
         {
             yield return null;
             aniCompo.SetBool("Attack", true);
