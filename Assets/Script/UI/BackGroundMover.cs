@@ -25,7 +25,7 @@ public class BackGroundMover : MonoBehaviour
     void Update()
     {
 
-        if(!BattleManager.isBattleOn)
+        if(!BattleManager.instance.isBattleOn)
         {
            if (Input.GetKey(KeyCode.D))
                 gameObject.transform.Translate(-transform.right * speed);

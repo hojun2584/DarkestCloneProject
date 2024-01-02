@@ -105,20 +105,20 @@ public class CharacterManager : MonoBehaviour
     public void Update()
     {
 
-        if(!isAlreday && BattleManager.isBattleOn)
+        if(!isAlreday && BattleManager.instance.isBattleOn)
         {
             isAlreday=true;
             Debug.Log("monster Create");
             MonsterCreate();
         }
 
-        if (!BattleManager.isBattleOn)
+        if (!BattleManager.instance.isBattleOn)
             isAlreday = false;
 
-        if(BattleManager.playerArray.Count <= 0)
+        if(BattleManager.instance.playerArray.Count <= 0)
         {
             SceneManager.LoadScene("End");
-            BattleManager.isBattleOn = false;
+            BattleManager.instance.isBattleOn = false;
             isAlreday = false;
         }
             

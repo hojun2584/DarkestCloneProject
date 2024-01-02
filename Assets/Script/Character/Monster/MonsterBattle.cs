@@ -46,12 +46,12 @@ public class MonsterBattle : BaseState
             yield return null;
             aniCompo.SetBool("Attack", false);
 
-            int targetIter = Random.Range(0, BattleManager.playerArray.Count);
+            int targetIter = Random.Range(0, BattleManager.instance.playerArray.Count);
             int useSkill = Random.Range(0, owner.skills.Count);
-            owner.skills[useSkill].UseSkill(BattleManager.playerArray[targetIter]);
+            owner.skills[useSkill].UseSkill(BattleManager.instance.playerArray[targetIter]);
             aniCompo.SetInteger("Skill", useSkill);
 
-            BattleManager.NextCharacter();
+            BattleManager.instance.NextCharacter();
             owner.stateMachine.ChangeState(new MonsterBattleIdle(owner.stateMachine));
         }
         owner.stateMachine.ChangeState(new MonsterBattleIdle(owner.stateMachine));

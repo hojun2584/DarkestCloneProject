@@ -71,9 +71,7 @@ public abstract class Character : MonoBehaviour, ICharacter
 
             nextHp = Mathf.Lerp(hpBar.fillAmount, setHp, Time.deltaTime * 1.0f);
 
-            Debug.Log(nextHp);
-
-            if (Math.Abs(preHp - nextHp) >= distance || Math.Abs( nextHp - preHp) >= distance)
+            if (Math.Abs(preHp - nextHp) >= distance)
                 return true;
 
             return false;
@@ -94,7 +92,6 @@ public abstract class Character : MonoBehaviour, ICharacter
 
 
     public abstract void EnterTurn();
-
     public abstract void Hit(float damage, ICharacter Attacker);
 
     public abstract void Die();

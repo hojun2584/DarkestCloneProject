@@ -17,11 +17,9 @@ public enum STATE
 
 public enum EQUIPWEAPON
 {
-
     SWORD = 0,
     BOW,
     WAND
-
 }
 
 public abstract class Re_Character : MonoBehaviour, ICharacter
@@ -49,6 +47,7 @@ public abstract class Re_Character : MonoBehaviour, ICharacter
         smSterategys = new List<Fsm>();
 
     }
+
     public CharacterData CharData
     {
         get
@@ -57,6 +56,7 @@ public abstract class Re_Character : MonoBehaviour, ICharacter
         }
         set { charterData = value; }
     }
+
     [SerializeField]
     CharacterData charterData = null;
 
@@ -86,11 +86,8 @@ public abstract class Re_Character : MonoBehaviour, ICharacter
     }
 
     public abstract void EnterTurn();
-
     public abstract void Hit(float damage, ICharacter Attacker);
-
     public abstract void Die();
-
     public abstract void UseSkill(ICharacter target);
 
 }

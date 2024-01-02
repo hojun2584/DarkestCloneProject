@@ -25,7 +25,7 @@ public class HpPotion : Item, IConsumeAbleItem
                 return;
             }
             Data.Amount -= 1;
-            cunsumeTarget.CharData.Hp += healPotion;
+            ((Player)cunsumeTarget).Hp += healPotion;
      //   }
 
 

@@ -35,7 +35,7 @@ public class Stun : BuffStrategy
 
         }
         
-        BattleManager.NextCharacter();
+        BattleManager.instance.NextCharacter();
 
     }
 

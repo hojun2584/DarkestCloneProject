@@ -43,7 +43,7 @@ public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
 
     public void OnClickUse()
     {
-        if (BattleManager.isBattleOn == false)
+        if (BattleManager.instance.isBattleOn == false)
             return;
 
         if (!(BattleManager.instance.CurCharacter is Player))
@@ -58,7 +58,7 @@ public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
         {
             Debug.Log("go!");
         }
-        BattleManager.skill = skill;
+        BattleManager.instance.skill = skill;
 
     }
 

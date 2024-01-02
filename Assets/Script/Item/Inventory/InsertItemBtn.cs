@@ -91,7 +91,7 @@ public class InsertItemBtn : MonoBehaviour
         }
 
         shopObject.SetActive(false);
-        BattleManager.isBattleOn = false;
+        BattleManager.instance.isBattleOn = false;
     }
 
 

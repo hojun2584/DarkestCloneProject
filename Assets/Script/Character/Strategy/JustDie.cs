@@ -33,7 +33,7 @@ public class JustDie : DieStrategy
         Debug.Log("dieco on");
         yield return new WaitForSeconds(dieTime);
         GameObject.DestroyImmediate(Owner.CharData);
-        BattleManager.DieCharacter(Owner);
+        BattleManager.instance.DieCharacter(Owner);
         GameObject.Destroy(Owner.gameObject);
     }
 

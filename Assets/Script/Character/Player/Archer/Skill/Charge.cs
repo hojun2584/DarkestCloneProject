@@ -20,8 +20,8 @@ public class Charge : PlayerAttack
 
         List<Character> enemy = new List<Character>();
 
-        foreach (Character c in BattleManager.enemyArray) 
-            enemy.Add(c);
+        foreach (Character myCaracter in BattleManager.instance.enemyArray) 
+            enemy.Add(myCaracter);
 
         
 

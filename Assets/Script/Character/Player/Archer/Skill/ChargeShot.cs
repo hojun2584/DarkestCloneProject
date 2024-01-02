@@ -29,17 +29,17 @@ public class ChargeShot : BuffStrategy
             Owner.buffs.Remove(Owner.buffs.Find(x => IsSame(this)));
             animator.SetBool("Casting" , false);
             
-            foreach (Character target in BattleManager.enemyArray)
+            foreach (Character target in BattleManager.instance.enemyArray)
                 target.Hit(Owner.CharData.AttackPoint * 2 , Owner);
             
-            BattleManager.NextCharacter();
+            BattleManager.instance.NextCharacter();
             return;
         }
 
         
 
         Debug.Log("casting call");
-        BattleManager.NextCharacter();
+        BattleManager.instance.NextCharacter();
     }
 
 }

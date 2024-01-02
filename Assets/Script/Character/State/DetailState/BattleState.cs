@@ -36,7 +36,7 @@ public class BattleState : BaseState
         if (owner.isMyTurn == false)
             owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
 
-        if (!BattleManager.isBattleOn)
+        if (!BattleManager.instance.isBattleOn)
             owner.stateMachine.ChangeState(new MoveState(owner.stateMachine));
         
 

@@ -35,7 +35,7 @@ public class MoveState : BaseState
 
 
         if (isMove)
-            moveValue += ( 1f / BattleManager.playerArray.Count);
+            moveValue += ( 1f / BattleManager.instance.playerArray.Count);
         
 
         aniCompo.SetBool("Move", isMove);
@@ -50,7 +50,7 @@ public class MoveState : BaseState
             owner.stateMachine = new BattleMachine(stateMachine.owner);
             owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
 
-            BattleManager.isBattleOn = true;
+            BattleManager.instance.isBattleOn = true;
         }
 
 

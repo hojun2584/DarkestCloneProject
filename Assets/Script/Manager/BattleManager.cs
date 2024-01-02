@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +12,14 @@ public class BattleManager : SingleTon<BattleManager>
 
 
     
-    static public List<Player> playerArray = new List<Player>();
-    static public List<Enemy> enemyArray = new List<Enemy>();
-    static List<Character> characterList;
+    public List<Player> playerArray = new List<Player>();
+    public List<Enemy> enemyArray = new List<Enemy>();
+    List<Character> characterList;
     // 전투가 끝나고 다시 전투 들어 갈 때 초기화 어디선가 해줘야함
     // 상태머신 바꾸면서 초기화 해주는 것도 나쁘지 않을 지도?
-    static int current = 0;
+    int current = 0;
+
+    public ISkillStrategy skill;
 
     [SerializeField]
     GameObject shopObject;
@@ -24,23 +27,29 @@ public class BattleManager : SingleTon<BattleManager>
     [SerializeField]
     ViewStatus status;
 
+    public event Action endBattle;
+    public event Action endGame;
 
-    public static bool isBattleOn = false;
+    public bool isBattleOn = false;
 
     public Character CurCharacter
     {
-        get => curCharcter;
+        get => curCharacter;
         set
         {
-            curCharcter = value;
 
-            if (curCharcter is Player)
+            curCharacter.isMyTurn = false;
+            curCharacter = value;
+            curCharacter.isMyTurn = true;
+
+            if (CurCharacter is Player)
                 status.Data = CurCharacter.CharData;
+        
         }
     }
-    static Character curCharcter;
+    Character curCharacter;
 
-    public static Character Target 
+    public Character Target 
     {
         get => target;
         set
@@ -59,8 +68,42 @@ public class BattleManager : SingleTon<BattleManager>
         }
     }
     static Character target;
-    static public ISkillStrategy skill;
 
+
+
+    public void NextCharacter()
+    {
+
+        if (instance.CurCharacter != null)
+        {
+            current = current < characterList.Count - 1 ? current + 1 : 0;
+        }
+
+        instance.CurCharacter = characterList[current];
+        
+    }
+
+
+    public void EndBattle()
+    {
+
+        isBattleOn = false;
+        CurCharacter = characterList[0];
+        skill = null;
+        shopObject.SetActive(true);
+    }
+
+
+    public void DieCharacter(Character dieChar)
+    {
+        if (dieChar is Player)
+            playerArray.Remove((Player)dieChar);
+        else
+            enemyArray.Remove((Enemy)dieChar);
+
+        characterList.Remove(dieChar);
+        NextCharacter();
+    }
 
 
 
@@ -72,71 +115,8 @@ public class BattleManager : SingleTon<BattleManager>
         playerArray = new List<Player>();
         enemyArray = new List<Enemy>();
         current = 0;
-        Debug.Log("call awke battle manager");
-        //chars.Sort( ( x , y ) => x.Data.Speed.CompareTo(y.Data.Speed) );
     }
 
-
-    public static void NextCharacter()
-    {
-
-        if (instance.CurCharacter != null)
-        {
-            curCharcter.isMyTurn = false;
-            current = current < characterList.Count - 1 ? current + 1 : 0;
-        }
-
-        instance.CurCharacter = characterList[current];
-        curCharcter.isMyTurn = true;
-    }
-
-
-    public void EndBattle()
-    {
-
-        isBattleOn = false;
-        curCharcter = characterList[0];
-        skill = null;
-        shopObject.SetActive(true);
-    }
-
-
-    public static void DieCharacter(Character dieChar)
-    {
-        if (dieChar is Player)
-            playerArray.Remove((Player)dieChar);
-        else
-            enemyArray.Remove((Enemy)dieChar);
-
-        characterList.Remove(dieChar);
-    }
-
-    public void Update()
-    {
-        if(CurCharacter is Player)
-            status.Data = CurCharacter.CharData;
-
-
-        if (enemyArray.Count <= 0 && isBattleOn == true)
-        {
-
-            EndBattle();
-
-            Debug.Log("endbattleCall");
-        
-        }
-
-
-        if (curCharcter == null)
-        {
-            CurCharacter = characterList[current];
-            curCharcter.isMyTurn = true;
-        }
-
-
-            
-
-    }
 
     public void Start()
     {
@@ -151,8 +131,13 @@ public class BattleManager : SingleTon<BattleManager>
         }
 
         characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
-        curCharcter = characterList[current];
-        curCharcter.isMyTurn = true;
+        CurCharacter = characterList[current];
+        CurCharacter.isMyTurn = true;
+
+
+        StartCoroutine( WaitPlayerDead() );
+
+        endBattle += EndBattle;
 
     }
 
@@ -160,9 +145,9 @@ public class BattleManager : SingleTon<BattleManager>
     void InitCharList()
     {
         characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
-        curCharcter = characterList[current];
+        CurCharacter = characterList[current];
 
-        curCharcter.isMyTurn = true;
+        CurCharacter.isMyTurn = true;
 
     }
 
@@ -170,8 +155,7 @@ public class BattleManager : SingleTon<BattleManager>
     IEnumerator WaitEndBattle()
     {
         yield return new WaitUntil( ()=> enemyArray.Count <= 0);
-
-
+        endBattle();
 
     }
 
@@ -179,7 +163,7 @@ public class BattleManager : SingleTon<BattleManager>
     {
         yield return new WaitUntil(() => playerArray.Count <= 0);
 
-
+        endGame();
 
     }
 
@@ -228,7 +212,6 @@ public class BattleManager : SingleTon<BattleManager>
     {
         current = 0;
         InitCharList();
-
     }
 
 
