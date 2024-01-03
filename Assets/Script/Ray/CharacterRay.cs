@@ -36,13 +36,9 @@ public class CharacterRay : MonoBehaviour
                 
                 if (hit.collider.TryGetComponent<Player>(out Player targetP))
                 {
-                    // 상태머신으로 처리 할 것
-                    //curCharacter = curChar;
-
 
                     if (!BattleManager.instance.isBattleOn)
                     {
-                        viewStat.Data = targetP.CharData;
                         BattleManager.instance.CurCharacter.isMyTurn = false;
                         BattleManager.instance.CurCharacter = targetP;
                         BattleManager.instance.CurCharacter.isMyTurn = true;

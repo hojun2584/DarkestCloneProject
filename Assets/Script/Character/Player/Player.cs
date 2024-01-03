@@ -90,10 +90,7 @@ public class Player : Character , IFightAble
 
     public void Update()
     {
-        
-
         currentView.enabled = isMyTurn;
-
     }
 
     /// <summary>

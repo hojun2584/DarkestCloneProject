@@ -63,7 +63,7 @@ public class CharacterData : ScriptableObject
 
 
 
-    public List<string> GetInitList
+    public List<string> ViewtList
     {
 
 

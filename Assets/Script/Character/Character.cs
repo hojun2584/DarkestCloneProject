@@ -52,6 +52,8 @@ public abstract class Character : MonoBehaviour, ICharacter
                 dieStrategy.Die();
 
             CharData.Hp = value;
+            setHp = (float)CharData.Hp / (float)CharData.MaxHp;
+
             StartCoroutine( SetHpBar() );
         }
         get
@@ -62,7 +64,7 @@ public abstract class Character : MonoBehaviour, ICharacter
 
     float preHp = 1f;
     float nextHp;
-    const float distance = 0.001f;
+    const float distance = 0.0001f;
 
     public bool IsLerp
     {
@@ -70,7 +72,6 @@ public abstract class Character : MonoBehaviour, ICharacter
         {
 
             nextHp = Mathf.Lerp(hpBar.fillAmount, setHp, Time.deltaTime * 1.0f);
-
             if (Math.Abs(preHp - nextHp) >= distance)
                 return true;
 
@@ -81,21 +82,18 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         while (IsLerp)
         {
-            setHp = (float)CharData.Hp / (float)CharData.MaxHp;
+            Debug.Log(nextHp);
             hpBar.fillAmount = nextHp;
             preHp = nextHp;
+
             yield return null;
         }
         Debug.Log("Active");
     }
 
-
-
     public abstract void EnterTurn();
     public abstract void Hit(float damage, ICharacter Attacker);
-
     public abstract void Die();
-
     public abstract void UseSkill(ICharacter target);
 
 }

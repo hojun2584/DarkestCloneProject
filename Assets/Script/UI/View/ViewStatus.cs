@@ -21,47 +21,31 @@ public class ViewStatus : MonoBehaviour , InitViewAble
     Image[] artifact = new Image[2];
     
 
-    public CharacterData Data 
-    { 
-        set
-        {
-            
-            data = value;
-            InitView();
-        }
-    }
-    CharacterData data;
+    
 
 
     public void InitView()
     {
-        if (data == null)
+        Player player = BattleManager.instance.CurCharacter as Player;
+
+        if (player == null)
             return;
 
-        var dataList = data.GetInitList;
-        
-        int i = 0;
+        List<string> statusList = player.CharData.ViewtList;
 
-        foreach ( var item in dataList ) 
+        for (int i = 0; i< statusList.Count ; i++)
         {
-            status[i].text = item;
-            i++;
+            status[i].text = statusList[i];
         }
 
-        Player target = BattleManager.instance.CurCharacter as Player;
-        if (target != null)
-        {
-            icon.sprite = target.icon;
-        }
-
+        icon.sprite = player.icon;
     }
 
-    public void Update()
+
+    public void Start()
     {
-
-
-        InitView();
-
+        BattleManager.instance.setCurrentChar += InitView;
     }
+
 
 }

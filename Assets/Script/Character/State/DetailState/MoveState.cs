@@ -21,11 +21,9 @@ public class MoveState : BaseState
     public override void EnterState()
     {
 
-        Debug.Log("¿©±â °íÄ¥ °Í");
         distance = Random.Range(minRange, maxRange);
         moveValue = 0;
         aniCompo.SetBool("Parrying" , false);
-        Debug.Log("move enter");
     }
 
     public override void UpdateState()
