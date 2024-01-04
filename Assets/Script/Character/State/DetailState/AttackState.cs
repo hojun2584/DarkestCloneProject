@@ -24,7 +24,7 @@ public class AttackState : CharacterState
 
     public override void UpdateState()
     {
-        if(!BattleManager.instance.isBattleOn)
+        if(!BattleManager.instance.IsBattleOn)
             owner.stateMachine.ChangeState(new MoveState(owner.stateMachine));
     }
 

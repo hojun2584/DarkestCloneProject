@@ -31,11 +31,6 @@ public class Enemy : Character
         currentView.enabled = isMyTurn;
     }
 
-    public override void EnterTurn()
-    {
-        throw new System.NotImplementedException();
-    }
-
     public override void Hit(float damage, ICharacter attacker)
     {
         hitStrategy.Hit(damage,attacker);

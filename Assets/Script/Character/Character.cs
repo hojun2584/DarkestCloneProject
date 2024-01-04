@@ -16,9 +16,8 @@ public abstract class Character : MonoBehaviour, ICharacter
     public bool isMyTurn = false;
     public List<BuffStrategy> buffs = new List<BuffStrategy>();
 
-
+    // 내가 현재 턴인지 확인을 위한 이미지 현재턴이면 캐릭터 위에 해당 이미지가 출력
     public Image currentView;
-
 
     [SerializeField]
     protected Image hpBar;
@@ -82,18 +81,14 @@ public abstract class Character : MonoBehaviour, ICharacter
     {
         while (IsLerp)
         {
-            Debug.Log(nextHp);
             hpBar.fillAmount = nextHp;
             preHp = nextHp;
 
             yield return null;
         }
-        Debug.Log("Active");
     }
 
-    public abstract void EnterTurn();
-    public abstract void Hit(float damage, ICharacter Attacker);
     public abstract void Die();
     public abstract void UseSkill(ICharacter target);
-
+    public abstract void Hit(float damage, ICharacter attacker);
 }

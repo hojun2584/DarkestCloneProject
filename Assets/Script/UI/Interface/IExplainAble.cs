@@ -8,6 +8,5 @@ using UnityEngine;
 interface IExplainAble
 {
     public string Comment { get;}
-    public void ExplainView();
 
 }

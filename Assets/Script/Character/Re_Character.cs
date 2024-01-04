@@ -22,31 +22,24 @@ public enum EQUIPWEAPON
     WAND
 }
 
-public abstract class Re_Character : MonoBehaviour, ICharacter
+public abstract class Re_Character : MonoBehaviour
 {
     public List<ISkillStrategy> skills = new List<ISkillStrategy>();
-    public ISkillStrategy selectSkill;
     public IHitStrategy hitStrategy;
     public IDieStrategy dieStrategy;
     protected EQUIPWEAPON weaponType;
     public bool isMyTurn = false;
     public List<BuffStrategy> buffs = new List<BuffStrategy>();
 
-
+    // 내가 현재 턴인지 확인을 위한 이미지 현재턴이면 캐릭터 위에 해당 이미지가 출력
     public Image currentView;
 
 
     [SerializeField]
     protected Image hpBar;
     public Fsm stateMachine;
-    public List<Fsm> smSterategys;
 
 
-    private void Start()
-    {
-        smSterategys = new List<Fsm>();
-
-    }
 
     public CharacterData CharData
     {
@@ -86,8 +79,7 @@ public abstract class Re_Character : MonoBehaviour, ICharacter
     }
 
     public abstract void EnterTurn();
-    public abstract void Hit(float damage, ICharacter Attacker);
     public abstract void Die();
     public abstract void UseSkill(ICharacter target);
-
+    public abstract void Hit(float damage, IHitAble attacker);
 }

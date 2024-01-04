@@ -26,10 +26,6 @@ public class Re_CharacterManager : MonoBehaviour
     int currentEnemyParty;
 
 
-    public BattleManager battleManager;
-    bool isAlreday = false;
-
-
     public GameObject archer;
     public GameObject warrior;
     public GameObject wizard;
@@ -45,14 +41,6 @@ public class Re_CharacterManager : MonoBehaviour
 
         playerArray = GameObject.Find("Data").GetComponent<CharacterSet>().playerArray;
         
-
-        //foreach (GameObject item in temp)
-        //{
-        //    PlayerAdd(item);
-        //}
-
-
-
         List<GameObject> normalParty = new List<GameObject>();
         normalParty.Add(fatman);
         normalParty.Add(goblin);
@@ -75,9 +63,6 @@ public class Re_CharacterManager : MonoBehaviour
         enemyDict.Add((int)EnemyEnum.NORMALTHREE, new List<GameObject>(normalParty));
         normalParty.Clear();
 
-        //monsterArr.Add(CharacterEnum.GOBLIN);
-        //monsterArr.Add(CharacterEnum.GOBLIN);
-        //monsterArr.Add(CharacterEnum.GOBLIN);
 
     }
 
@@ -85,43 +70,7 @@ public class Re_CharacterManager : MonoBehaviour
     void Start()
     {
         PlayerCreate();
-    }
-
-    public void Update()
-    {
-
-        if(!isAlreday && BattleManager.instance.isBattleOn)
-        {
-            isAlreday=true;
-            Debug.Log("monster Create");
-            MonsterCreate();
-        }
-
-        if (!BattleManager.instance.isBattleOn)
-            isAlreday = false;
-
-        if(BattleManager.instance.playerArray.Count <= 0)
-        {
-            SceneManager.LoadScene("End");
-            BattleManager.instance.isBattleOn = false;
-            isAlreday = false;
-        }
-            
-        
-    }
-
-
-
-    public void PlayerAdd (GameObject player)
-    {
-
-        if(playerArray.Count >= maxPlayerCapa)
-        {
-            Debug.Log("over Player List");
-            return;
-        }
-        playerArray.Add(player);
-        
+        BattleManager.instance.startBattle += MonsterCreate;
     }
 
 
@@ -133,11 +82,8 @@ public class Re_CharacterManager : MonoBehaviour
         for(int i = 0; i < playerArray.Count; i++)
         {
             obj = Instantiate(playerArray[i], playerPos[i]);
-            battleManager.PlayerAdd(obj.GetComponent<Player>());
-
+            BattleManager.instance.PlayerAdd(obj.GetComponent<Player>());
         }
-
-
     }
 
     public void MonsterCreate ()
@@ -146,17 +92,14 @@ public class Re_CharacterManager : MonoBehaviour
         currentEnemyParty = UnityEngine.Random.Range((int)enemyEnums[0] , (int)enemyEnums[enemyEnums.Length-1]);
         List<GameObject> enemyParty = new List<GameObject>(enemyDict[currentEnemyParty]);
 
-
         for (int i = 0; i< enemyParty.Count ; i++)
         {
             obj = Instantiate(enemyParty[i], monsterpos[i]);
-            battleManager.EnemyAdd(obj.GetComponent<Enemy>());
+            BattleManager.instance.EnemyAdd(obj.GetComponent<Enemy>());
         }
-        
-
 
         BattleManager.instance.CurCharacter.isMyTurn = false;
-        battleManager.InitBattle();
+        BattleManager.instance.InitBattle();
     }
 
 }

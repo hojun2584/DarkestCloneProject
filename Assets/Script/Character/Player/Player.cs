@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class Player : Character , IFightAble
+public class Player : Character , ICharacter
 {
     public Sprite icon;
 
@@ -96,9 +96,6 @@ public class Player : Character , IFightAble
     /// <summary>
     /// 플레이어가 자신에 턴에 들어 왔을 때 초기화 해야 하는 코드 들
     /// </summary>
-    public override void EnterTurn()
-    {
-    }
 
     public override void Hit(float damage, ICharacter attacker)
     {

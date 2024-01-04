@@ -57,17 +57,8 @@ public class CharacterManager : MonoBehaviour
     private void Awake()
     {
 
-
         playerArray = GameObject.Find("Data").GetComponent<CharacterSet>().playerArray;
         
-
-        //foreach (GameObject item in temp)
-        //{
-        //    PlayerAdd(item);
-        //}
-
-
-
         List<GameObject> normalParty = new List<GameObject>();
         normalParty.Add(fatman);
         normalParty.Add(goblin);
@@ -105,20 +96,20 @@ public class CharacterManager : MonoBehaviour
     public void Update()
     {
 
-        if(!isAlreday && BattleManager.instance.isBattleOn)
+        if(!isAlreday && BattleManager.instance.IsBattleOn)
         {
             isAlreday=true;
             Debug.Log("monster Create");
             MonsterCreate();
         }
 
-        if (!BattleManager.instance.isBattleOn)
+        if (!BattleManager.instance.IsBattleOn)
             isAlreday = false;
 
         if(BattleManager.instance.playerArray.Count <= 0)
         {
             SceneManager.LoadScene("End");
-            BattleManager.instance.isBattleOn = false;
+            BattleManager.instance.IsBattleOn = false;
             isAlreday = false;
         }
             

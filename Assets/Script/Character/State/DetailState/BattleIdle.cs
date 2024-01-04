@@ -34,7 +34,7 @@ public class BattleIdle : BaseState
             owner.stateMachine.ChangeState(new BattleState(stateMachine));
 
 
-        if (BattleManager.instance.isBattleOn == false)
+        if (BattleManager.instance.IsBattleOn == false)
             owner.stateMachine.ChangeState(new MoveState(stateMachine));
 
 

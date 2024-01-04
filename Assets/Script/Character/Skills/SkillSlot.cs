@@ -31,6 +31,7 @@ public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
         }
     }
 
+
     ISkillStrategy skill = null;
 
     // Start is called before the first frame update
@@ -43,7 +44,7 @@ public class SkillSlot : MonoBehaviour, IClickUseAble , IExplainAble
 
     public void OnClickUse()
     {
-        if (BattleManager.instance.isBattleOn == false)
+        if (BattleManager.instance.IsBattleOn == false)
             return;
 
         if (!(BattleManager.instance.CurCharacter is Player))

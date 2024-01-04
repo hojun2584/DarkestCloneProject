@@ -89,9 +89,7 @@ public class InsertItemBtn : MonoBehaviour
                 inven.InsertItem(new Weapon(weapon,inven));
                 break;
         }
-
         shopObject.SetActive(false);
-        BattleManager.instance.isBattleOn = false;
     }
 
 

@@ -12,18 +12,29 @@ public class Weapon : Item, IEquipeAbleItem
     public Weapon(ItemData data, Inventory inven) : base(data)
     {
 
-
         weaponInfo = (WeaponData)data;
         this.inven = inven;
     }
 
+    public bool IsEquip
+    {
+        get
+        {
+            return isEquip;
+        }
+        set
+        {
+            isEquip = value;
+        }
+    }
+    bool isEquip;
+
     public override void Use(ICharacter user = null, ICharacter target = null)
     {
-        base.Use(user, target);
         Equip(BattleManager.instance.CurCharacter);
     }
 
-    public void Equip(ICharacter equipTarget)
+    public virtual void Equip(Character equipTarget)
     {
         owner = equipTarget as Player;
         Data.Amount -= 1;
@@ -47,9 +58,9 @@ public class Weapon : Item, IEquipeAbleItem
 
     }
 
-    public void UnEquip()
+    public virtual void UnEquip()
     {
-        owner = BattleManager.instance.CurCharacter as Player;
+        
         owner.equipWeapon = null;
         owner.AttackPoint -= weaponInfo.AttackPoint;
         owner.Speed -= weaponInfo.Spped;
@@ -58,8 +69,6 @@ public class Weapon : Item, IEquipeAbleItem
         owner.MaxHp -= weaponInfo.MaxHp;
         owner.Dodge -= weaponInfo.Dodge;
         owner.Armor -= weaponInfo.Armor;
-
-
 
     }
 

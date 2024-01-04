@@ -21,15 +21,23 @@ public interface IItem : IUseAble
 
 }
 
-public interface IConsumeAbleItem : IItem
+public interface IConsumeAbleItem 
 {
 
     public abstract void Cunsume(ICharacter cunsumeTarget);
 }
 
-public interface IEquipeAbleItem : IItem
+public interface ICommentAble
 {
-    public abstract void Equip(ICharacter equipTarget);
+
+    public string Comment { get;}
+
+}
+
+
+public interface IEquipeAbleItem 
+{
+    public abstract void Equip(Character equipTarget);
     public abstract void UnEquip();
 
 }

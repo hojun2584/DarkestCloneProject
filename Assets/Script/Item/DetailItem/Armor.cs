@@ -9,6 +9,20 @@ public class Armor : Item, IEquipeAbleItem
     Inventory inven;
 
 
+    public bool IsEquip 
+    {
+        get
+        {
+            return isEquip;
+        }
+        set
+        {
+            isEquip = value;
+        }
+    }
+    bool isEquip;
+
+
     public Armor(ItemData data ,Inventory inven) : base(data)
     {
         this.inven = inven;
@@ -21,20 +35,11 @@ public class Armor : Item, IEquipeAbleItem
 
     public override void Use(ICharacter user = null, ICharacter target = null)
     {
-        base.Use(user, target);
+        
         Equip(BattleManager.instance.CurCharacter);
     }
 
-    bool isEquip;
-    bool IsEquip
-    {
-        get => isEquip;
-        set
-        {
-            isEquip = value;
-        }
-    }
-    public void Equip(ICharacter equipTarget)
+    public void Equip(Character equipTarget)
     {
         owner = equipTarget as Player;
         Data.Amount -= 1;

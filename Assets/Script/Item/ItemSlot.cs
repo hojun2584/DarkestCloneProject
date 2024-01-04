@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static UnityEditor.Progress;
 
 public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
 {
@@ -40,14 +41,16 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
             haveItem = value;
         }
     }
-
-    public string Comment 
+    public string Comment
     {
-        get 
+        get
         {
-            if (ItemData == null)
-                return null;
-            return ItemData.Comment;
+            var commentItem = haveItem as ICommentAble;
+
+            if(commentItem != null)
+                return commentItem.Comment;
+
+            return null;
         }
     }
 
@@ -59,13 +62,10 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
         if (!gameObject.TryGetComponent<Image>(out imageCompo))
             Debug.Log("이미지 컴포넌트 없음" + gameObject.name);
 
+
+        inven.changeItemList += InitView;
     }
 
-    public void Update()
-    {
-        InitView();
-
-    }
 
     private void InitView()
     {
@@ -85,8 +85,6 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
 
         imageCompo.sprite = ItemData.SpriteImage;
         textMesh.text = itemData.ItemName +" "+ itemData.Amount;
-
-
     }
 
     public void OnClickUse()
@@ -108,7 +106,7 @@ public class ItemSlot : MonoBehaviour ,IClickUseAble , IExplainAble
             imageCompo.sprite = noneImage;
         }
 
-
+        InitView();
 
     }
 

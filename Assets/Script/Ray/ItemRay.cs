@@ -74,21 +74,19 @@ public class ItemRay : MonoBehaviour
             }
 
 
-            if (result.gameObject.TryGetComponent<IExplainAble>(out IExplainAble comment))
+            if (result.gameObject.TryGetComponent<IExplainAble>(out IExplainAble explainSlot))
             {
                 
                 Vector3 mousePosition = Input.mousePosition;
                 mousePosition.z = 10; // 이 값은 카메라와 오브젝트 사이의 거리에 따라 조정해야 합니다.
                 commentBox.transform.position = mousePosition;
 
-                if(comment.Comment != null) 
+                if(explainSlot.Comment != null) 
                 {
                     commentBox.SetActive(true);
-                    this.comment.text = comment.Comment;
+                    this.comment.text = explainSlot.Comment;
+
                 }
-
-
-
 
             }
 

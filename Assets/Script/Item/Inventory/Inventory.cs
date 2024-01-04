@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,22 +10,10 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
 
-    public List<IItem> itemList = new List<IItem>();
-
+    public List<Item> itemList = new List<Item>();
     public List<ItemSlot> itemSlotList = new List<ItemSlot>();
+    public event Action changeItemList;
 
-    public int gold = 100;
-
-    public bool IsBuyItem(int cost)
-    {
-
-        if(gold >= cost) 
-            return true;
-
-        return false;
-    }
-    
-    [SerializeField]
     public bool IsCapacity => (itemList.Count < itemSlotList.Count);
 
 
@@ -32,6 +21,7 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         itemList.Capacity = itemSlotList.Count;
+        changeItemList += InitViewItem;
     }
 
 
@@ -39,22 +29,12 @@ public class Inventory : MonoBehaviour
     public Item FindItem(Item item)
     {
         
-        return (Item)itemList.Find(data => data.Data.name == item.Data.name &&
+        return itemList.Find(data => data.Data.name == item.Data.name &&
                                    data.Data.Amount < data.Data.MaxAmount);
     }
 
-    //public bool TryFindItem(out Item item)
-    //{
-    //    item = (Item)itemList.Find(data => data.Data.name == item.Data.name &&
-    //                               data.Data.Amount < data.Data.MaxAmount);
-    //    return item != null;
-    //}
-
     public bool InsertItem(Item item)
     {
-
-        //var temp = itemList.Find(x => x.InfoItem.ItemName == setItem.InfoItem.ItemName && x.InfoItem.Amount < x.InfoItem.Capacity);
-
 
         Item checkItem = FindItem(item);
 
@@ -72,11 +52,11 @@ public class Inventory : MonoBehaviour
                 itemList.Insert(itemList.Count, item);
 
 
-            InitViewItem();
+            changeItemList();
         }
         else
         {
-            Debug.Log("insert impossible " + gameObject.name + " 플로팅 바 띄어서 더 이상 집어 넣을 수 없음 알리기");
+            // 더 이상 집어 넣을 곳이 없다는 의미
             return false;
         }
 

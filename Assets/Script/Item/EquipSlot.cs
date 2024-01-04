@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EquipSlot : MonoBehaviour , IClickUseAble , IExplainAble
+public class EquipSlot : MonoBehaviour, IClickUseAble, IExplainAble
 {
 
     Player player;
@@ -28,14 +29,18 @@ public class EquipSlot : MonoBehaviour , IClickUseAble , IExplainAble
     [SerializeField]
     ViewFlag viewFlag = new ViewFlag();
 
-    public string Comment 
+    public string Comment
     {
-        get 
+        get
         {
-            if (item == null)
+            var commentItem = item as ICommentAble;
+            
+            if(commentItem != null)
+                return commentItem.Comment;
+            else
+            {
                 return null;
-
-            return item.Data.Comment;
+            }
         }
     }
 
@@ -98,8 +103,4 @@ public class EquipSlot : MonoBehaviour , IClickUseAble , IExplainAble
 
     }
 
-    public void ExplainView()
-    {
-        
-    }
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 public class BattleManager : SingleTon<BattleManager>
 {
 
-    public CharacterManager chManager;
+    public Re_CharacterManager chManager;
 
     public List<Player> playerArray = new List<Player>();
     public List<Enemy> enemyArray = new List<Enemy>();
@@ -22,11 +22,33 @@ public class BattleManager : SingleTon<BattleManager>
     GameObject shopObject;
 
 
+    public event Action startBattle;
     public event Action endBattle;
     public event Action endGame;
     public event Action setCurrentChar;
 
-    public bool isBattleOn = false;
+    int count = 0;
+
+
+    bool isBattleOn = false;
+    public bool IsBattleOn 
+    {
+        get => isBattleOn;
+        set 
+        {
+            if (value)
+                count++;
+            
+            if(value && count == playerArray.Count)
+            {
+                startBattle();
+                count = 0;
+            }
+
+            isBattleOn = value;
+        }
+    }
+
 
     public Character CurCharacter
     {
@@ -103,37 +125,42 @@ public class BattleManager : SingleTon<BattleManager>
         enemyArray = new List<Enemy>();
 
         current = 0;
+        
+
     }
 
 
     public void Start()
     {
-
-        foreach (var player in playerArray)
-        {
-            characterList.Add(player);
-        }
+        initCharacterList();
         
-        characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
-        CurCharacter = characterList[current];
+        startBattle += InitBattle;
 
         StartCoroutine( WaitPlayerDead() );
         endBattle += EndBattle;
     }
 
 
-    void InitCharList()
+
+    void initCharacterList()
+    {
+        foreach (var player in playerArray)
+        {
+            characterList.Add(player);
+        }
+        SetTurnOrder();
+    }
+
+    void SetTurnOrder()
     {
         characterList = characterList.OrderByDescending(character => character.CharData.Speed).ToList();
         CurCharacter = characterList[current];
     }
 
-
     IEnumerator WaitEndBattle()
     {
         yield return new WaitUntil( ()=> enemyArray.Count <= 0);
         endBattle();
-
     }
 
     IEnumerator WaitPlayerDead()
@@ -166,8 +193,7 @@ public class BattleManager : SingleTon<BattleManager>
     public void InitBattle()
     {
         current = 0;
-        InitCharList();
-
+        SetTurnOrder();
         StartCoroutine(WaitEndBattle());
     }
 
