@@ -15,14 +15,6 @@ public enum STATE
     DIE,
 }
 
-public enum EQUIPWEAPON
-{
-
-    SWORD = 0,
-    BOW,
-    WAND
-
-}
 
 public abstract class Character : MonoBehaviour
 {
@@ -30,7 +22,6 @@ public abstract class Character : MonoBehaviour
     public Skill selectSkill;
     public HitStrategy hitStrategy;
     public DieStrategy dieStrategy;
-    protected EQUIPWEAPON weaponType;
     public bool isMyTurn = false;
     public Image currentView;
 
@@ -39,13 +30,13 @@ public abstract class Character : MonoBehaviour
 
     [SerializeField]
     protected Image hpBar;
-    public Fsm stateMachine;
-    public List<Fsm> smSterategys;
+    public StateMachine stateMachine;
+    public List<StateMachine> smSterategys;
 
 
     private void Start()
     {
-        smSterategys = new List<Fsm>();
+        smSterategys = new List<StateMachine>();
 
     }
     public CharacterData CharData 

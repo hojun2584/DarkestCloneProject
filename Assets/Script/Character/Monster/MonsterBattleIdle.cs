@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterBattleIdle : BaseState
 {
-    public MonsterBattleIdle(Fsm machine) : base(machine)
+    public MonsterBattleIdle(StateMachine machine) : base(machine)
     {
     }
 

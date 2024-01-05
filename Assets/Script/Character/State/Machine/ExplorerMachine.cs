@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExplorerMachine : Fsm
+public class ExplorerMachine : StateMachine
 {
 
     

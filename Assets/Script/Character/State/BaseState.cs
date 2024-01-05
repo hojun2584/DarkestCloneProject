@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class BaseState
 {
-    protected Fsm stateMachine;
+    protected StateMachine stateMachine;
     protected Character owner;
     protected Animator aniCompo;
 
-    protected BaseState(Fsm machine)
+    protected BaseState(StateMachine machine)
     {
         stateMachine = machine;
         owner = machine.owner;
