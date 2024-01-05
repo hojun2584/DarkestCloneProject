@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleMachine : Fsm
+public class BattleMachine : StateMachine
 {
 
     public BattleMachine(Character owner) : base(owner)

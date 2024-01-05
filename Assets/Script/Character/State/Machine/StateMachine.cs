@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Fsm
+public abstract class StateMachine
 {
     public BaseState curState = null;
     public Character owner;
 
-    protected Fsm(Character owner)
+    protected StateMachine(Character owner)
     {
         this.owner = owner;
 

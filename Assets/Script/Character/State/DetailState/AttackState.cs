@@ -6,7 +6,7 @@ public class AttackState : CharacterState
 {
 
 
-    public AttackState(Character owner , Fsm machine)
+    public AttackState(Character owner , StateMachine machine)
         :base(owner , machine)
     {
 

@@ -6,7 +6,7 @@ public class BattleIdle : BaseState
 {
     
     
-    public BattleIdle(Fsm machine) : base(machine)
+    public BattleIdle(StateMachine machine) : base(machine)
     {
 
     }
