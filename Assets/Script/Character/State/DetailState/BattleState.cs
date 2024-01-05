@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BattleState : BaseState
 {
-    public BattleState(Fsm machine) : base(machine)
+    public BattleState(StateMachine machine) : base(machine)
     {
     }
 

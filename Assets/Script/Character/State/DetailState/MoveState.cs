@@ -12,7 +12,7 @@ public class MoveState : BaseState
     int maxRange = 500;
 
 
-    public MoveState(Fsm machine) : base(machine)
+    public MoveState(StateMachine machine) : base(machine)
     {
         
     }

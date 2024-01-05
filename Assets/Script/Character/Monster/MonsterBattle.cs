@@ -7,7 +7,7 @@ public class MonsterBattle : BaseState
 
     int attack = 0;
     float waitNextTime = 3.0f;
-    public MonsterBattle(Fsm machine) : base(machine)
+    public MonsterBattle(StateMachine machine) : base(machine)
     {
 
     }
