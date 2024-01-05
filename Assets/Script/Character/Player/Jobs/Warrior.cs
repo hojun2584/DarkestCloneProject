@@ -21,12 +21,6 @@ public class Warrior : Player
     {
         base.Update();
         stateMachine.UpdateState();
-
-
-        float foo = 0f;
-        foo = foo.Clamp(0, 5);
-        Debug.Log(foo);
-
     }
 
     public override void Hit(float damage, Character attacker)

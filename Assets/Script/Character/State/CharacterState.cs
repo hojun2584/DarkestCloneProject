@@ -6,7 +6,7 @@ public class CharacterState : BaseState
 {
     protected GameObject gameObject;
 
-    protected CharacterState(Character owner , Fsm machine)
+    protected CharacterState(Character owner , StateMachine machine)
         : base(machine)
     {
         this.owner = owner;
