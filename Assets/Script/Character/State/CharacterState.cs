@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Hojun;
+using System.Buffers;
 
-public class CharacterState : BaseState
+public class CharacterState : State
 {
     protected GameObject gameObject;
+    protected Character owner;
+    protected Animator aniCompo;
 
-    protected CharacterState(Character owner , Fsm machine)
+    protected CharacterState(Character owner , IStateMachine machine)
         : base(machine)
     {
         this.owner = owner;

@@ -1,14 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Hojun;
+using System.Buffers;
 
-public class MonsterBattle : BaseState
+public class MonsterBattle : State
 {
 
     int attack = 0;
     float waitNextTime = 3.0f;
-    public MonsterBattle(Fsm machine) : base(machine)
+
+    protected Enemy owner;
+    protected Animator aniCompo;
+
+    public MonsterBattle(IStateMachine machine) : base(machine)
     {
+        owner = (Enemy)machine.GetOwner;
+
     }
 
     public override void EnterState()

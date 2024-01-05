@@ -1,11 +1,18 @@
+using Hojun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleState : BaseState
+public class BattleState : State
 {
-    public BattleState(Fsm machine) : base(machine)
+
+    Character owner;
+    Animator aniCompo;
+
+    public BattleState(IStateMachine machine) : base(machine)
     {
+        owner = (Character)machine.GetOwner;
+        aniCompo = owner.GetComponent<Animator>();
     }
 
     public override void EnterState()
@@ -34,10 +41,10 @@ public class BattleState : BaseState
     public override void UpdateState()
     {
         if (owner.isMyTurn == false)
-            owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
+            owner.stateMachine.ChangeState(new BattleIdle(machine));
 
         if (!BattleManager.instance.IsBattleOn)
-            owner.stateMachine.ChangeState(new MoveState(owner.stateMachine));
+            owner.stateMachine.ChangeState(new MoveState(machine));
         
 
 

@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Hojun;
+
 
 [Flags]
 public enum STATE
@@ -37,7 +39,7 @@ public abstract class Re_Character : MonoBehaviour
 
     [SerializeField]
     protected Image hpBar;
-    public Fsm stateMachine;
+    public StateMachine<Character> stateMachine;
 
 
 

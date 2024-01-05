@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Hojun;
 
 
 public abstract class Character : MonoBehaviour, ICharacter
@@ -23,14 +24,11 @@ public abstract class Character : MonoBehaviour, ICharacter
     protected Image hpBar;
     float setHp;
 
-    public Fsm stateMachine;
-    public List<Fsm> smSterategys;
+    public StateMachine<Character> stateMachine;
 
 
     private void Start()
     {
-        smSterategys = new List<Fsm>();
-
     }
     public CharacterData CharData
     {

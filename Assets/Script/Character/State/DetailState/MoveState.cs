@@ -1,9 +1,10 @@
+using Hojun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class MoveState : BaseState
+public class MoveState : Hojun.State
 {
 
     static float moveValue = 0;
@@ -11,10 +12,13 @@ public class MoveState : BaseState
     int minRange = 100;
     int maxRange = 500;
 
+    Character owner;
+    Animator aniCompo;
 
-    public MoveState(Fsm machine) : base(machine)
+    public MoveState(IStateMachine machine) : base(machine)
     {
-        
+        owner = (Character)machine.GetOwner;
+        aniCompo = owner.GetComponent<Animator>();
     }
 
 
@@ -44,8 +48,8 @@ public class MoveState : BaseState
         if (moveValue >= distance)
         {
             ExitState();
-            owner.stateMachine = new BattleMachine(stateMachine.owner);
-            owner.stateMachine.ChangeState(new BattleIdle(stateMachine));
+            owner.stateMachine = new BattleMachine(owner);
+            owner.stateMachine.ChangeState(new BattleIdle(machine));
             BattleManager.instance.IsBattleOn = true;
         }
 

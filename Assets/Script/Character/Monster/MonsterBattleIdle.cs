@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Hojun;
+    
 
-public class MonsterBattleIdle : BaseState
+public class MonsterBattleIdle : State
 {
-    public MonsterBattleIdle(Fsm machine) : base(machine)
+    protected Enemy owner;
+
+    public MonsterBattleIdle(IStateMachine machine) : base(machine)
     {
+        owner = (Enemy)machine.GetOwner;
     }
 
     public override void EnterState()

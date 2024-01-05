@@ -10,7 +10,7 @@ public class Enemy : Character
         CharData = CharData.CloneObj;
         hitStrategy = new JustHit(this);
         dieStrategy = new JustDie(this);
-        stateMachine = new MonsterMachine(this);
+        stateMachine = new MonsterMachine<Character>(this);
         stateMachine.ChangeState( new MonsterBattleIdle(stateMachine) );
 
         currentView.enabled = false;
