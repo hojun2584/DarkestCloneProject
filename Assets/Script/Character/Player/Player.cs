@@ -29,7 +29,7 @@ public class Player : Character , ICharacter
             int armor = 0;
 
             if (equipArmor != null)
-                armor += equipArmor.ArmorInfo.Armor;
+                armor += equipArmor.Data.Armor;
 
             return CharData.Armor + armor;
         }

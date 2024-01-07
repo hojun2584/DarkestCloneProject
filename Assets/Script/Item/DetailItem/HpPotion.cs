@@ -32,7 +32,7 @@ public class HpPotion : Item, IConsumeAbleItem , ICommentAble
         ((Player)cunsumeTarget).Hp += healPotion;
 
     }
-    public override void Use(ICharacter user = null, ICharacter target = null)
+    public override void Use(Character user = null, Character target = null)
     {
         Cunsume(BattleManager.instance.CurCharacter);
     }

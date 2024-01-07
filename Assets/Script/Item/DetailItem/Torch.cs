@@ -12,7 +12,7 @@ public class Torch : Item, IConsumeAbleItem
     {
     }
 
-    public override void Use(ICharacter user , ICharacter target)
+    public override void Use(Character user , Character target)
     {
         Cunsume();
     }

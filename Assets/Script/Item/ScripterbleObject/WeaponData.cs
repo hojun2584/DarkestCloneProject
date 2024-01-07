@@ -28,13 +28,13 @@ public class WeaponData : ItemData
     [SerializeField] int armor;
     public int Dodge { get => dodge; set { dodge = value; } }
     [SerializeField] int dodge;
-
-    public new WeaponData CloneObj
+    public string Comment 
     {
-        get
+        get 
         {
-            return Instantiate(this);
+            return comment;
         }
     }
+    [SerializeField] string comment;
 
 }

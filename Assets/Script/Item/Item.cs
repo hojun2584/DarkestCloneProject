@@ -28,6 +28,6 @@ public abstract class Item
     public ItemData itemData = null;
 
 
-    public abstract void Use(ICharacter user = null, ICharacter target = null);
+    public abstract void Use(Character user = null, Character target = null);
 
 }

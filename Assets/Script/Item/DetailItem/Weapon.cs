@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
-public class Weapon : Item, IEquipeAbleItem
+public class Weapon : Item, IEquipeAbleItem, ICommentAble
 {
     Player owner;
-    public WeaponData weaponInfo;
     Inventory inven;
 
-    public Weapon(ItemData data, Inventory inven) : base(data)
+    public new WeaponData Data 
     {
+        get
+        {
+            return (WeaponData)Data;
+        }
+    }
 
-        weaponInfo = (WeaponData)data;
+    public Weapon(WeaponData data, Inventory inven) : base(data)
+    {
         this.inven = inven;
     }
 
@@ -27,9 +31,18 @@ public class Weapon : Item, IEquipeAbleItem
             isEquip = value;
         }
     }
+
+    public string Comment 
+    {
+        get 
+        {
+            return Data.Comment;
+        }
+    }
+
     bool isEquip;
 
-    public override void Use(ICharacter user = null, ICharacter target = null)
+    public override void Use(Character useUser = null, Character target = null)
     {
         Equip(BattleManager.instance.CurCharacter);
     }
@@ -48,13 +61,13 @@ public class Weapon : Item, IEquipeAbleItem
             
         }
         owner.equipWeapon = this;
-        owner.AttackPoint += weaponInfo.AttackPoint;
-        owner.Speed += weaponInfo.Spped;
-        owner.Critical += weaponInfo.Critical;
-        owner.Hp += weaponInfo.MaxHp;
-        owner.MaxHp += weaponInfo.MaxHp;
-        owner.Dodge += weaponInfo.Dodge;
-        owner.Armor += weaponInfo.Armor;
+        owner.AttackPoint += Data.AttackPoint;
+        owner.Speed += Data.Spped;
+        owner.Critical += Data.Critical;
+        owner.Hp += Data.MaxHp;
+        owner.MaxHp += Data.MaxHp;
+        owner.Dodge += Data.Dodge;
+        owner.Armor += Data.Armor;
 
     }
 
@@ -62,13 +75,13 @@ public class Weapon : Item, IEquipeAbleItem
     {
         
         owner.equipWeapon = null;
-        owner.AttackPoint -= weaponInfo.AttackPoint;
-        owner.Speed -= weaponInfo.Spped;
-        owner.Critical -= weaponInfo.Critical;
-        owner.Hp -= weaponInfo.MaxHp;
-        owner.MaxHp -= weaponInfo.MaxHp;
-        owner.Dodge -= weaponInfo.Dodge;
-        owner.Armor -= weaponInfo.Armor;
+        owner.AttackPoint -= Data.AttackPoint;
+        owner.Speed -= Data.Spped;
+        owner.Critical -= Data.Critical;
+        owner.Hp -= Data.MaxHp;
+        owner.MaxHp -= Data.MaxHp;
+        owner.Dodge -= Data.Dodge;
+        owner.Armor -= Data.Armor;
 
     }
 
