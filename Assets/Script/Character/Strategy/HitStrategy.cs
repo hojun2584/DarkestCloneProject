@@ -32,6 +32,4 @@ public abstract class HitStrategy : IHitStrategy
 
     public abstract void Hit(float damage, ICharacter attacker);
     
-
-
 }

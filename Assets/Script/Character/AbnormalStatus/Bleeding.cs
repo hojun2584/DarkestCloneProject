@@ -2,36 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bleeding : BuffStrategy
+public class Bleeding : Buff
 {
-    public Bleeding(Character owner, SKILL data) : base(owner, data)
+
+    public int minDamage = 3;
+    public int maxDamage = 6;
+
+    public Bleeding(Character owner) : base(owner)
     {
 
-        
     }
 
     int GetDamage()
     {
-        return Random.Range(3,6);
-    }
-
-    public int Count 
-    {
-        get
-        {
-            return count;
-        }
-    }
-
-
-    public override void UseSkill(ICharacter target)
-    {
-        Buff(target);
+        return Random.Range(minDamage,maxDamage);
     }
 
     public override void ActiveBuff()
     {
-        Owner.Hit(GetDamage(),Owner);
+
+        int damage = GetDamage();
+
+        Owner.Hit(damage,Owner);
         base.ActiveBuff();
     }
 

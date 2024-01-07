@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AttackStrategy : IAttackStrategy
+public abstract class Skill : ISkillStrategy
 {
-
-
-    public AttackStrategy(Character owner)
+    public Skill(Character owner , SKILLENUM data)
     {
         this.owner = owner;
+        this.data = SKillModel.skillDict[data];
+        animator = owner.GetComponent<Animator>();
     }
+
+    protected Animator animator;
 
     public SkillData Data
     {
@@ -19,11 +21,9 @@ public abstract class AttackStrategy : IAttackStrategy
         }
     }
     protected SkillData data;
-    public abstract float Damage { get;}
 
     public Character Owner => owner;
     protected Character owner;
 
     public abstract void UseSkill(ICharacter target);
-    public abstract void Attack(IHitAble target);
 }

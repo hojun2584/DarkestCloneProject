@@ -11,10 +11,8 @@ public class JustHit : HitStrategy
 
     public override void Hit(float damage, ICharacter attacker)
     {
-
         Owner.Hp -= damage;
         animator.SetTrigger("Hit");
-        
     }
 
 

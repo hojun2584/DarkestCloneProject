@@ -12,18 +12,13 @@ public class ArcherCharacter : Player
     {
         base.Awake();
         //최소 4개는 집어 넣을 것 
-        skills.Add( new BowAttack(this,SKILL.ARROWATTACK) );
-        skills.Add(new GuardSkill(this,SKILL.GUARD));
-        skills.Add( new ParryingSkill(this,SKILL.PARRYING));
-        skills.Add(new ChargeShot(this, SKILL.EXPLOSIONARROW));
+        skills.Add( new BowAttack(this,SKILLENUM.ARROWATTACK) );
+        skills.Add( new GuardSkill(this,SKILLENUM.GUARD));
+        skills.Add( new ParryingSkill(this,SKILLENUM.PARRYING));
+        skills.Add( new ChargeShot(this, SKILLENUM.EXPLOSIONARROW));
 
     }
 
-    public void Start()
-    {
-
-
-    }
 
     public new void Update()
     {

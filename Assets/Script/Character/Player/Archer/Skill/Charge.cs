@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Charge : PlayerAttack
 {
-    public Charge(Character owner, SKILL data) : base(owner, data)
+    public Charge(Character owner, SKILLENUM data) : base(owner, data)
     {
     }
 

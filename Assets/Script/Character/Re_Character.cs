@@ -31,7 +31,7 @@ public abstract class Re_Character : MonoBehaviour
     public IDieStrategy dieStrategy;
     protected EQUIPWEAPON weaponType;
     public bool isMyTurn = false;
-    public List<BuffStrategy> buffs = new List<BuffStrategy>();
+    public List<Buff> buffs = new List<Buff>();
 
     // 내가 현재 턴인지 확인을 위한 이미지 현재턴이면 캐릭터 위에 해당 이미지가 출력
     public Image currentView;

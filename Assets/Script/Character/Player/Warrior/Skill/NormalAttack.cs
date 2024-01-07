@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordAttack : AttackStrategy
+public class NormalAttack : PlayerAttack
 {
-    public SwordAttack(Character owner) : base(owner)
+
+    readonly float multipleDamage = 1.2f;
+
+    public NormalAttack(Character owner, SKILLENUM data) : base(owner,data)
     {
     }
 
@@ -12,7 +15,7 @@ public class SwordAttack : AttackStrategy
     {
         get
         {
-            return (float)owner.CharData.AttackPoint * 1.2f;
+            return (float)owner.CharData.AttackPoint * multipleDamage;
         }
     }
 

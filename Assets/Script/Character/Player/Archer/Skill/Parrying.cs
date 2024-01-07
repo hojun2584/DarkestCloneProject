@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
 
 public class Parrying : HitStrategy
 {
+
+    const int dodgeMultiple = 2;
+
     public Parrying(Character owner)
         : base(owner)
     {
@@ -17,7 +19,6 @@ public class Parrying : HitStrategy
         {
             attacker.Hit(Owner.CharData.AttackPoint, Owner);
             animator.SetTrigger("Counter");
-            Debug.Log("회피 성공 22");
 
             return;
         }
@@ -28,12 +29,10 @@ public class Parrying : HitStrategy
     {
         int flag = Random.Range(min, max);
 
-        if (flag >= (accuracy - (Owner.CharData.Dodge * 2)) )
+        if (flag >= (accuracy - (Owner.CharData.Dodge * dodgeMultiple)) )
         {
-            Debug.Log("회피 성공");
             return true;
         }
-
 
         return false;
     }

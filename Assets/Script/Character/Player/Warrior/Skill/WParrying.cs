@@ -14,14 +14,15 @@ public class WParrying : HitStrategy
 
     public override void Hit(float damage, ICharacter attacker)
     {
-
         float armor = Owner.CharData.Armor * armorMultiple;
 
         if(damage >= armor)
             Owner.Hit(damage, attacker);
 
-        attacker.Hit(Owner.CharData.Armor, Owner);
+        attacker.Hit(Owner.CharData.Armor , Owner);
         animator.SetTrigger("Counter");
+        
+
 
     }
 }

@@ -9,7 +9,7 @@ public class FatMan : Enemy
     {
         base.Awake();
         //skills.Add(new GoblinClaw(this));
-        skills.Add(new FatmanSkill(this));
+        skills.Add(new FatmanSkill(this , SKILLENUM.ARROWATTACK));
 
 
     }

@@ -3,16 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WParryinhSkill : BuffStrategy
+public class WParryingSkill : Skill
 {
-    public WParryinhSkill(Character owner, SKILL data) : base(owner, data)
+    public WParryingSkill(Character owner, SKILLENUM data) : base(owner, data)
     {
 
     }
 
     public override void UseSkill(ICharacter target)
     {
-        Owner.buffs.Add(new Bleeding(Owner,SKILL.BLEEDING));
         Owner.hitStrategy = new WParrying(Owner);
         animator.SetBool("Parrying", true);
     }

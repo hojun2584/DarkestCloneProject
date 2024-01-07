@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargeShot : BuffStrategy
+public class ChargeShot : PlayerAttack
 {
+    public override float Damage => throw new System.NotImplementedException();
 
-
-    
-    
-    public ChargeShot(Character owner,SKILL data) : base(owner, data)
+    public ChargeShot(Character owner,SKILLENUM data) : base(owner, data)
     {
         
     }
@@ -16,30 +14,11 @@ public class ChargeShot : BuffStrategy
     public override void UseSkill(ICharacter target)
     {
         animator.SetBool("Casting", true);
-        Buff(target);
+        
     }
 
-    public override void ActiveBuff()
+    public override void Attack(IHitAble target)
     {
-        BuffStrategy buff = IsAlready();
-        buff.count -= 1;
-        
-        if (buff.count <= 0)
-        {
-            Owner.buffs.Remove(Owner.buffs.Find(x => IsSame(this)));
-            animator.SetBool("Casting" , false);
-            
-            foreach (Character target in BattleManager.instance.enemyArray)
-                target.Hit(Owner.CharData.AttackPoint * 2 , Owner);
-            
-            BattleManager.instance.NextCharacter();
-            return;
-        }
-
-        
-
-        Debug.Log("casting call");
-        BattleManager.instance.NextCharacter();
+        throw new System.NotImplementedException();
     }
-
 }

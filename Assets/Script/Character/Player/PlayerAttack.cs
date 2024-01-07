@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class PlayerAttack : AttackStrategy
+public abstract class PlayerAttack : Skill
 {
 
+    public abstract float Damage { get; }
 
-    protected Animator animator;
-
-    protected PlayerAttack(Character owner, SKILL data)
-        : base(owner)
+    protected PlayerAttack(Character owner, SKILLENUM data)
+        : base(owner, data)
     {
 
-        this.owner = owner;
-        this.data = SKillModel.skillDict[data];
-        animator = owner.GetComponent<Animator>();
+    }
+    public abstract void Attack(IHitAble target);
+
+}
+public abstract class EnemyAttack : Skill
+{
+
+    public abstract float Damage { get; }
+
+    protected EnemyAttack(Character owner, SKILLENUM data)
+        : base(owner, data)
+    {
+        
     }
 
-
+    public abstract void Attack(IHitAble target);
 }

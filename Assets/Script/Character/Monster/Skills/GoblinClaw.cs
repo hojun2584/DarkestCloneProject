@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoblinClaw : AttackStrategy
+public class GoblinClaw : EnemyAttack
 {
 
 
-    public GoblinClaw(Character owner) : base(owner)
+    public GoblinClaw(Character owner, SKILLENUM data) : base(owner, data)
     {
     }
 

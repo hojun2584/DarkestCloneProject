@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShildAttack : PlayerAttack
 {
-    public ShildAttack(Character owner, SKILL data) : base(owner, data)
+    public ShildAttack(Character owner, SKILLENUM data) : base(owner, data)
     {
 
     }
@@ -19,8 +19,7 @@ public class ShildAttack : PlayerAttack
     {
         target.Hit(Damage,owner);
         var stunTarget = target as Character;
-        stunTarget.buffs.Add( new Stun(stunTarget , SKILL.STUN) );
-
+        stunTarget.ApplyBuff( new Stun(stunTarget) );
     }
 
     public override void UseSkill(ICharacter target)

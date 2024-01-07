@@ -7,8 +7,7 @@ public class Goblin : Enemy
     public new void Awake()
     {
         base.Awake();
-        skills.Add( new GoblinClaw(this) );
-
+        skills.Add( new GoblinClaw(this , SKILLENUM.ARROWATTACK) );
     }
 
 }

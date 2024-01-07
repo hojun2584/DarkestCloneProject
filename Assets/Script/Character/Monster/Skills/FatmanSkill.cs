@@ -3,60 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class FatmanSkill : AttackStrategy
+public class FatmanSkill : EnemyAttack
 {
+    const float multipleDamage = 0.5f;
 
+    public override float Damage => Owner.CharData.AttackPoint * multipleDamage;
 
-
-    public FatmanSkill(Character owner) : base(owner)
+    public FatmanSkill(Character owner, SKILLENUM data) : base(owner , data)
     {
         
     }
 
-    public override float Damage => throw new System.NotImplementedException();
+    //bool GetPercent()
+    //{
 
+    //    int percent = Random.Range(0, 10);
 
+    //    if (percent < 4)
+    //        return false;
 
-
-
-    bool GetPercent()
-    {
-
-        int percent = Random.Range(0, 10);
-
-        if (percent < 4)
-            return false;
-
-
-        return true;
-    }
-
-
-    public override void Attack(IHitAble target)
-    {
-        
-    }
+    //    return true;
+    //}
 
     public override void UseSkill(ICharacter target)
     {
         DeBuff(target);
-        var animator = owner.GetComponent<Animator>();
-
+        Attack(target);
         animator.SetInteger("Skill" , 1);
-
     }
 
     public void DeBuff(ICharacter m_target)
     {
-
         var target = m_target as Character;
-
-
-        //if (GetPercent())
-            target.buffs.Add(new Bleeding(target , SKILL.STUN));
-        
-
-
+        target.ApplyBuff(new Bleeding(target));
     }
 
+    public override void Attack(IHitAble target)
+    {
+        target.Hit(Damage, owner);
+    }
 }

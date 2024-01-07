@@ -24,8 +24,7 @@ public class BattleState : State
         Debug.Log("player enter state ???");
         aniCompo.SetBool("Parrying", false);
 
-        for (int i = 0; i < owner.buffs.Count; i++)
-            owner.buffs[i].ActiveBuff();
+        owner.ActiveBuffs();
         
 
 

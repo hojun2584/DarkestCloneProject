@@ -8,7 +8,7 @@ public class BowAttack : PlayerAttack
 
 
 
-    public BowAttack(Character owner , SKILL data) : base(owner , data)
+    public BowAttack(Character owner , SKILLENUM data) : base(owner , data)
     {
 
     }

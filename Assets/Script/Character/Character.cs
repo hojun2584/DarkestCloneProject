@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Hojun;
@@ -13,23 +12,13 @@ public abstract class Character : MonoBehaviour, ICharacter
     public ISkillStrategy selectSkill;
     public IHitStrategy hitStrategy;
     public IDieStrategy dieStrategy;
-    protected EQUIPWEAPON weaponType;
     public bool isMyTurn = false;
-    public List<BuffStrategy> buffs = new List<BuffStrategy>();
+    protected List<Buff> buffs = new List<Buff>();
 
     // 내가 현재 턴인지 확인을 위한 이미지 현재턴이면 캐릭터 위에 해당 이미지가 출력
     public Image currentView;
-
-    [SerializeField]
-    protected Image hpBar;
-    float setHp;
-
     public StateMachine<Character> stateMachine;
 
-
-    private void Start()
-    {
-    }
     public CharacterData CharData
     {
         get
@@ -41,6 +30,11 @@ public abstract class Character : MonoBehaviour, ICharacter
     [SerializeField]
     CharacterData charterData = null;
 
+    [SerializeField]
+    protected Image hpBar;
+    float setHp;
+    public event Action hpEvent;
+
     public float Hp
     {
         set
@@ -51,7 +45,7 @@ public abstract class Character : MonoBehaviour, ICharacter
             CharData.Hp = value;
             setHp = (float)CharData.Hp / (float)CharData.MaxHp;
 
-            StartCoroutine( SetHpBar() );
+            hpEvent();
         }
         get
         {
@@ -63,11 +57,16 @@ public abstract class Character : MonoBehaviour, ICharacter
     float nextHp;
     const float distance = 0.0001f;
 
+    public void Start()
+    {
+        hpEvent += () => { StartCoroutine(SetHpBar()); };
+    }
+
+
     public bool IsLerp
     {
         get
         {
-
             nextHp = Mathf.Lerp(hpBar.fillAmount, setHp, Time.deltaTime * 1.0f);
             if (Math.Abs(preHp - nextHp) >= distance)
                 return true;
@@ -81,8 +80,35 @@ public abstract class Character : MonoBehaviour, ICharacter
         {
             hpBar.fillAmount = nextHp;
             preHp = nextHp;
-
+            Debug.Log(preHp);
             yield return null;
+        }
+    }
+
+    public virtual void ApplyBuff(Buff addBuff)
+    {
+        Buff buff = IsAlreadyBuff(addBuff);
+        if (buff == null)
+            buffs.Add(addBuff);
+        else
+            buff.count += addBuff.count;
+    }
+
+    public virtual void RemoveBuff(Buff removeBuff)
+    {
+        buffs.Remove(buffs.Find(targetBuff => targetBuff.IsSame(removeBuff)));
+    }
+
+    public Buff IsAlreadyBuff(Buff findBuff)
+    {
+        return buffs.Find(x => x.IsSame(findBuff));
+    }
+
+    public void ActiveBuffs()
+    {
+        foreach (var item in buffs)
+        {
+            item.ActiveBuff();
         }
     }
 

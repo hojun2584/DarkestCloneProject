@@ -22,10 +22,10 @@ public class BattleManager : SingleTon<BattleManager>
     GameObject shopObject;
 
 
-    public event Action startBattle;
-    public event Action endBattle;
-    public event Action endGame;
-    public event Action setCurrentChar;
+    public event Action StartBattle;
+    public event Action EndBattleEvent;
+    public event Action EndGame;
+    public event Action SetCurrentChar;
 
     int count = 0;
 
@@ -41,7 +41,7 @@ public class BattleManager : SingleTon<BattleManager>
             
             if(value && count == playerArray.Count)
             {
-                startBattle();
+                StartBattle();
                 count = 0;
             }
 
@@ -61,7 +61,7 @@ public class BattleManager : SingleTon<BattleManager>
             curCharacter = value;
             curCharacter.isMyTurn = true;
 
-            setCurrentChar();
+            SetCurrentChar();
         }
     }
     Character curCharacter;
@@ -134,10 +134,10 @@ public class BattleManager : SingleTon<BattleManager>
     {
         initCharacterList();
         
-        startBattle += InitBattle;
+        StartBattle += InitBattle;
 
         StartCoroutine( WaitPlayerDead() );
-        endBattle += EndBattle;
+        EndBattleEvent += EndBattle;
     }
 
 
@@ -160,13 +160,13 @@ public class BattleManager : SingleTon<BattleManager>
     IEnumerator WaitEndBattle()
     {
         yield return new WaitUntil( ()=> enemyArray.Count <= 0);
-        endBattle();
+        EndBattle();
     }
 
     IEnumerator WaitPlayerDead()
     {
         yield return new WaitUntil(() => playerArray.Count <= 0);
-        endGame();
+        EndGame();
     }
 
     public bool PlayerAdd(Player player)

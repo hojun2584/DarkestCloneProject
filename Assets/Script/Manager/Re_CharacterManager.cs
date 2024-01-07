@@ -70,7 +70,7 @@ public class Re_CharacterManager : MonoBehaviour
     void Start()
     {
         PlayerCreate();
-        BattleManager.instance.startBattle += MonsterCreate;
+        BattleManager.instance.StartBattle += MonsterCreate;
     }
 
 

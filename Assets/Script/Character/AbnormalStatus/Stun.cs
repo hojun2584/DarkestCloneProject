@@ -2,23 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stun : BuffStrategy
+public class Stun : Buff
 {
-
-    
     float delayTime =2.0f;
 
-
-    public Stun(Character owner, SKILL data) : base(owner, data)
+    public Stun(Character owner) : base(owner)
     {
         animator.SetBool("Stun" , true);
         count = 2;
-    }
-
-
-    public override void UseSkill(ICharacter target)
-    {
-        Buff(target);
     }
 
 
@@ -26,23 +17,20 @@ public class Stun : BuffStrategy
     public override void ActiveBuff()
     {
 
-        BuffStrategy buff = IsAlready();
+        Buff buff = Owner.IsAlreadyBuff(this);
         buff.count -= 1;
         if (buff.count <= 0)
         {
-            Owner.buffs.Remove(Owner.buffs.Find(x => IsSame(this)));
+            Owner.RemoveBuff(this);
             CorutineRunner.Start(DelayAnimation());
-
         }
         
         BattleManager.instance.NextCharacter();
-
     }
 
 
     IEnumerator DelayAnimation()
     {
-
         yield return new WaitForSeconds(delayTime);
         animator.SetBool("Stun" , false);
     }

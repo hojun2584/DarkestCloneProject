@@ -44,7 +44,7 @@ public class ViewStatus : MonoBehaviour , InitViewAble
 
     public void Start()
     {
-        BattleManager.instance.setCurrentChar += InitView;
+        BattleManager.instance.SetCurrentChar += InitView;
     }
 
 

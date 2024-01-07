@@ -16,18 +16,13 @@ public class MonsterBattle : State
     public MonsterBattle(IStateMachine machine) : base(machine)
     {
         owner = (Enemy)machine.GetOwner;
-
+        aniCompo = owner.GetComponent<Animator>();
     }
 
     public override void EnterState()
     {
 
-        
-        for (int i = 0; i < owner.buffs.Count; i++)
-            owner.buffs[i].ActiveBuff();
-
-
-
+        owner.ActiveBuffs();
         CorutineRunner.Start(WaitForNext());
     }
 

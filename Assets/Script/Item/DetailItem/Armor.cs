@@ -7,9 +7,6 @@ public class Armor : Item, IEquipeAbleItem
 
     Player owner;
     Inventory inven;
-
-
-    
     
     public Armor(ArmorData data ,Inventory inven) : base(data)
     {

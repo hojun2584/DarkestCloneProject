@@ -11,19 +11,6 @@ public interface ICharacter : IFightAble
 
 }
 
-public interface IHitAble
-{
-    public abstract void Hit(float damage , ICharacter attacker);
-}
-
-
-public interface iDieAble : IHitAble
-{
-    public abstract void Die();
-}
-
-
-
 public interface IHitStrategy
 {
     public Character Owner { get; }
@@ -42,12 +29,6 @@ public interface ISkillStrategy
     public SkillData Data { get;}
 }
 
-public interface IHealAble
-{
-    public abstract void Heal();
-}
-
-
 
 public interface IAttackStrategy : ISkillStrategy
 {
@@ -59,9 +40,9 @@ public interface IHealStrategy : ISkillStrategy
     public abstract void Heal(IHitAble target);
 }
 
-public interface IBuffStrategy : ISkillStrategy
+public interface IBuffStrategy
 {
-    public abstract void Buff(ICharacter target , int count = 1);
+    public abstract void ActiveBuff();
 }
 
 public interface IDieStrategy
@@ -73,13 +54,21 @@ public interface IDieStrategy
 
 
 
+public interface IHitAble
+{
+    public abstract void Hit(float damage, ICharacter attacker);
+}
 
+public interface iDieAble : IHitAble
+{
+    public abstract void Die();
+}
 public interface ISkillUseAble
 {
     public abstract void UseSkill(ICharacter target);
 }
 
-public interface IFightAble : IHitAble, ISkillUseAble , iDieAble
+public interface IFightAble : ISkillUseAble , iDieAble
 {
     
 }
