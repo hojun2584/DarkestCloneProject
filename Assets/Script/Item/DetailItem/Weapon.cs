@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Weapon : Item, IEquipeAbleItem, ICommentAble
 {
@@ -61,28 +62,28 @@ public class Weapon : Item, IEquipeAbleItem, ICommentAble
             
         }
         owner.equipWeapon = this;
-        owner.AttackPoint += Data.AttackPoint;
-        owner.Speed += Data.Spped;
-        owner.Critical += Data.Critical;
-        owner.Hp += Data.MaxHp;
-        owner.MaxHp += Data.MaxHp;
-        owner.Dodge += Data.Dodge;
-        owner.Armor += Data.Armor;
+        isEquip = true;
+        ApplyStatus();
 
     }
 
     public virtual void UnEquip()
     {
-        
-        owner.equipWeapon = null;
-        owner.AttackPoint -= Data.AttackPoint;
-        owner.Speed -= Data.Spped;
-        owner.Critical -= Data.Critical;
-        owner.Hp -= Data.MaxHp;
-        owner.MaxHp -= Data.MaxHp;
-        owner.Dodge -= Data.Dodge;
-        owner.Armor -= Data.Armor;
+        isEquip = false;
+        ApplyStatus();
+    }
 
+
+    private void ApplyStatus()
+    {
+        int equip = isEquip ? 1 : 0;
+        owner.AttackPoint += equip * Data.AttackPoint;
+        owner.Speed += equip * Data.Spped;
+        owner.Critical += equip * Data.Critical;
+        owner.Hp += equip * Data.MaxHp;
+        owner.MaxHp += equip * Data.MaxHp;
+        owner.Dodge += equip * Data.Dodge;
+        owner.Armor += equip * Data.Armor;
     }
 
 }
